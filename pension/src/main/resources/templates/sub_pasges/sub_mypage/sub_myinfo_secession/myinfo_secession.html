@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지 > 회원탈퇴</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/css/reset.css">
+    <link rel="stylesheet" href="../../../../static/css/sub/sub_mypage/sub_myinfo_secession/style.css">
+</head>
+
+<body>
+    <div id="wrap">
+
+        <!-- header -->
+
+        <header>
+            <div class="header-wrap">
+
+                <!-- 로고 시작 -->
+
+                <h1 class="logo">
+                    <a href="../../../index.html">
+                        <img src="../../../../static/images/logo.png">
+                    </a>
+                </h1>
+
+                <!-- 로고 끝 -->
+
+                <!-- nav 박스 -->
+
+                <div class="nav-box">
+
+                    <!-- user 박스 -->
+
+                    <ul class="users">
+                        <li><a href="#">로그인</a></li>
+                        <li><a href="#">회원가입</a></li>
+                        <li><a href="../sub_myinfo_checkpw/myinfo_checkpw.html">마이페이지 <i class="fa-solid fa-user"></i></a></li>
+                    </ul>
+
+                    <!-- user 박스 끝 -->
+
+                    <!-- nav 시작 -->
+
+                    <nav>
+                        <ul class="nav-main">
+                            <li class="main-menu main-menu1">
+                                <a href="../../sub_intro/sub_about/about.html">펜션소개</a>
+                                <ul class="sub-menu sub-menu1">
+                                    <li><a href="../../sub_intro/sub_about/about.html">펜션소개</a></li>
+                                    <li><a href="../../sub_intro/sub_navigate/navigate.html">찾아오시는 길</a></li>
+                                    <li><a href="../../sub_intro/sub_recommends/recommends.html">주변 볼거리</a></li>
+                                </ul>
+                            </li>
+                            <li class="main-menu main-menu2">
+                                <a href="#">객실안내</a>
+                                <ul class="sub-menu sub-menu2">
+                                    <li><a href="#">A동 안내</a></li>
+                                    <li><a href="#">B동 안내</a></li>
+                                </ul>
+                            </li>
+                            <li class="main-menu main-menu3">
+                                <a href="#">예약</a>
+                                <ul class="sub-menu sub-menu3">
+                                    <li><a href="#">예약하기</a></li>
+                                    <li><a href="#">예약 확인</a></li>
+                                </ul>
+                            </li>
+                            <li class="main-menu main-menu4">
+                                <a href="../../sub_facilities/facilities.html">부대시설</a>
+                            </li>
+                            <li class="main-menu main-menu5">
+                                <a href="#">커뮤니티</a>
+                                <ul class="sub-menu sub-menu5">
+                                    <li><a href="#">공지사항</a></li>
+                                    <li><a href="#">게시판</a></li>
+                                    <li><a href="#">리뷰</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- nav 박스 끝 -->
+            </div>
+        </header>
+
+        <!-- main 시작 -->
+        <main>
+            <section class="sub-title-wrap">
+                <div class="sub-title-bg">
+                    <div class="sub-title-area">
+                        <h3 class="sub-title">Mypage</h3>
+                        <div class="line"></div>
+                        <p class="sub-title-txt">나의 정보 한눈에 보기
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- section 시작 -->
+
+        <section class="myinfo-content-wrap">
+            <ul class="sub-navigate-nav">
+                <h4>마이페이지</h4>
+                <li>
+                    <a href="#">예약 내역</a>
+                </li>
+                <li>
+                    <a href="../sub_myinfo_checkpw/myinfo_checkpw.html">내 정보 관리</a>
+                </li>
+                <li>
+                    <a href="#">문의하기</a>
+                </li>
+                <li>
+                    <a href="#">문의내역 확인</a>
+                </li>
+                <li>
+                    <a href="#">리뷰관리</a>
+                </li>
+            </ul>
+            <div class="myinfo-content">
+                <h3>회원 탈퇴</h3>
+                <form>
+                    <div class="sece_txt">
+                        <h4>회원탈퇴 전, 아래 유의사항을 확인해 주시기 바랍니다.</h4>
+                        <ul>
+                            <li>
+                                회원탈퇴 시 회원전용 웹 서비스 이용이 불가합니다.
+                            </li>
+                            <li>
+                                거래정보가 있는 경우, 전자상거래 등에서 소비자 보호에 관한 법률에 따라 계약 또는 청약철회에 관한 기록, 대금결제 및 재화 등의 공급에 관한 기록은 5년간 보존됩니다.
+                            </li>
+                            <li>
+                                이미 결제가 완료된 건은 탈퇴시 취소되지 않습니다.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sece_check">
+                        <input type="checkbox" value="" class="sece_checkbox"/>상기 회원탈퇴 시 처리사항 안내를 확인하였음에 동의합니다.
+                    </div>
+                    <div class="sece_passwd_check_wrap">
+                        <h4>보안을 위해 회원님의 이름과 계정 아이디(이메일) 및 비밀번호를 확인 합니다.</h4>
+                        <ul class="sece_passwd_check">
+                            <li>
+                                <label>이름 :</label>
+                                <input type="text" class="username" value="홍길동" readonly />
+                            </li>
+                            <li>
+                                <label>아이디(이메일) :</label>
+                                <input type="text" class="userid" value="xxx" readonly />
+                            </li>
+                            <li>
+                                <label>비밀번호 :</label>
+                                <input type="password" class="userpasswd" value="" />
+                            </li>
+                            <li>
+                                <button class="sece_btn">탈퇴하기</button>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div class="btn_box">
+                    <button class="btn_exit" onclick="location.href='../sub_myinfo_checkpw/myinfo_checkpw.html'">나가기</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- section 끝 -->
+
+        <!-- footer 시작-->
+
+        <footer>
+            <div class="footer-wrap">
+                <ul>
+                    <li class="logo footer-logo"><a href="../../../index.html"><img src="../../../../static/images/logo.png"></a></li>
+                    <li class="copyright">
+                        <p>사업주 : 홍길동</p>
+                        <p>주소 : 경상남도 창녕군 남지읍 신전길 300</p>
+                        <p>Copyright &copy;</p>
+                    </li>
+                    <li class="tell">
+                        <p>
+                            전화가능시간<br />
+                            평일 : 09:00 ~ 19:00<br />
+                            주말 : 09:00 ~ 19:00
+                        </p>
+                        <p>☎ 010-9371-1909</p>
+                    </li>
+                    <li>
+                        <ul class="footer-sns">
+                            <li>
+                                <a href="https://www.instagram.com/gaebirigil_pensions" target="_blank"><i
+                                        class="fa-brands fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="mailto:hyeonhuig19@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+
+        <!-- Anchor -->
+
+        <a href="#top" class="anchor">
+            <i class="fa-solid fa-arrow-up"></i>
+        </a>
+    </div>
+
+    <script src="../../../../static/js/header_nav.js"></script>
+</body>
+
+</html>

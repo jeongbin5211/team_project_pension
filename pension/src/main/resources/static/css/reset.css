@@ -1,0 +1,25 @@
+@charset 'utf-8';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* font-family: 'Roboto', sans-serif; */
+    /* font-family: 'Noto Sans KR', sans-serif; */
+    font-family: 'Sunflower', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+}
+
+ul, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #555;
+}

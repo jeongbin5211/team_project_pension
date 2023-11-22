@@ -1,0 +1,472 @@
+#wrap {
+    width: 100%;
+}
+
+.nav-hide {
+    transform: translateY(-100px);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    background-color: rgba(225, 232, 234, 0.82);
+    width: 100%;
+    height: 100px;
+    z-index: 9999;
+    transition: 0.2s;
+}
+
+.header-wrap {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    padding-top: 15px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.nav-box {
+    width: 80%;
+    height: 100px;
+}
+
+.users {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    height: 45px;
+}
+
+.users li {
+    margin-left: 15px;
+    line-height: 45px;
+}
+
+.users li a {
+    font-size: 12px;
+}
+
+nav {
+    float: right;
+    width: 700px;
+    height: 55px;
+}
+
+.nav-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-menu {
+    height: 55px;
+    font-size: 20px;
+    line-height: 55px;
+    text-align: center;
+    
+}
+
+.main-menu:hover {
+    border-bottom: 2px solid #fff;
+}
+
+.main-menu a {
+    color: #000;
+    font-weight: 500;
+}
+
+
+
+.sub-menu {
+    visibility: hidden;
+    z-index: 9999;
+    
+}
+
+.sub-menu li {
+    font-size: 16px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 5px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.sub-menu li:hover {
+    background-color: #adadad;
+}
+
+.sub-menu li:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
+.sub-menu li:last-child {
+    border-bottom: 0;
+    border-radius: 0 0 5px 5px;
+}
+
+/* main */
+
+.main-bg {
+    width: 100%;
+    height: 800px;
+    background: url('../../images/팬션.jpg') 50% 50% no-repeat;
+    background-size: cover;
+    z-index: 0;
+}
+
+/* section room */
+
+.room {
+    width: 100%;
+    background-color: #EEF1F5;
+}
+
+.room-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 0;
+}
+
+h2 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: 900;
+    color: #000;
+}
+
+.line {
+    margin: 30px auto;
+    width: 60px;
+    height: 2px;
+    background-color: #000;
+}
+
+.room-title-intro {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.room-a,
+.room-b {
+    display: flex;
+    width: 100%;
+    height: 300px;
+}
+
+.room-a-imgbox,
+.room-b-imgbox {
+    position: relative;
+    width: 70%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.room-a-imgbox img:hover,
+.room-b-imgbox img:hover {
+    transform: scale(1.2);
+    transition: 0.5s;
+}
+
+.room-a-imgbox img {
+    width: 100%;
+    position: absolute;
+    top: -80%;
+    transition: 0.5s;
+}
+
+.room-b-imgbox img {
+    width: 100%;
+    position: absolute;
+    top: -60%;
+    transition: 0.5s;
+}
+
+.room-intro {
+    width: 30%;
+    height: 100%;
+    background-color: #fff;
+    text-align: center;
+    padding: 80px 0 0;
+}
+
+.room-intro h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.room-btn {
+    display: block;
+    margin: 15px auto;
+    width: 150px;
+    padding: 10px 8px;
+    background-color: rgb(116, 134, 233);
+    border-radius: 50px;
+    color: #fff;
+}
+
+.room-b {
+    margin-top: 20px;
+}
+
+/* room 끝 */
+
+
+/* banner 시작 */
+
+.banner {
+    width: 100%;
+    height: 200px;
+    background: url(../../images/8-1.jpg) 0 60% no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+    overflow: hidden;
+}
+
+.banner-wrap {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+}
+
+.banner p {
+    font-size: 35px;
+    color: #fff;
+    line-height: 1.5;
+    text-shadow: 1px 2px 3px #000;
+}
+
+/* banner 끝 */
+
+
+/* 부대시설 시작 */
+
+.facil-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 0;
+}
+
+.facil-item {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.facil-item li:hover {
+    transform: translateY(-5px);
+}
+
+.facil-item li {
+    width: 280px;
+    height: 350px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.facil-item li:nth-child(even) {
+    margin-top: 250px;
+}
+
+.facil-item-1 {
+    background: url(../../images/바베큐.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+.facil-item-2 {
+    background: url(../../images/8-1.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+.facil-item-3 {
+    background: url(../../images/7-1.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+.facil-item-4{
+    background: url(../../images/족구장.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+.facil-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.facil-item p {
+    width: 100%;
+    height: 80px;
+    font-size: 20px;
+    border-radius: 48px 48px 0 0;
+    background-color: rgba(240, 255, 255, 0.9);
+    text-align: center;
+    padding-top: 30px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+/* 부대시설 끝 */
+
+
+/* 주변 볼거리 시작 */
+
+.near {
+    width: 100%;
+    background: linear-gradient(180deg, #F6F6F2 50%, #EEF1F5 50%);
+}
+
+.near-wrap {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 100px 0;
+}
+
+.near-introbox {
+    height: 470px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.near-textbox {
+    width: 27%;
+    height: 75%;
+}
+
+.near-textbox h3 {
+    margin-bottom: 60px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.near-textbox p {
+    padding: 15px 20px;
+    font-size: 18px;
+    line-height: 2;
+    letter-spacing: 1px;
+}
+
+.near-imgbox {
+    width: 73%;
+    height: 100%;
+}
+
+.near-imgbox ul {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.near-imgbox li {
+    width: 32%;
+    height: 470px;
+    border-radius: 10px;
+}
+
+.near-imgbox li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.near-img1 {
+    background: url(../../images/주변1.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+.near-img2 {
+    background: url(../../images/주변2.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+.near-img3 {
+    background: url(../../images/주변3.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+/* 주변 볼거리 끝 */
+
+/* footer 시작 */
+
+footer {
+    padding: 20px 0;
+    width: 100%;
+    background-color: #9EA2A9;
+    font-size: 12px;
+}
+
+.footer-wrap {
+    max-width: 1200px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.footer-wrap ul {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #555;
+}
+
+.footer-logo {
+    padding-top: 0;
+}
+
+.copyright p {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.tell p:first-child {
+    margin-bottom: 10px;
+}
+
+.footer-sns {
+    width: 65px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-sns a {
+    font-size: 25px;
+    color: #555;
+}
+
+.footer-sns a:hover {
+    color: tomato;
+}
+/* footer 끝 */
+
+/* Anchor 시작 */
+
+.anchor {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(139, 131, 131);
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: 0.3s;
+    visibility: hidden;
+}
