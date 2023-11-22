@@ -1,0 +1,289 @@
+#wrap {
+    width: 100%;
+}
+
+header {
+    background-color: rgba(225, 232, 234, 0.82);
+    width: 100%;
+    height: 100px;
+    transition: 0.2s;
+}
+
+.header-wrap {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    padding-top: 15px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.nav-box {
+    width: 80%;
+    height: 100px;
+}
+
+.users {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    height: 45px;
+}
+
+.users li {
+    margin-left: 15px;
+    line-height: 45px;
+}
+
+.users li a {
+    font-size: 12px;
+}
+
+nav {
+    float: right;
+    width: 700px;
+    height: 55px;
+    /* display: flex; */
+    
+}
+
+.nav-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-menu {
+    height: 55px;
+    font-size: 20px;
+    line-height: 55px;
+    text-align: center;
+    
+}
+
+.main-menu:hover {
+    border-bottom: 2px solid #fff;
+}
+
+.main-menu a {
+    color: #000;
+    font-weight: 500;
+}
+
+
+
+.sub-menu {
+    visibility: hidden;
+    z-index: 9999;
+    
+}
+
+.sub-menu li {
+    font-size: 16px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 5px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* border-bottom: 1px solid #fff; */
+}
+
+.sub-menu li:hover {
+    background-color: #adadad;
+}
+
+.sub-menu li:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
+.sub-menu li:last-child {
+    border-bottom: 0;
+    border-radius: 0 0 5px 5px;
+}
+
+
+/* main 시작 */
+
+.sub-title-wrap {
+    width: 100%;
+    height: 300px;
+    background-image: linear-gradient(rgba(84, 84, 84, 0.5), rgba(84, 84, 84, 0.5)), url('../../../../images/navigate_intro.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.sub-title-bg {
+    max-width: 1200px;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.sub-title {
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: #fff;
+    font-family: 'Gothic A1', sans-serif;
+}
+
+.sub-title-txt {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    color: #fff;
+    font-family: 'Gothic A1', sans-serif;
+}
+
+.line {
+    margin: 5px 0 12px 0;
+    width: 100px;
+    height: 2px;
+    background-color: #fff;
+}
+
+.sub-navigate-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 150px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sub-navigate-nav {
+    width: 15%;
+}
+
+.sub-navigate-nav h4 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.sub-navigate-nav li {
+    margin-bottom: 5px;
+}
+
+.sub-navigate-nav li a:hover {
+    color: tomato;
+}
+
+.sub-navigate-content {
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#map {
+    width: 50%;
+    height: 400px;
+    margin: 0 auto;
+    background: url(../../../../images/임시지도.png) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+.sub-navigate-table {
+    width: 40%;
+    height: 300px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+tr:nth-child(odd) {
+    background-color: #eee;
+}
+tr:nth-child(even) {
+    background-color: transparent;
+}
+
+
+td {
+    text-align: center;
+    font-size: 14px;
+    padding: 15px 0;
+}
+
+
+
+/* footer 시작 */
+
+footer {
+    padding: 20px 0;
+    width: 100%;
+    background-color: #9EA2A9;
+    font-size: 12px;
+}
+
+.footer-wrap {
+    max-width: 1200px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.footer-wrap ul {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #555;
+}
+
+.footer-logo {
+    padding-top: 0;
+}
+
+.copyright p {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.tell p:first-child {
+    margin-bottom: 10px;
+}
+
+.footer-sns {
+    width: 65px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-sns a {
+    font-size: 25px;
+    color: #555;
+}
+
+.footer-sns a:hover {
+    color: tomato;
+}
+/* footer 끝 */
+
+
+/* Anchor 시작 */
+
+.anchor {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(139, 131, 131);
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: 0.3s;
+    visibility: hidden;
+}
