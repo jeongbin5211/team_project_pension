@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>footer</title>
+</head>
+<body>
+  <div th:fragment="footer_f" class="footer-wrap">
+    <ul>
+        <li class="logo footer-logo"><a href="/"><img src="../../../../static/images/logo.png"></a></li>
+        <li class="copyright">
+            <p>사업주 : 홍길동</p>
+            <p>주소 : 경상남도 창녕군 남지읍 신전길 300</p>
+            <p>Copyright &copy;</p>
+        </li>
+        <li class="tell">
+            <p>
+                전화가능시간<br />
+                평일 : 09:00 ~ 19:00<br />
+                주말 : 09:00 ~ 19:00
+            </p>
+            <p>☎ 010-9371-1909</p>
+        </li>
+        <li>
+            <ul class="footer-sns">
+                <li>
+                    <a href="https://www.instagram.com/gaebirigil_pensions" target="_blank"><i
+                            class="fa-brands fa-instagram"></i></a>
+                </li>
+                <li>
+                    <a href="mailto:hyeonhuig19@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
