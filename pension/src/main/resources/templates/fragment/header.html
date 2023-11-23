@@ -2,12 +2,12 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>header</title>
-</head>
-<body>
-  <div th:fragment="header_f" class="header-wrap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>header</title>
+    </head>
+    <body>
+    <div th:fragment="header_f" class="header-wrap">
 
     <!-- 로고 시작 -->
 
@@ -26,9 +26,15 @@
         <!-- user 박스 -->
 
         <ul class="users">
-            <li><a href="#">로그인</a></li>
-            <li><a href="#">회원가입</a></li>
-            <li><a href="/mypage/myinfo/checkpw">마이페이지 <i class="fa-solid fa-user"></i></a></li>
+            <th:block th:if="${#strings.isEmpty(session.user)}">
+                <li><a href="#">로그인</a></li>
+                <li><a href="#">회원가입</a></li>
+            </th:block>
+
+            <th:block th:unless="${#strings.isEmpty(session.user)}">
+                <li><a href="/mypage/myinfo/checkpw">마이페이지 <i class="fa-solid fa-user"></i></a></li>
+                <li><a href="#">로그아웃</a></li>
+            </th:block>
         </ul>
 
         <!-- user 박스 끝 -->
