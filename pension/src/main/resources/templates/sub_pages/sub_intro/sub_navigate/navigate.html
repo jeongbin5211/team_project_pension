@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,77 +24,7 @@
 
         <!-- header -->
 
-        <header>
-            <div class="header-wrap">
-
-                <!-- 로고 시작 -->
-
-                <h1 class="logo">
-                    <a href="/">
-                        <img src="../../../../static/images/logo.png">
-                    </a>
-                </h1>
-
-                <!-- 로고 끝 -->
-
-                <!-- nav 박스 -->
-
-                <div class="nav-box">
-
-                    <!-- user 박스 -->
-
-                    <ul class="users">
-                        <li><a href="#">로그인</a></li>
-                        <li><a href="#">회원가입</a></li>
-                        <li><a href="mypage/myinfo/checkpw">마이페이지 <i class="fa-solid fa-user"></i></a></li>
-                    </ul>
-
-                    <!-- user 박스 끝 -->
-
-                    <!-- nav 시작 -->
-
-                    <nav>
-                        <ul class="nav-main">
-                            <li class="main-menu main-menu1">
-                                <a href="/intro/about">펜션소개</a>
-                                <ul class="sub-menu sub-menu1">
-                                    <li><a href="/intro/about">펜션소개</a></li>
-                                    <li><a href="/intro/navigate">찾아오시는 길</a></li>
-                                    <li><a href="/intro/recom">주변 볼거리</a></li>
-                                </ul>
-                            </li>
-                            <li class="main-menu main-menu2">
-                                <a href="#">객실안내</a>
-                                <ul class="sub-menu sub-menu2">
-                                    <li><a href="#">A동 안내</a></li>
-                                    <li><a href="#">B동 안내</a></li>
-                                </ul>
-                            </li>
-                            <li class="main-menu main-menu3">
-                                <a href="#">예약</a>
-                                <ul class="sub-menu sub-menu3">
-                                    <li><a href="#">예약하기</a></li>
-                                    <li><a href="#">예약 확인</a></li>
-                                </ul>
-                            </li>
-                            <li class="main-menu main-menu4">
-                                <a href="/facil">부대시설</a>
-                            </li>
-                            <li class="main-menu main-menu5">
-                                <a href="#">커뮤니티</a>
-                                <ul class="sub-menu sub-menu5">
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">게시판</a></li>
-                                    <li><a href="#">리뷰</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <!-- nav 박스 끝 -->
-            </div>
-        </header>
+        <header th:insert="~{fragment/header.html::header_f}"></header>
 
         <!-- main 시작 -->
         <main>
@@ -156,37 +87,7 @@
 
         <!-- footer 시작-->
 
-        <footer>
-            <div class="footer-wrap">
-                <ul>
-                    <li class="logo footer-logo"><a href="/"><img src="../../../../static/images/logo.png"></a></li>
-                    <li class="copyright">
-                        <p>사업주 : 홍길동</p>
-                        <p>주소 : 경상남도 창녕군 남지읍 신전길 300</p>
-                        <p>Copyright &copy;</p>
-                    </li>
-                    <li class="tell">
-                        <p>
-                            전화가능시간<br />
-                            평일 : 09:00 ~ 19:00<br />
-                            주말 : 09:00 ~ 19:00
-                        </p>
-                        <p>☎ 010-9371-1909</p>
-                    </li>
-                    <li>
-                        <ul class="footer-sns">
-                            <li>
-                                <a href="https://www.instagram.com/gaebirigil_pensions" target="_blank"><i
-                                        class="fa-brands fa-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="mailto:hyeonhuig19@gmail.com"><i class="fa-regular fa-envelope"></i></a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </footer>
+        <footer th:insert="~{fragment/footer.html::footer_f}"></footer>
 
         <!-- Anchor -->
 
