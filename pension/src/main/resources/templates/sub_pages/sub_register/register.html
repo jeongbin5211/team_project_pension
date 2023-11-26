@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../../../static/css/reset.css">
+    <link rel="stylesheet" href="../../../static/css/sub/sub_register/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="register_box">
+    <h1 class="logo_box">
+        <a href="/">
+            <img src="../../../static/images/logo.png" alt="logo">
+        </a>
+    </h1>
+    <h2>회원가입</h2>
+    <form>
+        <ul>
+            <li>
+                <label>아이디<span class="request_mark"> *</span></label>
+                <div class="id_input_box">
+                    <input type="text" class="userid" placeholder="아이디는 6 ~ 12자리로 입력하세요." minlength="6" maxlength="12">
+                    <button class="id_check_btn">중복 확인</button>
+                </div>
+            </li>
+            <li>
+                <label>비밀번호<span class="request_mark"> *</span></label>
+                <div class="pw_input_box">
+                    <input type="password" placeholder="비밀번호는 8 ~ 20자리로 입력하세요." minlength="8" maxlength="20" class="userpw" onpaste="return false;" oncopy="return false">
+                    <i class="fa-solid fa-eye" id="show_password"></i>
+                </div>
+                
+            </li>
+            <li>
+                <label>비밀번호 확인<span class="request_mark"> *</span></label>
+                <input type="password" class="userpw_check" onpaste="return false;" oncopy="return false">
+            </li>
+            <li>
+                <label>이메일<span class="request_mark"> *</span></label>
+                <div>
+                    <input type="text" placeholder="email@email.com" maxlength="50" class="email">
+                </div>
+            </li>
+            <li>
+                <label>전화번호<span class="request_mark"> *</span></label>
+                <input type="text" placeholder="휴대폰 번호 입력 ( '-' 제외 11자리 입력 )" minlength="11" maxlength="11" class="phone">
+            </li>
+            <li>
+                <label>주소</label>
+                <input type="text" maxlength="50" class="addr">
+            </li>
+            <li>
+                <button class="register_btn">가입하기</button>
+            </li>
+        </ul>
+    </form>
+</div>
+<script src="../../../static/js/sub/sub_register/register.js"></script>
+</body>
+</html>
