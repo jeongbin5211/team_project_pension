@@ -8,6 +8,7 @@ let userid = document.querySelector(".userid");
 let userpw = document.querySelector(".userpw");
 let userpwCheck = document.querySelector(".userpw_check");
 let email = document.querySelector(".email");
+let name = document.querySelector(".name");
 let phone = document.querySelector(".phone");
 let showPassword = document.querySelector("#show_password");
 let registerBtn = document.querySelector(".register_btn");
@@ -62,13 +63,9 @@ registerBtn.addEventListener("click", (e) => {
     return false;
   }
 
-  if (email.value == "") {
-    alert("이메일을 입력해주세요.");
-    email.focus();
-    return false;
-  } else if (exptext.test(email.value) == false) {
-    alert("이메일 형식이 올바르지 않습니다.");
-    email.focus();
+  if (name.value == "") {
+    alert("이름을 입력해주세요.");
+    name.focus();
     return false;
   }
 
@@ -80,6 +77,16 @@ registerBtn.addEventListener("click", (e) => {
     alert("'-' 제외한 11자리를 입력해주세요.\n ex) 01012345678");
     phone.value = "";
     phone.focus();
+    return false;
+  }
+
+  if (email.value == "") {
+    alert("이메일을 입력해주세요.");
+    email.focus();
+    return false;
+  } else if (exptext.test(email.value) == false) {
+    alert("이메일 형식이 올바르지 않습니다.");
+    email.focus();
     return false;
   }
 });
