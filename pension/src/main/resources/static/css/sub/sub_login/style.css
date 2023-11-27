@@ -84,6 +84,12 @@ li:nth-child(3) {
 
 li:last-child {
     border: 0;
+    padding: 0 10px;
+}
+
+.find_account_link,
+.regist_link {
+    font-size: 13px;
 }
 
 .copyright {

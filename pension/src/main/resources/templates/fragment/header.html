@@ -28,7 +28,7 @@
         <ul class="users">
             <th:block th:if="${#strings.isEmpty(session.user)}">
                 <li><a href="/login">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
+                <li><a href="/register">회원가입</a></li>
             </th:block>
 
             <th:block th:unless="${#strings.isEmpty(session.user)}">
