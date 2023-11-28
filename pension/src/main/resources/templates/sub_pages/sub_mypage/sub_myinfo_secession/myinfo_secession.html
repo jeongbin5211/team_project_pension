@@ -44,7 +44,7 @@
                     <a href="#">예약 내역</a>
                 </li>
                 <li>
-                    <a href="/mypage/myinfo/checkpw">내 정보 관리</a>
+                    <a href="/mypage/myinfo/checkpw" class="check-page">내 정보 관리</a>
                 </li>
                 <li>
                     <a href="#">문의하기</a>
@@ -74,25 +74,26 @@
                         </ul>
                     </div>
                     <div class="sece_check">
-                        <input type="checkbox" value="" class="sece_checkbox"/>상기 회원탈퇴 시 처리사항 안내를 확인하였음에 동의합니다.
+                        <input type="checkbox" id="sece_checkbox" value="" class="sece_checkbox"/>
+                        <label for="sece_checkbox">상기 회원탈퇴 시 처리사항 안내를 확인하였음에 동의합니다.</label>
                     </div>
                     <div class="sece_passwd_check_wrap">
-                        <h4>보안을 위해 회원님의 이름과 계정 아이디(이메일) 및 비밀번호를 확인 합니다.</h4>
+                        <h4>보안을 위해 회원님의 이름과 계정 아이디 및 비밀번호를 확인 합니다.</h4>
                         <ul class="sece_passwd_check">
                             <li>
                                 <label>이름 :</label>
                                 <input type="text" class="username" value="홍길동" readonly />
                             </li>
                             <li>
-                                <label>아이디(이메일) :</label>
+                                <label>아이디 :</label>
                                 <input type="text" class="userid" value="xxx" readonly />
                             </li>
                             <li>
-                                <label>비밀번호 :</label>
-                                <input type="password" class="userpasswd" value="" />
+                                <label for="passwd">비밀번호 :</label>
+                                <input type="password" id="userpasswd" class="userpasswd" value="" />
                             </li>
                             <li>
-                                <button class="sece_btn">탈퇴하기</button>
+                                <button class="sece_btn" id="sece_btn">탈퇴하기</button>
                             </li>
                         </ul>
                     </div>
@@ -115,6 +116,27 @@
             <i class="fa-solid fa-arrow-up"></i>
         </a>
     </div>
+
+    <script>
+        let sece_checkbox = document.querySelector("#sece_checkbox");
+        let userpasswd = document.querySelector("#userpasswd");
+        let sece_btn = document.querySelector("#sece_btn");
+
+        sece_btn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            if(!sece_checkbox.checked) {
+                alert("회원탈퇴 시 처리사항에 동의해 주세요.");
+                sece_checkbox.focus();
+                return false;
+            }
+            if(userpasswd.value == "") {
+                alert("비밀번호를 입력해 주세요.");
+                sece_checkbox.focus();
+                return false;
+            }
+        });
+    </script>
 
     <script src="../../../../static/js/header_nav.js"></script>
 </body>

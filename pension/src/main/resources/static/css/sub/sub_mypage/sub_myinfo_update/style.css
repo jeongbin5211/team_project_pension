@@ -180,6 +180,10 @@ nav {
     color: tomato;
 }
 
+.check-page {
+    color: tomato;
+}
+
 .myinfo-content {
     width: 85%;
     margin-left: 80px;
@@ -255,6 +259,30 @@ input {
     display: block;
 }
 
+.userpasswd_change {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.change_passwd_box {
+    border: none;
+}
+
+.change_passwd_box td {
+    padding: 10px 0;
+    border-bottom: none;
+}
+
+.change_passwd_title {
+    width: 200px;
+}
+
+.change_passwd_box input {
+    width: 200px;
+    height: 28px;
+}
+
 .username_change_btn {
     margin-left: 20px;
 }
@@ -291,29 +319,43 @@ input {
     display: block;
 }
 
-.userpasswd_change {
-    padding: 0;
-    border: none;
-    background-color: transparent;
+.useremail_change_btn {
+    margin-left: 20px;
 }
 
-.change_passwd_box {
-    border: none;
-}
-
-.change_passwd_box td {
-    padding: 10px 0;
-    border-bottom: none;
-}
-
-.change_passwd_title {
-    width: 200px;
-}
-
-.change_passwd_box input {
+.useremail {
     width: 200px;
     height: 28px;
 }
+
+.useremail_change {
+    margin-top: 15px;
+    display: none;
+}
+
+.useremail_box {
+    display: block;
+}
+
+.useraddr_change_btn {
+    margin-left: 20px;
+}
+
+.useraddr {
+    width: 200px;
+    height: 28px;
+}
+
+.useraddr_change {
+    margin-top: 15px;
+    display: none;
+}
+
+.useraddr_box {
+    display: block;
+}
+
+
 
 .secession_txt {
     margin-top: 10px;
