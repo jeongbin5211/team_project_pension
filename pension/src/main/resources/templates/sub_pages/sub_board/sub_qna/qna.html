@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QnA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/css/reset.css">
+    <link rel="stylesheet" href="../../../../static/css/sub/sub_board/sub_qna/style.css">
+</head>
+<body>
+<header th:insert="~{fragment/header.html::header_f}"></header>
+
+<main>
+    <section class="sub-title-wrap">
+        <div class="sub-title-bg">
+            <div class="sub-title-area">
+                <h3 class="sub-title">QnA</h3>
+                <div class="line"></div>
+                <p class="sub-title-txt">
+                    궁금하신점을 찾아보세요.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<section class="qna-content-wrap">
+    <ul class="sub-navigate-nav">
+        <h4>Community</h4>
+        <li>
+            <a href="/board/notice">Notice</a>
+        </li>
+        <li>
+            <a href="/board/qna">QnA</a>
+        </li>
+        <li>
+            <a href="/board/review">Review</a>
+        </li>
+    </ul>
+    <div class="qna-content">
+
+    </div>
+</section>
+
+<!-- footer 시작-->
+
+<footer th:insert="~{fragment/footer.html::footer_f}"></footer>
+
+<!-- Anchor -->
+
+<a href="#top" class="anchor">
+    <i class="fa-solid fa-arrow-up"></i>
+</a>
+
+<script src="../../../../static/js/header_nav.js"></script>
+</body>
+</html>
