@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약하기 > 객실 예약하기</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/css/reset.css">
+    <link rel="stylesheet" href="../../../../static/css/sub/sub_reserve/sub_request_room/style.css">
+</head>
+
+<body>
+    <div id="wrap">
+
+        <!-- header -->
+
+        <header th:insert="~{fragment/header.html::header_f}"></header>
+
+        <!-- main 시작 -->
+        <main>
+            <section class="sub-title-wrap">
+                <div class="sub-title-bg">
+                    <div class="sub-title-area">
+                        <h3 class="sub-title">Reservation</h3>
+                        <div class="line"></div>
+                        <p class="sub-title-txt">객실 예약하기
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- section 시작 -->
+
+        <section class="request-room-content-wrap">
+            <ul class="sub-navigate-nav">
+                <h4>예약</h4>
+                <li>
+                    <a href="/reserve/checkroom" class="check-page">예약하기</a>
+                </li>
+                <li>
+                    <a href="#">예약확인</a>
+                </li>
+            </ul>
+            <div class="request-room-content">
+                <h3>예약하기</h3>
+                <div class="request-room-info">                    
+                    <form action="" class="request-room">
+                        <h5>예약자 정보</h5>
+                        <ul>
+                            <li class="reserve_name_area">
+                                <label>예약자 이름</label>
+                                <input type="text" class="reserve_name" value="김철수" placeholder="예약자 이름을 입력해 주세요."/>
+                            </li>
+                            <li class="reserve_tell_area">
+                                <label>휴대폰 번호</label>
+                                <input type="text" class="reserve_tell" value="010-1234-5678" placeholder="휴대폰 번호를 입력해 주세요."/>
+                            </li>
+                            <li class="reserve_checkbox_area">
+                                <input type="checkbox" id="reserve_checkbox" class="reserve_checkbox" value=""/>
+                                <label for="reserve_checkbox">입력한 예약자 정보를 확인했습니다.</label>
+                            </li>
+                            <li class="price_area">
+                                <p class="price_txt">결제금액</p>
+                                <p class="price_room">300,000 원</p>
+                            </li>
+                            <li>
+                                <button class="request_btn">결제하기</button>
+                            </li>
+                        </ul>
+                    </form>
+    
+                    <div class="room-select">
+                        <h5>개비리길 펜션</h5>
+                        <img src="../../../../static/images/거실.jpg" alt=""/>
+                        <table>
+                            <tr>
+                                <th>객실</th>
+                                <td>A동</td>
+                            </tr>
+                            <tr>
+                                <th>일정</th>
+                                <td>
+                                    0000-00-00<br/>
+                                    <span>~ 0000-00-00 (1박)</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>기준인원</th>
+                                <td>6인 기준 / 최대 12인</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- section 끝 -->
+
+        <!-- footer 시작-->
+
+        <footer th:insert="~{fragment/footer.html::footer_f}"></footer>
+
+        <!-- Anchor -->
+
+        <a href="#top" class="anchor">
+            <i class="fa-solid fa-arrow-up"></i>
+        </a>
+    </div>
+    
+    <script>
+        let reserve_name = document.querySelector(".reserve_name");
+        let reserve_tell = document.querySelector(".reserve_tell");
+        let reserve_checkbox = document.querySelector(".reserve_checkbox");
+        let request_btn = document.querySelector(".request_btn");
+        
+        request_btn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            if(reserve_name.value == "") {
+                alert("예약자 이름을 입력해 주세요.");
+                reserve_name.focus();
+                return false;
+            }
+            if(reserve_tell.value == "") {
+                alert("휴대폰 번호를 입력해 주세요.");
+                reserve_tell.focus();
+                return false;
+            }
+            if(!reserve_checkbox.checked) {
+                alert("예약 정보 확인 안내를 체크해 주세요.");
+                reserve_checkbox.focus();
+                return false;
+            }
+        });
+    </script>
+
+    <script src="../../../../static/js/header_nav.js"></script>
+    <script src="../../../../static/js/sub/sub_reserve/sub_check_room/calendar.js"></script>
+</body>
+
+</html>

@@ -44,7 +44,7 @@
                     <a href="#">예약 내역</a>
                 </li>
                 <li>
-                    <a href="/mypage/myinfo/checkpw">내 정보 관리</a>
+                    <a href="/mypage/myinfo/checkpw" class="check-page" style="color: tomato">내 정보 관리</a>
                 </li>
                 <li>
                     <a href="#">문의하기</a>
@@ -62,18 +62,18 @@
                     <p>xxx님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.</p>
                     <table>
                         <tr>
-                            <th>아이디(이메일)</th>
+                            <th>아이디</th>
                             <td>xxx</td>
                         </tr>
                         <tr>
                             <th>비밀번호</th>
                             <td>
-                                <input type="password" class="passwd" />
+                                <input type="password" class="passwd" id="passwd" />
                             </td>
                         </tr>
                     </table>
                     <div class="btn_box">
-                        <button class="btn_check">확인</button>
+                        <button class="btn_check" id="btn_check">확인</button>
                         <button class="btn_cancel" ondblclick="location.href='/mypage/myinfo/checkpw'">취소</button>
                     </div>
                 </form>
@@ -92,6 +92,21 @@
             <i class="fa-solid fa-arrow-up"></i>
         </a>
     </div>
+
+    <script>
+        let passwd = document.querySelector("#passwd");
+        let btn_check = document.querySelector("#btn_check");
+
+        btn_check.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            if(passwd.value == "") {
+                alert("비밀번호를 입력해 주세요.");
+                passwd.focus();
+                return false;
+            }
+        });
+    </script>
 
     <script src="../../../../static/js/header_nav.js"></script>
 </body>

@@ -1,0 +1,374 @@
+#wrap {
+    width: 100%;
+}
+
+header {
+    background-color: rgba(225, 232, 234, 0.82);
+    width: 100%;
+    height: 100px;
+    transition: 0.2s;
+}
+
+.header-wrap {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    padding-top: 15px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.nav-box {
+    width: 80%;
+    height: 100px;
+}
+
+.users {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    height: 45px;
+}
+
+.users li {
+    margin-left: 15px;
+    line-height: 45px;
+}
+
+.users li a {
+    font-size: 12px;
+}
+
+nav {
+    float: right;
+    width: 700px;
+    height: 55px;
+    /* display: flex; */
+
+}
+
+.nav-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-menu {
+    height: 55px;
+    font-size: 20px;
+    line-height: 55px;
+    text-align: center;
+
+}
+
+.main-menu:hover {
+    border-bottom: 2px solid #fff;
+}
+
+.main-menu a {
+    color: #000;
+    font-weight: 500;
+}
+
+.sub-menu {
+    visibility: hidden;
+    z-index: 9999;
+}
+
+.sub-menu li {
+    font-size: 16px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 5px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* border-bottom: 1px solid #fff; */
+}
+
+.sub-menu li:hover {
+    background-color: #adadad;
+}
+
+.sub-menu li:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
+.sub-menu li:last-child {
+    border-bottom: 0;
+    border-radius: 0 0 5px 5px;
+}
+
+
+/* main 시작 */
+.sub-title-wrap {
+    width: 100%;
+    height: 300px;
+    background-image: linear-gradient(rgba(84, 84, 84, 0.5), rgba(84, 84, 84, 0.5)), url('../../../../images/reservation_title_img.jpg');
+    background-repeat: no-repeat;
+    background-position: 50% 37%;
+    background-size: cover;
+}
+
+.sub-title-bg {
+    max-width: 1200px;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.sub-title {
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: #fff;
+    font-family: 'Gothic A1', sans-serif;
+}
+
+.sub-title-txt {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    color: #fff;
+    font-family: 'Gothic A1', sans-serif;
+}
+
+.line {
+    margin: 5px 0 12px 0;
+    width: 100px;
+    height: 2px;
+    background-color: #fff;
+}
+
+/* main 끝 */
+
+/* section 시작 */
+
+.request-room-content-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 150px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sub-navigate-nav {
+    width: 15%;
+}
+
+.sub-navigate-nav h4 {
+    margin-bottom: 18px;
+    font-size: 20px;
+}
+
+.sub-navigate-nav li {
+    margin-bottom: 8px;
+}
+
+.sub-navigate-nav li a:hover {
+    color: tomato;
+}
+
+.check-page {
+    color: tomato;
+}
+
+.request-room-content {
+    width: 85%;
+    margin-left: 80px;
+}
+
+.request-room-content h3 {
+    margin-bottom: 45px;
+    font-size: 24px;
+}
+
+.request-room-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.request-room {
+    padding: 30px;
+    width: 50%;
+    box-shadow: 5px 5px 10px #ccc;
+}
+
+.request-room h5 {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.reserve_name_area label,
+.reserve_tell_area label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.reserve_name_area input,
+.reserve_tell_area input {
+    padding: 10px 15px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.reserve_checkbox_area {
+    margin-bottom: 30px;
+}
+
+.reserve_checkbox_area label {
+    margin-left: 5px;
+    font-size: 14px;
+    color:  rgb(92, 132, 241);
+}
+
+.price_area {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.price_txt {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.price_room {
+    font-size: 18px;
+}
+
+.request-room ul li:last-child {
+    display: flex;
+    justify-content: center;
+}
+
+.request_btn {
+    padding: 10px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: rgb(92, 132, 241);
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.room-select {
+    padding: 30px 20px;
+    width: 35%;
+    height: 410px;
+    box-shadow: 5px 5px 10px #ccc;
+}
+
+.room-select h5 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.room-select img {
+    margin-bottom: 10px;
+    padding: 5px 0;
+    width: 100%;
+    height: 150px;
+}
+
+.room-select table {
+    padding: 10px 20px 30px 20px;
+    width: 100%;
+}
+
+.room-select th {
+    padding: 10px 0;
+    width: 40%;
+    text-align: left;
+}
+
+.room-select span {
+    float: right;
+}
+
+
+/* section 끝 */
+
+/* footer 시작 */
+
+footer {
+    padding: 20px 0;
+    width: 100%;
+    background-color: #9EA2A9;
+    font-size: 12px;
+}
+
+.footer-wrap {
+    max-width: 1200px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.footer-wrap ul {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #555;
+}
+
+.footer-logo {
+    padding-top: 0;
+}
+
+.copyright p {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.tell p:first-child {
+    margin-bottom: 10px;
+}
+
+.footer-sns {
+    width: 65px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-sns a {
+    font-size: 25px;
+    color: #555;
+}
+
+.footer-sns a:hover {
+    color: tomato;
+}
+
+/* footer 끝 */
+
+
+/* Anchor 시작 */
+
+.anchor {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(139, 131, 131);
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: 0.3s;
+    visibility: hidden;
+}

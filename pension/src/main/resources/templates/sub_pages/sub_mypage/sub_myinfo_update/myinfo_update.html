@@ -43,7 +43,7 @@
                     <a href="#">예약 내역</a>
                 </li>
                 <li>
-                    <a href="/mypage/myinfo/checkpw">내 정보 관리</a>
+                    <a href="/mypage/myinfo/checkpw" class="check-page">내 정보 관리</a>
                 </li>
                 <li>
                     <a href="#">문의하기</a>
@@ -59,43 +59,15 @@
                 <h3>회원정보 수정</h3>
                 <table>
                     <tr>
-                        <th>아이디(이메일)</th>
+                        <th>아이디</th>
                         <td>
                             <p class="change_el">
-                                xxx<button class="userid_change_btn">아이디(이메일) 변경</button>
+                                xxx<button class="userid_change_btn">아이디 변경</button>
                             </p>
                             <form class="userid_change">
                                 <p>
                                     <input type="text" class="userid" value="xxx"/>
-                                    <button class="btn_change">변경하기</button>
-                                </p>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>이름</th>
-                        <td>
-                            <p class="change_el">
-                                홍길동<button class="username_change_btn">이름변경</button>
-                            </p>
-                            <form class="username_change">
-                                <p>
-                                    <input type="text" class="username" value="홍길동"/>
-                                    <button class="btn_change">변경하기</button>
-                                </p>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>휴대폰 번호</th>
-                        <td>
-                            <p class="change_el">
-                                010-1234-5678<button class="usertell_change_btn">휴대폰 번호 변경</button>
-                            </p>
-                            <form class="usertell_change">
-                                <p>
-                                    <input type="text" class="usertell" value="010-1234-5678"/>
-                                    <button class="btn_change">변경하기</button>
+                                    <button class="btn_change" id="btn_change_userid">변경하기</button>
                                 </p>
                             </form>
                         </td>
@@ -108,28 +80,84 @@
                                     <tr>
                                         <td class="change_passwd_title">현재 비밀번호</td>
                                         <td>
-                                            <input type="password" class="userpasswd"/>
+                                            <input type="password" class="userpasswd" id="userpasswd"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="change_passwd_title">새 비밀번호</td>
                                         <td>
-                                            <input type="password" class="new_userpasswd"/>
+                                            <input type="password" class="new_userpasswd" id="new_userpasswd"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="change_passwd_title">비밀번호 다시 입력</td>
                                         <td>
-                                            <input type="password" class="renew_userpasswd"/>
+                                            <input type="password" class="renew_userpasswd" id="renew_userpasswd"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="change_passwd_title"></td>
                                         <td>
-                                            <button class="passwd_change_btn">비밀번호 변경</button>
+                                            <button class="passwd_change_btn" id="passwd_change_btn">비밀번호 변경</button>
                                         </td>
                                     </tr>
                                 </table>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이름</th>
+                        <td>
+                            <p class="change_el">
+                                홍길동<button class="username_change_btn">이름변경</button>
+                            </p>
+                            <form class="username_change">
+                                <p>
+                                    <input type="text" class="username" value="홍길동"/>
+                                    <button class="btn_change" id="btn_change_username">변경하기</button>
+                                </p>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>휴대폰 번호</th>
+                        <td>
+                            <p class="change_el">
+                                010-1234-5678<button class="usertell_change_btn">전화번호 변경</button>
+                            </p>
+                            <form class="usertell_change">
+                                <p>
+                                    <input type="text" class="usertell" value="010-1234-5678"/>
+                                    <button class="btn_change" id="btn_change_usertell">변경하기</button>
+                                </p>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이메일</th>
+                        <td>
+                            <p class="change_el">
+                                mail@mail.com<button class="useremail_change_btn">이메일 변경</button>
+                            </p>
+                            <form class="useremail_change">
+                                <p>
+                                    <input type="email" class="useremail" value="mail@mail.com"/>
+                                    <button class="btn_change" id="btn_change_useremail">변경하기</button>
+                                </p>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td>
+                            <p class="change_el">
+                                xxx-xxx-xxx oooooo<button class="useraddr_change_btn">주소 변경</button>
+                            </p>
+                            <form class="useraddr_change">
+                                <p>
+                                    <input type="text" class="useraddr" value="xxx-xxx-xxx oooooo"/>
+                                    <button class="btn_change" id="btn_change_useraddr">변경하기</button>
+                                </p>
                             </form>
                         </td>
                     </tr>
@@ -159,6 +187,7 @@
 
     <script src="../../../../static/js/header_nav.js"></script>
     <script src="../../../../static/js/sub/sub_mypage/sub_myinfo_update/myinfo_update.js"></script>
+    <script src="../../../../static/js/sub/sub_mypage/sub_myinfo_update/myinfo_update_exception.js"></script>
 </body>
 
 </html>
