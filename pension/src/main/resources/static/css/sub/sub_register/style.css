@@ -11,7 +11,6 @@ img {
     padding: 10px 20px;
     width: 500px;
     background-color: rgba(255, 255, 255);
-    transform: translate(-50%, -50%);
     border-radius: 15px;
     box-shadow: 0px 4px 5px 3px #555;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

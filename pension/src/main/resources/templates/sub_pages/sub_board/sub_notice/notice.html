@@ -11,6 +11,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../static/css/reset.css">
     <link rel="stylesheet" href="../../../../static/css/sub/sub_board/sub_notice/style.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        tr {
+            height: 40px;
+        }
+
+        tr:first-child {
+            border-top: 2px solid #000;
+            background-color: #eee;
+        }
+
+        td,th {
+            border-bottom: 1px solid #ccc;
+
+        }
+
+        th:nth-child(1) {
+            width: 10%;
+        }
+
+        th:nth-child(3) {
+            width: 15%;
+        }
+
+        th:nth-child(4) {
+            width: 15%;
+        }
+
+        th:nth-child(5) {
+            width: 10%;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        td:nth-child(2) {
+            text-align: left;
+            padding: 0 10px;
+        }
+    </style>
 </head>
 <body>
     <header th:insert="~{fragment/header.html::header_f}"></header>
@@ -43,7 +88,35 @@
             </li>
         </ul>
         <div class="notice-content">
-
+            <div class="select_box">
+                <form action="">
+                    <select name="searchType" id="searchType">
+                        <option value="제목">제목</option>
+                        <option value="제목 + 내용">제목 + 내용</option>
+                        <option value="작성자">작성자</option>
+                    </select>
+                    <input type="text">
+                    <button class="searchBtn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
+            <table>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>등록일</th>
+                    <th>조회수</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                </tr>
+            </table>
         </div>
     </section>
 
