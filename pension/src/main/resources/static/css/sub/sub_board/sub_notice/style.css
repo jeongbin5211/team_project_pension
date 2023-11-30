@@ -15,7 +15,8 @@ body {
     color: #555;
 }
 
-ul, li {
+ul,
+li {
     list-style: none;
 }
 
@@ -201,11 +202,7 @@ nav {
     color: tomato;
 }
 
-.notice-content {
-    width: 85%;
-    margin: 0 auto;
-    margin-left: 80px;
-}
+
 
 /* section 끝 */
 
