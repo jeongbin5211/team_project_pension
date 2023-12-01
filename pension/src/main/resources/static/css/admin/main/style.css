@@ -8,7 +8,7 @@
 /*사이드네비바 시작*/
 .content-wrap{
    position: fixed;
-   background-color: #2185D0;
+   background-color: #333;
    width: 13%;
    height: 100vh;
    padding: 20px;
@@ -29,6 +29,7 @@
   width: 100%;
   margin: 30px 0;
   padding: 0 15px;
+
 }
 .side-nav div {
    margin-bottom: 20px;
@@ -53,7 +54,7 @@ li a{
   color: #fff;
 }
 li a:hover {
-  color: #ff8fa4;
+  color: #2185D0;
 }
 /*수정*/
 
@@ -82,26 +83,17 @@ li a:hover {
    display: flex;
    justify-content: space-between;
    align-items: center;
-   border-bottom: 1px solid #2185D0;
+   border-bottom: 1px solid #333;
    height: 130px;
    
    
 }
 .top-title h3 {
-   margin-left: 10px;
+   margin-left: 35px;
 }
 
-
- /* #horizontal-underline{
-   position: absolute;
-   background-color: #2185D0;
-   width: 0;
-   top: 0;
-   left: 0;
-   height: 3px;
- } */
  .underline {
-   margin: 30px 0;
+   margin: 30px 25px;
  }
  .underline a {
    margin: 0 15px;
@@ -119,8 +111,7 @@ li a:hover {
  font-size: 12px;
  display: flex;
  justify-content: end;
- 
-   
+ margin-right: 25px;  
 }
 .users a:hover {
    color: #2185D0;

@@ -11,4 +11,19 @@ public class AdminController {
     public String getAdmin(){
         return "admin/admin_page";
     }
+
+    @GetMapping("/notice")
+    public String getNotice(){
+        return "admin/admin_sub/admin_sub_notice/admin_sub_notice";
+    }
+
+    @GetMapping("/qna")
+    public String getQna(){
+        return "admin/admin_sub/admin_sub_qna/admin_sub_qna";
+    }
+
+    @GetMapping("/review")
+    public String getReview(){
+        return "admin/admin_sub/admin_sub_review/admin_sub_review";
+    }
 }
