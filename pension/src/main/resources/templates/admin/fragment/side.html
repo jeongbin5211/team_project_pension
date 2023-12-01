@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>footer</title>
+    </head>
+    <body>
+    <div th:fragment="side_f" class="side-wrap">
+        <div class="content-wrap">
+            <div class="logo-wrap">
+                <a href="/admin">
+                    <img src="../../static/images/admin_images/logo.png" alt="개비리길로고" class="logo-img">
+                </a>
+            </div>
+            <div class="side-nav">
+                <div class="admin_nav1">
+                    <ul>
+                        <a href="#" class="side-nav-title">회원관리</a>
+                        <li><a href="#">회원 정보 관리</a></li>
+                    </ul>
+                </div>
+                <div class="admin_nav2">
+                    <ul>
+                        <a href="#" class="side-nav-title">예약관리</a>
+                        <li><a href="#">예약</a></li>
+                        <li><a href="#">예약리스트</a></li>
+                    </ul>
+                </div>
+                <div class="admin_nav3">
+                    <ul>
+                        <a href="#" class="side-nav-title">결제관리</a>
+                        <li><a href="#">결제리스트</a></li>
+                        <li><a href="#">환불리스트</a></li>
+                    </ul>
+                </div>
+                <div class="admin_nav4">
+                    <ul>
+                        <a href="/admin/notice" class="side-nav-title">고객센터</a>
+                        <li><a href="/admin/notice">공지사항</a></li>
+                        <li><a href="/admin/qna">QnA</a></li>
+                        <li><a href="/admin/review">리뷰</a></li>
+                    </ul>
+                </div>
+                <div class="admin_nav5">
+                    <ul>
+                        <a href="#" class="side-nav-title">환경설정</a>
+                        <li><a href="#">사업자 정보 관리</a></li>
+                        <li><a href="#">객실 정보 관리</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="banner-wrap">
+                <a href="https://www.yanolja.com/" ><img src="../../static/images/admin_images/야놀자.jpg" alt="야놀자 관리자페이지" class="banner"></a>
+                <a href="https://www.yeogi.com/" ><img src="../../static/images/admin_images/여기어때.jpg" alt="여기어때 관리자페이지" class="banner"></a>
+                <a href="https://www.naver.com/" ><img src="../../static/images/admin_images/네이버.jpg" alt="네이버 관리자페이지" class="banner"></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

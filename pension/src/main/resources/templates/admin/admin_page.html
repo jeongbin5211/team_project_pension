@@ -15,75 +15,9 @@
 
     <div id="wrap">
 
-        <div class="content-wrap">
-            <div class="logo-wrap">
-                <a href="#">
-                    <img src="../../static/images/admin_images/logo.png" alt="개비리길로고" class="logo-img">
-                </a>
-            </div>
-            <div class="side-nav">
-                <div class="admin_nav1">
-                    <ul>
-                        <a href="#" class="side-nav-title">회원관리</a>
-                        <li><a href="#">회원 정보 관리</a></li>
-                    </ul>
-                </div>
-                <div class="admin_nav2">
-                    <ul>
-                        <a href="#" class="side-nav-title">예약관리</a>
-                        <li><a href="#">예약</a></li>
-                        <li><a href="#">예약리스트</a></li>
-                    </ul>
-                </div>
-                <div class="admin_nav3">
-                    <ul>
-                        <a href="#" class="side-nav-title">결제관리</a>
-                        <li><a href="#">결제리스트</a></li>
-                        <li><a href="#">환불리스트</a></li>
-                    </ul>
-                </div>
-                <div class="admin_nav4">
-                    <ul>
-                        <a href="#" class="side-nav-title">고객센터</a>
-                        <li><a href="#">공지사항</a></li>
-                        <li><a href="#">QnA</a></li>
-                        <li><a href="#">리뷰</a></li>
-                    </ul>
-                </div>
-                <div class="admin_nav5">
-                    <ul>
-                        <a href="#" class="side-nav-title">환경설정</a>
-                        <li><a href="#">사업자 정보 관리</a></li>
-                        <li><a href="#">객실 정보 관리</a></li>
-                    </ul>
-
-                </div>
-            </div>
-            <div class="banner-wrap">
-                <a href="https://www.yanolja.com/" ><img src="../../static/images/admin_images/야놀자.jpg" alt="야놀자 관리자페이지" class="banner"></a>
-                <a href="https://www.yeogi.com/" ><img src="../../static/images/admin_images/여기어때.jpg" alt="여기어때 관리자페이지" class="banner"></a>
-                <a href="https://www.naver.com/" ><img src="../../static/images/admin_images/네이버.jpg" alt="네이버 관리자페이지" class="banner"></a>
-            </div>
-        </div>
+        <div th:insert="~{admin/fragment/side.html::side_f}"></div>
         <div class="main-wrap">
-            <header class="top-title">
-                <h3>관리자페이지</h3>
-                <div class="categ">
-                    <ul class="users">
-                        <li><a href="#">로그아웃</a></li>
-                        <li><a href="#">마이페이지</a></li>
-                    </ul>
-                    <nav class="top-nav">
-                        <div id="horizontal-underline"></div>
-                        <div class="underline">
-                            <a href="">회원관리</a>
-                            <a href="">예약관리</a>
-                            <a href="">고객센터</a>
-                            <a href="">환경설정</a>
-                        </div>
-                    </nav>
-                </div>
-            </header>
+            <div th:insert="~{admin/fragment/header.html::header_f}"></div>
             <main>
                 <section>
                     <div class="section-wrap">
