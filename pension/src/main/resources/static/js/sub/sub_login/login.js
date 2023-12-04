@@ -1,19 +1,19 @@
-let useremail = document.querySelector('.useremail');
-let userpw = document.querySelector('.userpw');
-let btn = document.querySelector('.btn');
+    let userid = document.querySelector('.userid');
+    let userpw = document.querySelector('.userpw');
+    let btn = document.querySelector('.btn');
 
-btn.addEventListener('click', (e) => {
-    e.preventDefault();
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
 
-    if (useremail.value == "") {
-        alert("이메일을 입력하세요.");
-        useremail.focus();
-        return false;
-    }
+        if (userid.value == "") {
+            alert("아이디를 입력해주세요.");
+            userid.focus();
+            return false;
+        }
 
-    if (userpw.value == "") {
-        alert("비밀번호를 입력하세요.");
-        userpw.focus();
-        return false;
-    }
-})
+        if (userpw.value == "") {
+            alert("비밀번호를 입력해주세요.");
+            userpw.focus();
+            return false;
+        }
+    })
