@@ -24,11 +24,11 @@ username_change_btn.addEventListener('click', function(e) {
 
     username_change.classList.toggle("username_box");
     if(username_change.classList.contains("username_box")){
-        username_change_btn.innerText = "이름변경 취소";
+        username_change_btn.innerText = "이름 변경 취소";
         username_change_btn.style.backgroundColor = "#999";
         username_change_btn.style.color = "#fff";
     }else {
-        username_change_btn.innerText = "이름변경";
+        username_change_btn.innerText = "이름 변경";
         username_change_btn.style.backgroundColor = "#eee";
         username_change_btn.style.color = "#555";
     }
@@ -64,7 +64,7 @@ useremail_change_btn.addEventListener('click', function(e) {
         useremail_change_btn.style.backgroundColor = "#999";
         useremail_change_btn.style.color = "#fff";
     }else {
-        useremail_change_btn.innerText = "이메일 번호 변경";
+        useremail_change_btn.innerText = "이메일 변경";
         useremail_change_btn.style.backgroundColor = "#eee";
         useremail_change_btn.style.color = "#555";
     }
@@ -78,11 +78,11 @@ useraddr_change_btn.addEventListener('click', function(e) {
 
     useraddr_change.classList.toggle("useraddr_box");
     if(useraddr_change.classList.contains("useraddr_box")){
-        useraddr_change_btn.innerText = "이메일 변경 취소";
+        useraddr_change_btn.innerText = "주소 변경 취소";
         useraddr_change_btn.style.backgroundColor = "#999";
         useraddr_change_btn.style.color = "#fff";
     }else {
-        useraddr_change_btn.innerText = "이메일 번호 변경";
+        useraddr_change_btn.innerText = "주소 변경";
         useraddr_change_btn.style.backgroundColor = "#eee";
         useraddr_change_btn.style.color = "#555";
     }
