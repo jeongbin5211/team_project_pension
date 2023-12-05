@@ -10,6 +10,7 @@ let userpwCheck = document.querySelector(".userpw_check");
 let email = document.querySelector(".email");
 let name = document.querySelector(".name");
 let phone = document.querySelector(".phone");
+let addr = document.querySelector(".addr");
 let showPassword = document.querySelector("#show_password");
 let registerBtn = document.querySelector(".register_btn");
 let idCheckBtn = document.querySelector(".id_check_btn");
@@ -129,4 +130,26 @@ registerBtn.addEventListener("click", (e) => {
     email.focus();
     return false;
   }
+
+  let obj = {
+    userid: userid.value,
+    userpw: userpw.value,
+    name: name.value,
+    phone: phone.value,
+    email: email.value,
+    addr: addr.value
+  }
+
+  $.ajax({
+    type: 'post',
+    url: "/register",
+    data: obj,
+    dataType: 'json',
+    success: (result) => {
+        // console.log(result.msg);
+        if (msg == "ok") {
+            alert("회원가입이 완료되었습니다.");
+        }
+    }
+  })
 });
