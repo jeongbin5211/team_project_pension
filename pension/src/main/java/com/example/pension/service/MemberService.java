@@ -1,8 +1,10 @@
 package com.example.pension.service;
 
+import com.example.pension.dto.MemberDto;
 import com.example.pension.mappers.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
@@ -21,4 +23,6 @@ public class MemberService {
         }
         return msg;
     }
+
+
 }
