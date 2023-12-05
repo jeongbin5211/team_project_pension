@@ -73,7 +73,7 @@ registerBtn.addEventListener("click", (e) => {
 
   let exptext =
     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-  let phonetest = /^[0-9]{3}[0-9]{4}[0-9]{4}/;
+  let phonetest = /^01([0|1])-?([0-9]{4})-?([0-9]{4})$/;
 
   if (userid.value == "") {
     alert("아이디를 입력해주세요.");
@@ -147,8 +147,12 @@ registerBtn.addEventListener("click", (e) => {
     dataType: 'json',
     success: (result) => {
         // console.log(result.msg);
-        if (msg == "ok") {
+        if (result.msg == "ok") {
             alert("회원가입이 완료되었습니다.");
+            location.href = "/login";
+        } else {
+            alert("회원가입에 실패했습니다.\n관리자에게 문의하세요.");
+
         }
     }
   })
