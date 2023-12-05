@@ -12,6 +12,46 @@ let name = document.querySelector(".name");
 let phone = document.querySelector(".phone");
 let showPassword = document.querySelector("#show_password");
 let registerBtn = document.querySelector(".register_btn");
+let idCheckBtn = document.querySelector(".id_check_btn");
+let msg = document.querySelector(".msg");
+
+idCheckBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  if (userid.value == "") {
+    alert("아이디를 입력해주세요.");
+    userid.focus();
+    return false;
+  } else if (userid.value.length < 8) {
+    alert("아이디를 8자리 이상으로 입력해주세요.");
+    userid.value = "";
+    userid.focus();
+    return false;
+  } else {
+    $.ajax({
+      type: 'get',
+      url: '/idCheck',
+      data: { userid: userid.value },
+      dataType: 'json',
+      success: (result) => {
+        // console.log(result)
+        if (result.msg == "no") {
+          alert("중복된 아이디입니다.");
+          msg.classList.remove('green');
+          msg.classList.add('red');
+          msg.innerHTML = "중복된 아이디입니다.";
+          userid.value = "";
+          userid.focus();
+        } else {
+          alert("사용 가능한 아이디입니다.");
+          msg.classList.remove('red');
+          msg.classList.add('green');
+          msg.innerHTML = "사용 가능한 아이디입니다.";
+        }
+      }
+    })
+  }
+})
 
 showPassword.addEventListener("click", (e) => {
   e.preventDefault();
@@ -38,8 +78,8 @@ registerBtn.addEventListener("click", (e) => {
     alert("아이디를 입력해주세요.");
     userid.focus();
     return false;
-  } else if (userid.value.length < 6) {
-    alert("아이디를 6자리 이상으로 입력해주세요.");
+  } else if (userid.value.length < 8) {
+    alert("아이디를 8자리 이상으로 입력해주세요.");
     userid.value = "";
     userid.focus();
     return false;

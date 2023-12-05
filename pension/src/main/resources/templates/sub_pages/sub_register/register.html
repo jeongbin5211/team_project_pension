@@ -20,10 +20,10 @@
     <form>
         <ul>
             <li>
-                <label>아이디<span class="request_mark"> *</span></label>
+                <label>아이디<span class="request_mark"> *</span><span class="msg"></span></label>
                 <div class="id_input_box">
-                    <input type="text" class="userid" placeholder="아이디는 6 ~ 12자리로 입력하세요." minlength="6" maxlength="12">
-                    <button class="id_check_btn">중복 확인</button>
+                    <input type="text" class="userid" placeholder="아이디는 8 ~ 20자리로 입력하세요." minlength="8" maxlength="20">
+                    <button type="button" class="id_check_btn">중복 확인</button>
                 </div>
             </li>
             <li>
@@ -56,7 +56,7 @@
             </li>
             <li>
                 <label>주소</label>
-                <input type="text" maxlength="50" class="addr">
+                <input type="text" maxlength="100" class="addr">
             </li>
             <li>
                 <button class="register_btn">가입하기</button>
@@ -65,5 +65,8 @@
     </form>
 </div>
 <script src="../../../static/js/sub/sub_register/register.js"></script>
+<script>
+
+</script>
 </body>
 </html>
