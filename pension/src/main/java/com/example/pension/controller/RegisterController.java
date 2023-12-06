@@ -31,7 +31,7 @@ public class RegisterController {
         Map<String, Object> map = new HashMap<>();
 
         if (memberDto != null) {
-            memberMapper.setRegister(memberDto);
+            memberService.setRegister(memberDto);
             map.put("msg", "ok");
         } else {
             map.put("msg", "fail");

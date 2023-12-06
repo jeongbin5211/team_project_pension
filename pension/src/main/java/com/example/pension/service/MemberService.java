@@ -24,5 +24,13 @@ public class MemberService {
         return msg;
     }
 
+    public void setRegister(MemberDto memberDto) {
+        memberMapper.setRegister(memberDto);
+    }
 
+    public MemberDto setLogin(MemberDto memberDto) {
+        MemberDto result = memberMapper.setLogin(memberDto);
+        
+        return result;
+    }
 }
