@@ -12,4 +12,7 @@ public interface MemberMapper {
 
     @Insert("insert into member values(null, #{userid}, #{userpw}, #{name}, #{phone}, #{email}, #{addr}, now());")
     void setRegister(MemberDto memberDto);
+
+    @Select("select * from member where userid = #{userid} and userpw = #{userpw}")
+    MemberDto setLogin(MemberDto memberDto);
 }
