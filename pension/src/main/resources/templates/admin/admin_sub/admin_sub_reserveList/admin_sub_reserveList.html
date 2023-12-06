@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/css/admin/reset.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_sub/admin_sub_reserveList/sub_style.css">
+</head>
+
+<body>
+
+    <div id="wrap">
+
+        <div th:insert="~{admin/fragment/side.html::side_f}"></div>
+        <div class="main-wrap">
+            <div th:insert="~{admin/fragment/header.html::header_f}"></div>
+            <main>
+                <h4>고객센터 > 예약내역 확인</h4>
+
+                <form class="top-search">
+                    <span class="cnt-wrap">
+                        전체 예약 수 : 개
+                    </span>
+                    <div>
+                        <select name="searchType" class="searchType">
+                            <option value="">전체</option>
+                            <option value="room_A">A동</option>
+                            <option value="romm_B">B동</option>
+                        </select>
+                        <input type="text" name="words" class="words" required>
+                        <input type="submit" class="btn" value="search">
+                    </div>
+                </form>
+                <table>
+                    <tr>
+                        <th>번호</th>
+                        <th>객실</th>
+                        <th>예약자</th>
+                        <th>체크인 날짜</th>
+                        <th>체크아웃 날짜</th>
+                        <th>예약날짜</th>
+                        <th>비고</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>
+                            <a href="#" class="btn2" onclick="">예약정보</a>
+                            <a href="#" class="btn2" onclick="">예약취소</a>
+                        </td>
+                    </tr>
+                </table>
+                <div class="bottom">
+                    <div class="bottom-center">
+                        <a href="">1</a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+
+</html>

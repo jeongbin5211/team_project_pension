@@ -147,4 +147,31 @@ main section:nth-child(odd) {
 .section-container:first-child{
    border-right: 1px solid #ccc;
 }
+ .section-wrap h4 {
+     width: 80%;
+     margin: 0 auto;
+     margin-bottom: 20px;
+
+ }
+#calendar {
+    width: 80%;
+    height: 50%;
+    margin: 0 auto;
+}
+.color-room{
+    width: 80%;
+    margin: 0 auto;
+}
+.color-room-A{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background-color: #ff9f89;
+}
+.color-room-B{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background-color: #406fd6;
+}
  
