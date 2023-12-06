@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src='../../static/js/admin/calendar.js'></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/admin/reset.css">
     <link rel="stylesheet" href="../../static/css/admin/main/style.css">
-
 </head>
 
 <body>
@@ -23,10 +24,18 @@
                     <div class="section-wrap">
                         <div class="section-container">
                             <div class="section-title">
-                                <h4>예약일정</h4>
+                                <h4>
+                                    <a href="/admin/reserveList">예약일정</a>
+                                </h4>
                             </div>
                             <div class="section-content">
-                                <img src="../../static/images/admin_images/logo.png" height="500px">
+                                <div id='calendar'></div>
+                                <div class="color-room">
+                                    <div class="color-room-A"></div>
+                                    <span>A동</span>
+                                    <div class="color-room-B"></div>
+                                    <span>B동</span>
+                                </div>
                             </div>
                         </div>
                         <div class="section-container">
@@ -73,6 +82,98 @@
         </div>
     </div>
 
+    <script>
+        let today_date = new Date().getDate();
+        let today_month = new Date().getMonth() + 1;
+        let today_year = new Date().getFullYear();
+      
+        if(today_date < 10) {
+          today_date = "0"+today_date;
+        }
+        if(today_month < 10) {
+          today_month = "0"+today_month;
+        }
+      
+        let today = today_year + "-" +today_month + "-" + today_date;
+      
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+
+          //삭제요망
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,dayGridWeek,dayGridDay'
+        },
+        initialDate: today,
+        navLinks: true, // can click day/week names to navigate views
+        editable: true,
+        dayMaxEvents: true, // allow "more" link when too many events
+        events: [
+          {
+            title: '홍길동',
+            start: '2023-12-03',
+            end: '2023-12-04',
+            display: 'daygird',
+            color: '#ff9f89'
+          },
+          {
+            title: '홍길동',
+            start: '2023-12-03',
+            end: '2023-12-04',
+            display: 'daygird',
+            color: '#406fd6'
+          }
+        ]
+        });
+  
+  calendar.render();
+
+    //--삭제요망
+          
+    
+        //   $.ajax({
+        //     type: "get",
+        //     url: "/cldList",
+        //     dataType: "json",
+        //     success: function(result) {
+        //       console.log(result.cldList);
+    
+        //       let obj = [];
+        //       for(let i=0; i<result.cldList.length; i++) {
+        //         let color;
+        //         if(result.cldList[i].room == "A") {
+        //           color = "#cccccc";
+        //         }else if(result.cldList[i].room == "B") {
+        //           color = "#ff9f89";
+        //         }
+        //         obj[i] = {
+        //           title: result.cldList[i].username,
+        //           start: result.cldList[i].checkin,
+        //           end: result.cldList[i].checkout,
+        //           display: "daygrid",
+        //           color: color
+        //         }
+        //       }
+        //       console.log(obj);
+        //       var calendar = new FullCalendar.Calendar(calendarEl, {
+        //       headerToolbar: {
+        //         left: 'prev,next today',
+        //         center: 'title',
+        //         right: 'dayGridMonth,dayGridWeek,dayGridDay'
+        //       },
+        //       initialDate: today,
+        //       navLinks: true, // can click day/week names to navigate views
+        //       editable: true,
+        //       dayMaxEvents: true, // allow "more" link when too many events
+        //       events: obj
+        //       });
+        //       calendar.render();
+        //     }
+        //   });
+        });
+      </script>
 </body>
 
 </html>

@@ -26,4 +26,9 @@ public class AdminController {
     public String getReview(){
         return "admin/admin_sub/admin_sub_review/admin_sub_review";
     }
+
+    @GetMapping("/reserveList")
+    public String getReserveList() {
+        return "admin/admin_sub/admin_sub_reserveList/admin_sub_reserveList";
+    }
 }
