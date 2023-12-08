@@ -14,238 +14,236 @@
 
 <body>
 
-    <div id="wrap">
+<div id="wrap">
 
-        <div th:insert="~{admin/fragment/side.html::side_f}"></div>
-        <div class="main-wrap">
-            <div th:insert="~{admin/fragment/header.html::header_f}"></div>
-            <main>
-                <section>
-                    <div class="section-wrap">
-                        <div class="section-container">
-                            <div class="section-title">
-                                <h4 class="reserve-title">
-                                    <a href="/admin/reserveList">예약일정</a>
-                                </h4>
-                            </div>
-                            <div class="section-content">
-                                <div id='calendar'></div>
-                                <div class="color-room">
-                                    <div class="color-room-A"></div>
-                                    <span>A동</span>
-                                    <div class="color-room-B"></div>
-                                    <span>B동</span>
-                                </div>
-                            </div>
+    <div th:insert="~{admin/fragment/side.html::side_f}"></div>
+    <div class="main-wrap">
+        <div th:insert="~{admin/fragment/header.html::header_f}"></div>
+        <main>
+            <section>
+                <div class="section-wrap">
+                    <div class="section-container">
+                        <div class="section-title">
+                            <h4 class="reserve-title">
+                                <a href="/admin/reserveList">예약일정</a>
+                            </h4>
                         </div>
-                        <div class="section-container">
-                            <div class="section-title">
-                                <h4>결제</h4>
-                            </div>
-                            <div class="section-content">
-                                정산 다이어그램
+                        <div class="section-content">
+                            <div id='calendar'></div>
+                            <div class="color-room">
+                                <div class="color-room-A"></div>
+                                <span>A동</span>
+                                <div class="color-room-B"></div>
+                                <span>B동</span>
                             </div>
                         </div>
                     </div>
-                </section>
-                <section>
-                    <div class="section-wrap">
-                        <div class="section-container">
-                            <div class="section-title">
-                                <h4>
-                                   <a href="/admin/qna">QnA</a>
-                                </h4>
-                            </div>
-                            <div class="section-box">
-                                <form class="top-search">
-                                    <span class="cnt-wrap">
-                                        전체 게시물 수 : 개
-                                    </span>
-                                </form>
-                                <table class="admin-table">
-                                    <tr>
-                                        <th>번호</th>
-                                        <th>제목</th>
-                                        <th>작성자</th>
-                                        <th>조회수</th>
-                                        <th>등록일</th>
-                                        <th>첨부<br />파일</th>
-                                    </tr>
-                                    <tr>
-                                        <td>번호</td>
-                                        <td>제목</td>
-                                        <td>작성자</td>
-                                        <td>조회수</td>
-                                        <td>날짜</td>
-                                        <td>0</td>
-                                    </tr>
-                                </table>
-                            </div>
+                    <div class="section-container">
+                        <div class="section-title">
+                            <h4>결제</h4>
                         </div>
-                        <div class="section-container">
-                            <div class="section-title">
-                                <h4>
-                                    <a href="/admin/review">리뷰</a>
-                                 </h4>
-                            </div>
-                            <div class="section-box">
-                                <form class="top-search">
-                                    <span class="cnt-wrap">
-                                        전체 게시물 수 : 개
-                                    </span>
-                                </form>
-                                <table class="admin-table">
-                                    <tr>
-                                        <th>번호</th>
-                                        <th>제목</th>
-                                        <th>작성자</th>
-                                        <th>조회수</th>
-                                        <th>등록일</th>
-                                        <th>첨부<br />파일</th>
-                                    </tr>
-                                    <tr>
-                                        <td>번호</td>
-                                        <td>제목</td>
-                                        <td>작성자</td>
-                                        <td>조회수</td>
-                                        <td>날짜</td>
-                                        <td>0</td>
-                                    </tr>
-                                </table>
-                            </div>
+                        <div class="section-content">
+                            정산 다이어그램
                         </div>
                     </div>
-                </section>
-                <section>
-                    <div class="section-wrap">
-                        <div class="section-container">
-                            <div class="section-title">
-                                <h4>
-                                    <a href="/admin/notice">공지사항</a>
-                                 </h4>
-                            </div>
-                            <div class="section-box">
-                                <form class="top-search">
-                                    <span class="cnt-wrap">
-                                        전체 게시물 수 : 개
-                                    </span>
-                                </form>
-                                <table class="admin-table">
-                                    <tr>
-                                        <th>번호</th>
-                                        <th>제목</th>
-                                        <th>작성자</th>
-                                        <th>조회수</th>
-                                        <th>등록일</th>
-                                        <th>첨부<br />파일</th>
-                                    </tr>
-                                    <tr>
-                                        <td>번호</td>
-                                        <td>제목</td>
-                                        <td>작성자</td>
-                                        <td>조회수</td>
-                                        <td>날짜</td>
-                                        <td>0</td>
-                                    </tr>
-                                </table>
-                            </div>
+                </div>
+            </section>
+            <section>
+                <div class="section-wrap">
+                    <div class="section-container">
+                        <div class="section-title">
+                            <h4>
+                                <a href="/admin/notice">공지사항</a>
+                            </h4>
                         </div>
-                        <div class="section-container">
-                            <div class="section-title">
-                                <h4>
-                                    <a href="/admin/members">회원관리</a>
-                                 </h4>
-                            </div>
-                            <div class="section-box">
-                                <form class="top-search">
+                        <div class="section-box">
+                            <form class="top-search">
+                                    <span class="cnt-wrap">
+                                        전체 공지 수 : 개
+                                    </span>
+                            </form>
+                            <table class="admin-table">
+                                <tr>
+                                    <th>번호</th>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                    <th>조회수</th>
+                                    <th>등록일</th>
+                                    <th>첨부<br />파일</th>
+                                </tr>
+                                <tr>
+                                    <td>번호</td>
+                                    <td>제목</td>
+                                    <td>작성자</td>
+                                    <td>조회수</td>
+                                    <td>날짜</td>
+                                    <td>0</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="section-container">
+                        <div class="section-title">
+                            <h4>
+                                <a href="/admin/members">회원관리</a>
+                            </h4>
+                        </div>
+                        <div class="section-box">
+                            <form class="top-search">
                                     <span class="cnt-wrap">
                                         전체 회원 수 : 명
                                     </span>
-                                </form>
-                                <table class="admin-table member-table">
-                                    <tr>
-                                        <th>번호</th>
-                                        <th>아이디</th>
-                                        <th>이름</th>
-                                        <th>전화번호</th>
-                                        <th>이메일</th>
-                                        <th>주소</th>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>3</td>
-                                        <td>4</td>
-                                        <td>5</td>
-                                        <td>6</td>
-                                    </tr>
-                                </table>
-                            </div>
+                            </form>
+                            <table class="admin-table member-table">
+                                <tr>
+                                    <th>번호</th>
+                                    <th>아이디</th>
+                                    <th>이름</th>
+                                    <th>전화번호</th>
+                                    <th>이메일</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
-                </section>
-            </main>
-        </div>
+                </div>
+            </section>
+            <section>
+                <div class="section-wrap">
+                    <div class="section-container">
+                        <div class="section-title">
+                            <h4>
+                                <a href="/admin/qna">QnA</a>
+                            </h4>
+                        </div>
+                        <div class="section-box">
+                            <form class="top-search">
+                                    <span class="cnt-wrap">
+                                        전체 질문 수 : 개
+                                    </span>
+                            </form>
+                            <table class="admin-table">
+                                <tr>
+                                    <th>번호</th>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                    <th>조회수</th>
+                                    <th>등록일</th>
+                                    <th>첨부<br />파일</th>
+                                </tr>
+                                <tr>
+                                    <td>번호</td>
+                                    <td>제목</td>
+                                    <td>작성자</td>
+                                    <td>조회수</td>
+                                    <td>날짜</td>
+                                    <td>0</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="section-container">
+                        <div class="section-title">
+                            <h4>
+                                <a href="/admin/review">리뷰</a>
+                            </h4>
+                        </div>
+                        <div class="section-box">
+                            <form class="top-search">
+                                    <span class="cnt-wrap">
+                                        전체 리뷰 수 : 개
+                                    </span>
+                            </form>
+                            <table class="admin-table">
+                                <tr>
+                                    <th>번호</th>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                    <th>조회수</th>
+                                    <th>등록일</th>
+                                    <th>첨부<br />파일</th>
+                                </tr>
+                                <tr>
+                                    <td>번호</td>
+                                    <td>제목</td>
+                                    <td>작성자</td>
+                                    <td>조회수</td>
+                                    <td>날짜</td>
+                                    <td>0</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
+</div>
 
-    <script>
-        let today_date = new Date().getDate();
-        let today_month = new Date().getMonth() + 1;
-        let today_year = new Date().getFullYear();
-      
-        if(today_date < 10) {
-          today_date = "0"+today_date;
-        }
-        if(today_month < 10) {
-          today_month = "0"+today_month;
-        }
-      
-        let today = today_year + "-" +today_month + "-" + today_date;
-      
-        document.addEventListener('DOMContentLoaded', function() {
-          var calendarEl = document.getElementById('calendar');
+<script>
+    let today_date = new Date().getDate();
+    let today_month = new Date().getMonth() + 1;
+    let today_year = new Date().getFullYear();
 
-          //삭제요망
-          var calendar = new FullCalendar.Calendar(calendarEl, {
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,dayGridWeek,dayGridDay'
-        },
-        initialDate: today,
-        navLinks: true, // can click day/week names to navigate views
-        editable: true,
-        dayMaxEvents: true, // allow "more" link when too many events
-        events: [
-          {
-            title: '홍길동',
-            start: '2023-12-03',
-            end: '2023-12-04',
-            display: 'daygird',
-            color: '#ff9f89'
-          },
-          {
-            title: '홍길동',
-            start: '2023-12-03',
-            end: '2023-12-04',
-            display: 'daygird',
-            color: '#406fd6'
-          }
-        ]
+    if(today_date < 10) {
+        today_date = "0"+today_date;
+    }
+    if(today_month < 10) {
+        today_month = "0"+today_month;
+    }
+
+    let today = today_year + "-" +today_month + "-" + today_date;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        //삭제요망
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,dayGridWeek,dayGridDay'
+            },
+            initialDate: today,
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            dayMaxEvents: true, // allow "more" link when too many events
+            events: [
+                {
+                    title: '홍길동',
+                    start: '2023-12-03',
+                    end: '2023-12-04',
+                    display: 'daygird',
+                    color: '#ff9f89'
+                },
+                {
+                    title: '홍길동',
+                    start: '2023-12-03',
+                    end: '2023-12-04',
+                    display: 'daygird',
+                    color: '#406fd6'
+                }
+            ]
         });
-  
-  calendar.render();
 
-    //--삭제요망
-          
-    
+        calendar.render();
+
+        //--삭제요망
+
+
         //   $.ajax({
         //     type: "get",
         //     url: "/cldList",
         //     dataType: "json",
         //     success: function(result) {
         //       console.log(result.cldList);
-    
+
         //       let obj = [];
         //       for(let i=0; i<result.cldList.length; i++) {
         //         let color;
@@ -278,8 +276,8 @@
         //       calendar.render();
         //     }
         //   });
-        });
-      </script>
+    });
+</script>
 </body>
 
 </html>
