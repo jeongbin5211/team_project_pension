@@ -51,4 +51,15 @@ public class LoginController {
         hs.invalidate();
         return "redirect:/";
     }
+
+    @GetMapping("/find/findId")
+    public String getFindId() {
+        return "sub_pages/sub_login/findId/findId.html";
+    }
+
+    @GetMapping("/find/findPassword")
+    public String getFindPassword() {
+
+        return "sub_pages/sub_login/findPassword/findPassword.html";
+    }
 }
