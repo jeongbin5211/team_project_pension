@@ -31,4 +31,8 @@ public class AdminController {
     public String getReserveList() {
         return "admin/admin_sub/admin_sub_reserveList/admin_sub_reserveList";
     }
+    @GetMapping("/members")
+    public String getMembers(){
+        return "admin/admin_sub/admin_sub_members/admin_sub_members";
+    }
 }
