@@ -1,7 +1,6 @@
 package com.example.pension.dto;
 
 public class RoomImageDto {
-    private String configCode;
     private int id;
     private String orgName;
     private String savedFileName;
@@ -9,14 +8,6 @@ public class RoomImageDto {
     private String savedFileSize;
     private String folderName;
     private String ext;
-
-    public String getConfigCode() {
-        return configCode;
-    }
-
-    public void setConfigCode(String configCode) {
-        this.configCode = configCode;
-    }
 
     public int getId() {
         return id;
@@ -77,7 +68,6 @@ public class RoomImageDto {
     @Override
     public String toString() {
         return "RoomImageDto{" +
-                "configCode='" + configCode + '\'' +
                 ", id=" + id +
                 ", orgName='" + orgName + '\'' +
                 ", savedFileName='" + savedFileName + '\'' +
