@@ -8,13 +8,19 @@
     <title>아이디찾기</title>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/sub/sub_login/find/findId.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
     <div class="wrap">
+        <h1 class="logo_box">
+            <a href="/">
+                <img src="/static/images/logo.png" alt="logo">
+            </a>
+        </h1>
         <form action="">
-            <h1>
+            <h2>
                 계정정보 찾기
-            </h1>
+            </h2>
             <div class="tab_box">
                 <ul>
                     <li>
@@ -24,9 +30,11 @@
                         <a href="/find/findPassword" class="find_pw">비밀번호 찾기</a>
                     </li>
                 </ul>
+                <div class="remove_line">
+
+                </div>
             </div>
-            <section>
-                
+            <section class="user_info show">
                 <table>
                     <tbody>
                         <tr>
@@ -36,9 +44,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>전화번호</th>
+                            <th>이메일</th>
                             <td>
-                                <input type="text" class="phone">
+                                <input type="text" class="email">
                             </td>
                         </tr>
                     </tbody>
@@ -48,6 +56,18 @@
                 </div>
             </section>
         </form>
+        <div class="finded_userid hidden">
+            <p class="user_name">
+                회원님의 아이디입니다.
+            </p>
+            <p class="user_userid">
+                아이디:
+            </p>
+            <p class="goto_login">
+                <a href="/login">로그인</a>
+            </p>
+        </div>
     </div>
+    <script src="/static/js/sub/sub_login/findId/findId.js"></script>
 </body>
 </html>
