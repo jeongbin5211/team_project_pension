@@ -4,6 +4,7 @@ import com.example.pension.dto.MemberDto;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface MemberMapper {
@@ -15,4 +16,13 @@ public interface MemberMapper {
 
     @Select("select * from member where userid = #{userid} and userpw = #{userpw}")
     MemberDto setLogin(MemberDto memberDto);
+
+    @Select("select * from member where name = #{name} and email = #{email}")
+    MemberDto setFindId(MemberDto memberDto);
+
+    @Select("select * from member where userid = #{userid} and name = #{name} and email = #{email}")
+    MemberDto setFindPassword(MemberDto memberDto);
+
+    @Update("update member set userpw = #{newPw} where userid = #{hiddenUserid}")
+    void setNewPassword(String newPw, String hiddenUserid);
 }

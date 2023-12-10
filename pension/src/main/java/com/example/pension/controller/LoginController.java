@@ -6,10 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
@@ -57,9 +55,57 @@ public class LoginController {
         return "sub_pages/sub_login/findId/findId.html";
     }
 
+    @PostMapping("/find/findId")
+    @ResponseBody
+    public Map<String, Object> setFindId(@ModelAttribute MemberDto memberDto) {
+
+        Map<String, Object> map = new HashMap<>();
+        // System.out.println(name);
+        // System.out.println(email);
+        MemberDto m = memberService.setFindId(memberDto);
+
+        if (m != null) {
+            map.put("msg", "success");
+            map.put("userid", m.getUserid());
+            map.put("name", m.getName());
+        } else {
+            map.put("msg", "failure");
+        }
+
+        return map;
+    }
+
     @GetMapping("/find/findPassword")
     public String getFindPassword() {
 
         return "sub_pages/sub_login/findPassword/findPassword.html";
+    }
+
+    @PostMapping("/find/findPassword")
+    @ResponseBody
+    public Map<String, Object> setFindPassword(@ModelAttribute MemberDto memberDto) {
+
+        Map<String, Object> map = new HashMap<>();
+
+        MemberDto m = memberService.setFindPassword(memberDto);
+
+        if (m != null) {
+            map.put("msg", "success");
+            map.put("hiddenUserid", m.getUserid());
+        } else {
+            map.put("msg", "failure");
+        }
+
+        return map;
+    }
+
+    @PostMapping("/setNewPassword")
+    @ResponseBody
+    public String setNewPassword(@RequestParam String newPw, @RequestParam String hiddenUserid) {
+        // System.out.println(newPw);
+        // System.out.println(hiddenUserid);
+        memberService.setNewPassword(newPw, hiddenUserid);
+
+        return "";
     }
 }

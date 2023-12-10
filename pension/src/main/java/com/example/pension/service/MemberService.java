@@ -33,4 +33,16 @@ public class MemberService {
         
         return result;
     }
+
+    public MemberDto setFindId(MemberDto memberDto) {
+        return memberMapper.setFindId(memberDto);
+    }
+
+    public MemberDto setFindPassword(MemberDto memberDto) {
+        return memberMapper.setFindPassword(memberDto);
+    }
+
+    public void setNewPassword(String newPw, String hiddenUserid) {
+        memberMapper.setNewPassword(newPw, hiddenUserid);
+    }
 }
