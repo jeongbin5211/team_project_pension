@@ -92,6 +92,7 @@ public class LoginController {
         if (m != null) {
             map.put("msg", "success");
             map.put("hiddenUserid", m.getUserid());
+            map.put("hiddenUserpw", m.getUserpw());
         } else {
             map.put("msg", "failure");
         }
@@ -101,11 +102,20 @@ public class LoginController {
 
     @PostMapping("/setNewPassword")
     @ResponseBody
-    public String setNewPassword(@RequestParam String newPw, @RequestParam String hiddenUserid) {
+    public Map<String, Object> setNewPassword(@RequestParam String newPw, @RequestParam String hiddenUserid, @RequestParam String hiddenUserpw) {
         // System.out.println(newPw);
         // System.out.println(hiddenUserid);
+        System.out.println(hiddenUserpw);
         memberService.setNewPassword(newPw, hiddenUserid);
 
-        return "";
+        Map<String, Object> map = new HashMap<>();
+
+        if (hiddenUserpw.equals(newPw)) {
+            map.put("msg", "none");
+        } else if (hiddenUserid != null) {
+            map.put("msg", "change");
+        }
+
+        return map;
     }
 }
