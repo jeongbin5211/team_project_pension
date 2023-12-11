@@ -13,7 +13,7 @@
 
     <h1 class="logo">
         <a href="/">
-            <img src="../../../../static/images/logo.png">
+            <img src="/static/images/logo.png">
         </a>
     </h1>
 
@@ -26,12 +26,12 @@
         <!-- user 박스 -->
 
         <ul class="users">
-            <th:block th:if="${#strings.isEmpty(session.user)}">
+            <th:block th:if="${#strings.isEmpty(session.user)} and ${#strings.isEmpty(session.admin)}">
                 <li><a href="/login">로그인</a></li>
                 <li><a href="/register">회원가입</a></li>
             </th:block>
 
-            <th:block th:unless="${#strings.isEmpty(session.user)}">
+            <th:block th:unless="${#strings.isEmpty(session.user)} and ${#strings.isEmpty(session.admin)}">
                 <li><a href="/mypage/myinfo/checkpw">마이페이지 <i class="fa-solid fa-user"></i></a></li>
                 <li><a href="/logout">로그아웃</a></li>
             </th:block>
