@@ -9,6 +9,7 @@ public class MemberDto {
     private String email;
     private String addr;
     private String regdate;
+    private String position;
 
     public int getId() {
         return id;
@@ -72,5 +73,13 @@ public class MemberDto {
 
     public void setRegdate(String regdate) {
         this.regdate = regdate;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

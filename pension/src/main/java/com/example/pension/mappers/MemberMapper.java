@@ -11,7 +11,7 @@ public interface MemberMapper {
     @Select("select count(*) from member where userid = #{userid}")
     int idCheck(String userid);
 
-    @Insert("insert into member values(null, #{userid}, #{userpw}, #{name}, #{phone}, #{email}, #{addr}, now());")
+    @Insert("insert into member values(null, #{userid}, #{userpw}, #{name}, #{phone}, #{email}, #{addr}, now(), 1);")
     void setRegister(MemberDto memberDto);
 
     @Select("select * from member where userid = #{userid} and userpw = #{userpw}")

@@ -7,7 +7,10 @@ phone char(11) not null,
 email varchar(50) not null,
 addr varchar(100),
 regdate datetime,
+position char("1"),
 primary key(id)
 );
 
 insert into member values(null, 'admin', '1234', 'admin', '01012345678', 'email@email.com', 'addr', now());
+insert into member values(null, 'user', '1234', 'user', '01012345678', 'email@email.com', 'addr', now());
+
