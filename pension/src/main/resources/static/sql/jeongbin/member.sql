@@ -10,4 +10,4 @@ regdate datetime,
 primary key(id)
 );
 
-insert into member values(null, 'useradmin', 'userpassword', 'admin', '01012345678', 'email@email.com', 'addr', now());
+insert into member values(null, 'admin', '1234', 'admin', '01012345678', 'email@email.com', 'addr', now());
