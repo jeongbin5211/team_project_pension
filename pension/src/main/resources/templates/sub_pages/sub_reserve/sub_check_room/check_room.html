@@ -45,12 +45,12 @@
                     <a href="/reserve/checkroom" class="check-page">예약하기</a>
                 </li>
                 <li>
-                    <a href="#">예약확인</a>
+                    <a href="/mypage/reserveList">예약확인</a>
                 </li>
             </ul>
             <div class="check-room-content">
                 <h3>객실 조회</h3>
-                <form action="" class="check-room">
+                <div action="" class="check-room">
                   <ul>
                     <li class="checkin_area">
                       <div class="checkin_set">
@@ -117,33 +117,9 @@
                       <button class="check_btn">조회</button>
                     </li>
                   </ul>
-                </form>
-
+                </div>
                 <ul class="room-list">
-                  <li>
-                    <img src="../../../../static/images/거실.jpg" alt="">
-                    <h5>A동</h5>
-                    <div class="list-title-line"></div>
-                    <p class="room-list-txt">
-                      기준 6인 / 최대 12인<br/>
-                      숙박<br/>
-                      체크인 15:00 ~ 체크아웃 11:00
-                    </p>
-                    <p class="room-price">300,000원 (1박 기준)</p>
-                    <button class="reserve_btn" onclick="moverequest()">예약하기</button>
-                  </li>
-                  <li>
-                    <img src="../../../../static/images/3-3.jpg" alt="">
-                    <h5>B동</h5>
-                    <div class="list-title-line"></div>
-                    <p class="room-list-txt">
-                      기준 4인 / 최대 8인<br/>
-                      숙박<br/>
-                      체크인 15:00 ~ 체크아웃 11:00
-                    </p>
-                    <p class="room-price">150,000원 (1박 기준)</p>
-                    <button class="reserve_btn">예약하기</button>
-                  </li>
+                  
                 </ul>
             </div>
         </section>
@@ -162,9 +138,119 @@
     </div>
 
     <script>
-      function moverequest() {
-        location.href="/reserve/requestroom";
+      $(function() {
+        $.ajax({
+          type:"get",
+          url: "/reserve/getRoomList",
+          dataType: "json",
+          success: function(result) {
+            let output = "";
+
+            result.roomList.forEach((r) => {
+              output += `<li>
+                          <form action="/reserve/requestRoom" onsubmit="return frmCheck()">
+                            <img src="../../../../static/images/거실.jpg" alt="">
+                            <h5>${r.roomName}동</h5>
+                            <div class="list-title-line"></div>
+                            <p class="room-list-txt">
+                              기준 ${r.minPerson}인 / 최대 ${r.maxPerson}인<br/>
+                              숙박<br/>
+                              체크인 ${r.checkinTime} ~ 체크아웃 ${r.checkoutTime}
+                            </p>
+                            <p class="room-price">${r.roomPrice}원 (1박 기준)</p>
+                            <button type="submit" class="reserve_btn">예약하기</button>
+                            <input type="hidden" name="roomNum" value="${r.roomNum}"/>
+                          </form>
+                        </li>`;
+            });
+            document.querySelector(".room-list").innerHTML = output;
+          }
+        });
+      });
+
+
+      let input_checkin = document.querySelector("#input_date_checkin");
+      let input_checkout = document.querySelector("#input_date_checkout");
+      let dayNight = document.querySelector(".trip_day");
+      let person = document.querySelector(".person");
+      let checkRoom_btn = document.querySelector(".check_btn");
+      let cnt = 0;
+
+      function frmCheck() {
+        if(input_checkin.value == "") {
+          alert("체크인 날짜를 선택해 주세요.");
+          input_checkin.focus();
+          return false;
+        }
+        if(input_checkout.value == "") {
+          alert("체크아웃 날짜를 선택해 주세요.");
+          input_checkout.focus();
+          return false;
+        }
+        if(cnt == 0) {
+          alert("조회 버튼을 눌러 예약가능한 객실을 조회해 주세요.");
+          return false;
+        }
       }
+
+      checkRoom_btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        cnt += 1;
+
+        if(input_checkin.value == "") {
+          alert("체크인 날짜를 선택해 주세요.");
+          input_checkin.focus();
+          return false;
+        }
+        if(input_checkout.value == "") {
+          alert("체크아웃 날짜를 선택해 주세요.");
+          input_checkout.focus();
+          return false;
+        }
+
+        $.ajax({
+          type: "post",
+          url: "/reserve/checkRoom",
+          dataType: "json",
+          data: {
+            checkin: input_checkin.value,
+            checkout: input_checkout.value,
+            dayNight: dayNight.value,
+            person: person.value
+          },
+          success: function(result) {
+            let output = "";
+            if(result.checkRoomList != null){
+              result.checkRoomList.forEach((r) => {
+                output += `<li>
+                            <form action="/reserve/requestRoom" method="post">
+                              <img src="../../../../static/images/거실.jpg" alt="">
+                              <h5>${r.roomName}동</h5>
+                              <div class="list-title-line"></div>
+                              <p class="room-list-txt">
+                                기준 ${r.minPerson}인 / 최대 ${r.maxPerson}인<br/>
+                                숙박<br/>
+                                체크인 ${r.checkinTime} ~ 체크아웃 ${r.checkoutTime}
+                              </p>
+                              <p class="room-price">${r.roomPrice}원 (1박 기준)</p>
+                              <button type="submit" class="reserve_btn">예약하기</button>
+                              <input type="hidden" name="roomNum" value="${r.roomNum}"/>
+                              <input type="hidden" name="roomName" value="${r.roomName}"/>
+                              <input type="hidden" name="roomPrice" value="${r.roomPrice}"/>
+                              <input type="hidden" name="checkin" value="${result.check.checkin}"/>
+                              <input type="hidden" name="checkout" value="${result.check.checkout}"/>
+                              <input type="hidden" name="dayNight" value="${result.check.dayNight}"/>
+                              <input type="hidden" name="person" value="${result.check.person}"/>
+                            </form>
+                          </li>`;
+              });
+            }else {
+              output += `<h1>예약가능한 객실이 없습니다.</h1>`
+            }
+            document.querySelector(".room-list").innerHTML = output;
+          }
+        });
+      });
     </script>
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
