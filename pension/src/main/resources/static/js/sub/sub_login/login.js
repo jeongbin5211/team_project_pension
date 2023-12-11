@@ -38,7 +38,7 @@
                     alert("관리자 계정으로 로그인합니다.");
                     location.href = "/admin";
                 } else if (result.msg == "user") {
-                    alert("로그인 성공");
+                    alert(result.userid + "님 환영합니다.");
                     location.href = "/";
                 }
             }

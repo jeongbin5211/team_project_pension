@@ -32,18 +32,20 @@ public class LoginController {
 
         Map<String, Object> map = new HashMap<>();
 
-        if (m.getUserid().equals("admin")) {
+        if (m == null) {
+            map.put("msg", "fail");
+            return map;
+        } else if (m.getPosition().equals("2")) {
             HttpSession hs = hsr.getSession();
             hs.setAttribute("admin", m);
             hs.setMaxInactiveInterval(3600);
             map.put("msg", "admin");
-        } else if (m != null) {
+        } else if (m.getPosition().equals("1")) {
             HttpSession hs = hsr.getSession();
             hs.setAttribute("user", m);
             hs.setMaxInactiveInterval(3600);
             map.put("msg", "user");
-        } else {
-            map.put("msg", "fail");
+            map.put("userid", m.getUserid());
         }
 
         return map;
