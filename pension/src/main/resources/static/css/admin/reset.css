@@ -21,3 +21,7 @@ a {
     text-decoration: none;
     color: #000;
 }
+
+table {
+    border-collapse: collapse;
+}

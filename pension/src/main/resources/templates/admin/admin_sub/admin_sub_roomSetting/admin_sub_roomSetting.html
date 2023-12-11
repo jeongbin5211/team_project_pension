@@ -1,10 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/css/admin/reset.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_sub/admin_sub_roomSetting/sub_style.css">
 </head>
+
 <body>
 
+    <div id="wrap">
+
+        <div th:insert="~{admin/fragment/side.html::side_f}"></div>
+        <div class="main-wrap">
+            <div th:insert="~{admin/fragment/header.html::header_f}"></div>
+            <main>
+                <h4>환경설정 > 객실 정보 관리</h4>
+                <section class="room-list-wrap">
+                    <h3>객실 리스트</h3>
+                    <ul class="room-list">
+                        <li th:each="rl: ${roomList}">
+                            <div class="img-wrap">
+                                <img src="../../../../static/images/팬션.jpg" alt="">
+                            </div>
+                            <h5>개비리길펜션 [[${rl.roomName}]]동</h5>
+                            <table>
+                                <tr>
+                                    <th>인원수 :</th>
+                                    <td>
+                                        최소 : [[${rl.minPerson}]], 최대 : [[${rl.maxPerson}]] (기준[[${rl.minPerson}]]인)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>입실 / 퇴실 시간 :</th>
+                                    <td>
+                                        [[${rl.checkinTime}]] ~ [[${rl.checkoutTime}]]
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>가격 :</th>
+                                    <td>[[${rl.roomPrice}]]원</td>
+                                </tr>
+                            </table>
+                            <div class="room-btn">
+                                <a href="/admin/roomSettingUpdate" class="btn" onclick="">수정</a>
+                                <a href="#" class="btn" onclick="">삭제</a>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <section class="room-write-wrap">
+                    <h3>객실 등록하기</h3>
+                    <div class="room-write">
+                        <form method="post" action="" enctype="">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>객실 이름</th>
+                                        <td>
+                                            <input type="text" name="roomName" onblur="roomNameCheck()">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>가격</th>
+                                        <td>
+                                            <input type="text" name="roomPrice">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>인원수</th>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <label>최대 인원</label>
+                                                    <input type="text" name="maxPerson">
+                                                </li>
+                                                <li>
+                                                    <label>최소 인원</label>
+                                                    <input type="text" name="minPerson">
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>입실 / 퇴실 시간</th>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <label>입실 시간</label>
+                                                    <input type="text" name="checkinTime">
+                                                </li>
+                                                <li>
+                                                    <label>퇴실 시간</label>
+                                                    <input type="text" name="checkoutTime">
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button type="button" class="btn addRoom_btn">등록하기</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script>
+        let roomName = document.querySelector("input[name=roomName]");
+        let roomPrice = document.querySelector("input[name=roomPrice]");
+        let maxPerson = document.querySelector("input[name=maxPerson]");
+        let minPerson = document.querySelector("input[name=minPerson]");
+        let checkinTime = document.querySelector("input[name=checkinTime]");
+        let checkoutTime = document.querySelector("input[name=checkoutTime]");
+        let addRoom_btn = document.querySelector(".addRoom_btn");
+        
+
+        addRoom_btn.addEventListener('click', function(e){
+            e.preventDefault();
+
+            if( roomName.value == ""){
+                alert("객실 이름을 작성하세요");
+                roomName.focus();
+                return false;
+            }
+            if( roomPrice.value == ""){
+                alert("객실 가격을 입력하세요");
+                roomPrice.focus();
+                return false;
+            }
+            if( maxPerson.value == ""){
+                alert("객실 최대 인원수를 입력하세요");
+                maxPerson.focus();
+                return false;
+            }
+            if( minPerson.value == ""){
+                alert("객실 최소 인원수를 입력하세요");
+                minPerson.focus();
+                return false;
+            }
+            if( checkinTime.value == ""){
+                alert("체크인 시간을 입력하세요");
+                checkinTime.focus();
+                return false;
+            }
+            if( checkoutTime.value == ""){
+                alert("체크아웃 시간을 입력하세요");
+                checkoutTime.focus();
+                return false;
+            }
+
+            $.ajax({
+                type: "post",
+                url: "/admin/addRoom",
+                dataType: "json",
+                data: {
+                    roomName: roomName.value,
+                    roomPrice: roomPrice.value,
+                    maxPerson: maxPerson.value,
+                    minPerson: minPerson.value,
+                    checkinTime: checkinTime.value,
+                    checkoutTime: checkoutTime.value
+                },
+                success: function(res){
+                    if(res.msg == "success"){
+                        alert("객실이 등록 되었습니다.");
+                        location.reload();
+                    }else if(res.msg == "failure"){
+                        alert("객실 등록에 실패하였습니다.");
+                    }
+                }
+            });
+
+
+        });
+
+        function roomNameCheck() {
+            $.ajax({
+                type: "get",
+                url: "/admin/roomNameCheck",
+                dataType: "json",
+                data: {roomName: roomName.value},
+                success: function(res) {
+                    if(res.msg == "failure") {
+                        alert("이미 등록된 객실 이름입니다.\n다른 이름으로 재입력해 주세요.");
+                        roomName.value = "";
+                        roomName.focus();
+                        return false;
+                    }
+                }
+            });
+        }
+    </script>
 </body>
+
 </html>

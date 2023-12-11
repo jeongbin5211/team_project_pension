@@ -7,6 +7,9 @@ public class RoomListDto {
     private int maxPerson;
     private int minPerson;
 
+    private String checkinTime;
+    private String checkoutTime;
+
     public int getRoomId() {
         return roomId;
     }
@@ -47,6 +50,22 @@ public class RoomListDto {
         this.minPerson = minPerson;
     }
 
+    public String getCheckinTime() {
+        return checkinTime;
+    }
+
+    public void setCheckinTime(String checkinTime) {
+        this.checkinTime = checkinTime;
+    }
+
+    public String getCheckoutTime() {
+        return checkoutTime;
+    }
+
+    public void setCheckoutTime(String checkoutTime) {
+        this.checkoutTime = checkoutTime;
+    }
+
     @Override
     public String toString() {
         return "RoomListDto{" +
@@ -55,6 +74,8 @@ public class RoomListDto {
                 ", roomPrice=" + roomPrice +
                 ", maxPerson=" + maxPerson +
                 ", minPerson=" + minPerson +
+                ", checkinTime='" + checkinTime + '\'' +
+                ", checkoutTime='" + checkoutTime + '\'' +
                 '}';
     }
 }

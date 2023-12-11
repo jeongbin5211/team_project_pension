@@ -1,0 +1,243 @@
+@charset 'utf-8';
+
+/*사이드네비바 시작*/
+.content-wrap{
+    position: fixed;
+    background-color: #333;
+    width: 13%;
+    height: 100vh;
+    padding: 20px;
+    margin: 0 auto;
+
+}
+
+.logo-wrap {
+    text-align: center;
+}
+.logo-img {
+    margin-top: 20px;
+    width: 50%;
+    height: 50%;
+}
+
+.side-nav {
+    width: 100%;
+    margin: 30px 0;
+    padding: 0 15px;
+
+}
+.side-nav div {
+    margin-bottom: 20px;
+}
+
+.side-nav-title {
+
+    color: #fff;
+}
+.side-nav li::before {
+    content: "-";
+    margin-right: 8px;
+    color: #fff;
+}
+/*수정*/
+ul {
+    font-weight: bold;
+}
+li a{
+
+    color: #fff;
+}
+li a:hover {
+    color: #2185D0;
+}
+/*수정*/
+
+.banner-wrap {
+    text-align: center;
+    margin-top: 50%;
+    width: 100%;
+    height: 200px;
+}
+.banner {
+    margin: 0 auto;
+    width: 80%;
+    height: 30%;
+}
+
+/*사이드네비바 끝*/
+
+/*탑네비바 시작*/
+.main-wrap {
+    width: 87%;
+    margin-left: 13%;
+    justify-content: end;
+}
+.top-title {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    height: 130px;
+}
+.top-title h3 {
+    margin-left: 35px;
+}
+
+.underline {
+    margin: 30px 25px;
+}
+.underline a {
+    margin: 0 15px;
+    display: inline-block;
+}
+.underline a:last-child {
+    margin-right: 10px;
+}
+
+.underline a:hover {
+    box-shadow: 0 3px 1px -1px #2185D0;
+}
+
+.users {
+    font-size: 12px;
+    display: flex;
+    justify-content: end;
+    margin-right: 25px;
+}
+.users a:hover {
+    color: #2185D0;
+}
+.users li a{
+    color: #000;
+    padding: 10px;
+}
+/* 탑네비바 끝 */
+
+
+/*section 시작*/
+.main-wrap {
+    width: 87%;
+    margin-left: 13%;
+    justify-content: end;
+}
+main {
+    box-shadow: 0 0 5px 0.25rem #eee;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 95%;
+    margin: 30px auto;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+main section {
+    padding: 40px 0;
+}
+
+main h4 {
+    color: #2185D0;
+}
+
+main h3 {
+    margin-bottom: 30px;
+}
+
+.room-write{
+    width: 70%;
+    margin: 30px auto;
+}
+.room-write form {
+    border: 1px solid #eee;
+    padding: 0px 0;
+}
+table{
+    width: 100%;
+}
+tbody input {
+    width: 50%;
+    padding: 5px 10px;
+}
+
+tbody ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+tbody li {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+tbody li:first-child {
+    margin-right: 20px;
+}
+
+tbody li input {
+    width: 70%;
+}
+
+.btn {
+    margin-right: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #c7e0f5;
+    padding: 6px 15px;
+    font-size: 14px;
+    border: 0;
+    border-radius: 3px;
+    color: #2185D0;
+    cursor: pointer;
+    vertical-align: middle;
+}
+th {
+    border: none;
+    text-align: right;
+    padding: 10px 15px;
+}
+tr {
+    height: 45px;
+}
+td {
+    border: none;
+    padding: 10px 15px;
+}
+tr:last-child{
+    text-align: center;
+}
+.room-list-wrap {
+    width: 100%;
+    
+}
+.room-list{
+    width: 70%;
+    margin: 0 auto;
+    padding: 30px 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.room-list li {
+    width: 40%;
+    padding: 30px 10px;
+    border: 1px solid #ccc;
+}
+.img-wrap {
+    width: 100%;
+}
+.img-wrap img{
+    width: 100%;
+}
+.room-btn{
+    text-align: right;
+}
+.room-list li h5{
+    text-align: center;
+    margin: 10px 0;
+    font-size: 22px;
+}
+.room-list table {
+    border: none;
+}
+.room-list th{
+    width: 40%;
+}

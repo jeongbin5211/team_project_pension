@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/css/admin/reset.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_sub/admin_sub_roomSetting/sub_style.css">
+</head>
+
+<body>
+
+    <div id="wrap">
+
+        <div th:insert="~{admin/fragment/side.html::side_f}"></div>
+        <div class="main-wrap">
+            <div th:insert="~{admin/fragment/header.html::header_f}"></div>
+            <main>
+                <h4>환경설정 > 객실 정보 수정</h4>
+                <section class="room-write-wrap">
+                    <h3>객실 수정하기</h3>
+                    <div class="room-write">
+                        <form method="post" action="" enctype="">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>객실 이름</th>
+                                        <td>
+                                            <input type="text" name="roomName">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>가격</th>
+                                        <td>
+                                            <input type="text" name="roomPrice">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>인원수</th>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <label>최대 인원</label>
+                                                    <input type="text" name="roomMaxPerson">
+                                                </li>
+                                                <li>
+                                                    <label>최소 인원</label>
+                                                    <input type="text" name="roomMinPerson">
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>입실 / 퇴실 시간</th>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <label>입실 시간</label>
+                                                    <input type="text" name="roomCheckinTime">
+                                                </li>
+                                                <li>
+                                                    <label>퇴실 시간</label>
+                                                    <input type="text" name="roomCheckoutTime">
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button class="btn">수정하기</button>
+                                            <button class="btn">삭제하기</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+</body>
+
+</html>
