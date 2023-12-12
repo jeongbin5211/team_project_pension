@@ -191,207 +191,75 @@ nav {
     color: tomato;
 }
 
-.check-room-content {
+.reserve-check-content {
     width: 85%;
     margin-left: 80px;
 }
 
-.check-room-content h3 {
+.reserve-check-content h3 {
     margin-bottom: 45px;
     font-size: 24px;
     font-weight: 600;
 }
 
-#input_date_checkin {
-    width: 150px;
-    font-weight: 600;
-    text-align: center;
-}
-
-.check-room {
-    padding: 10px 15px;
+.reserve-check-list-wrap {
+    margin-top: 30px;
     width: 100%;
-    background-color: #eee;
 }
 
-.check-room>ul {
-    margin-bottom: 0;
-    padding-left: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.checkin_area {
-    width: 240px;
-}
-
-.checkin_set {
-    display: flex;
-    justify-content: space-around;
-}
-
-.checkout_area {
-    width: 240px;
-}
-
-.checkout_set {
-    display: flex;
-    justify-content: space-around;
-}
-
-#input_date_checkout {
-    width: 150px;
-    font-weight: 600;
+.reserve-check-list-wrap h1 {
     text-align: center;
 }
 
-.cld_btn {
-    margin-right: 20px;
-    width: 110px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.cld_show {
-    font-size: 30px;
-    color: tomato;
-    cursor: pointer;
-}
-
-.reset_checkdate {
-    font-size: 12px;
-    padding: 0 4px;
-    background-color: rgb(113, 133, 187);
-    color: #fff;
-    border-radius: 5px;
-}
-
-.trip_day {
-    width: 30px;
-    text-align: center;
-}
-
-.person {
-    width: 50px;
-    text-align: center;
-}
-
-.check_btn {
-    margin-left: 30px;
-    padding: 5px 15px;
-    background-color: rgb(92, 132, 241);
-    color: #fff;
-    border-radius: 5px;
-}
-
-.cld_wrap {
-    margin-top: 20px;
-    width: 240px;
-    position: absolute;
-    background-color: #fff;
-    border-radius: 10px;
-    display: none;
-}
-
-#year {
-    width: 80px;
-    display: initial;
-}
-
-#month {
-    width: 50px;
-    display: initial;
-}
-
-.cld_header {
-    width: 240px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.table-borderd {
-    text-align: center;
-}
-
-#tb_body td:first-child {
-    color: red;
-}
-
-#tb_body td:last-child {
-    color: blue;
-}
-
-button {
-    border: none;
-    background-color: transparent;
-}
-
-.form-control {
-    border: none;
-    font-weight: 600;
-    background-color: transparent;
-}
-
-.cld_toggle {
-    display: block;
-}
-
-.room-list {
-    margin-bottom: 0;
+.alert {
+    width: 100%;
     margin-top: 80px;
-    padding-left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
 }
 
-.room-list h1 {
-    margin: 0 auto;
-}
-
-.room-list img {
-    width: 450px;
-    height: 250px;
-}
-
-.room-list li {
-    border: 2px solid #ccc;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.room-list h5 {
-    margin-bottom: 0;
-    padding: 20px 15px 10px 15px;
+.alert h1 {
     text-align: center;
 }
 
-.list-title-line {
-    margin: 0 auto;
-    width: 50px;
-    height: 2px;
-    background-color: #555;
+.reserve-check-list {
+    margin-top: 20px;
+    width: 100%;
+    box-shadow: 0 0 5px 1px #ccc;
+    border-radius: 10px;
 }
 
-.room-list-txt {
-    margin-bottom: 0;
-    padding: 25px 15px;
+.reserve-check-orderNum {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
 }
 
-.room-price {
-    margin-bottom: 0;
-    padding: 10px 15px 0px 15px;
-    text-align: right;
+.reserve-info {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
 }
 
-.reserve_btn {
-    margin: 15px;
+.reserve-info li {
+    padding: 10px 5px;
+}
+
+.btn-area {
+    width: 100%;
+    text-align: center;
+}
+
+.reserve-set-btn {
+    margin-top: 40px;
     padding: 10px 15px;
-    float: right;
     color: #fff;
     background-color: rgb(92, 132, 241);
+    border: 1px solid #ccc;
     border-radius: 15px;
+}
+
+.reserve-set-btn a {
+    font-size: 16px;
+    color: #fff;
+    font-family: 'Sunflower', sans-serif;
 }
 
 /* section 끝 */

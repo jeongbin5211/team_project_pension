@@ -1,9 +1,6 @@
 package com.example.pension.controller;
 
-import com.example.pension.dto.CheckRoomDto;
-import com.example.pension.dto.RequestSettleDto;
-import com.example.pension.dto.ReserveListDto;
-import com.example.pension.dto.RoomListDto;
+import com.example.pension.dto.*;
 import com.example.pension.service.CheckRoomService;
 import com.example.pension.service.ReserveService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -88,5 +85,17 @@ public class ReserveController {
             map.put("msg", "failure");
         }
         return map;
+    }
+
+    @GetMapping("/reserveCheck")
+    public String getReserveCheckList(HttpSession hs, Model model) {
+        MemberDto m = (MemberDto) hs.getAttribute("user");
+        int id = m.getId();
+        List<ReserveListDto> list = reserveService.getReserveList(id);
+        if(list.isEmpty()) {
+            list = null;
+        }
+        model.addAttribute("reserveList", list);
+        return "sub_pages/sub_reserve/sub_reserve_check/reserve_check.html";
     }
 }

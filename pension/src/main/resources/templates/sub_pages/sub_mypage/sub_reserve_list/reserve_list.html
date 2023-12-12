@@ -41,7 +41,7 @@
             <ul class="sub-navigate-nav">
                 <h4>마이페이지</h4>
                 <li>
-                    <a href="/mypage/reserveList" class="check-page">예약 내역</a>
+                    <a href="/mypage/reserveList" class="check-page">예약 내역 관리</a>
                 </li>
                 <li>
                     <a href="/mypage/myinfo/checkpw">내 정보 관리</a>
@@ -57,38 +57,79 @@
                 </li>
             </ul>
             <div class="reserve-content">
-                <h3>예약내역 확인</h3>
-                <div class="reserve_list">
-                    <p>[[${session.user.name}]]님의 예약 내역을 확인 합니다.</p>
-                    <table>
-                        <tr>
-                            <th>객실 이름</th>
-                            <th>예약 번호</th>
-                            <th>예약자</th>
-                            <th>예약자 전화번호</th>
-                            <th>체크인</th>
-                            <th>체크아웃</th>
-                            <th>결제시간</th>
-                            <th>결제상태</th>
-                        </tr>
-                        <tr th:each="rl: ${reserveList}">
-                            <td>[[${rl.roomName}]]동</td>
-                            <td>[[${rl.orderNum}]]</td>
-                            <td>[[${rl.reserveName}]]</td>
-                            <td>[[${rl.reserveTell}]]</td>
-                            <td>[[${rl.checkin}]]</td>
-                            <td>[[${rl.checkout}]]</td>
-                            <td>[[${rl.settlementTime}]]</td>
-                            <td>
-                                <th:block th:if="${rl.settlementState eq 1}">
-                                    결제완료
-                                </th:block>
-                                <th:block th:unless="${rl.settlementState eq 1}">
-                                    결제취소
-                                </th:block>
-                            </td>
-                        </tr>
-                    </table>
+                <h3>예약내역 관리</h3>
+                <p class="info-txt">[[${session.user.name}]]님의 예약 내역을 확인 합니다.</p>
+                <p class="change-info">예약날짜 변경을 원하시면 결제취소 후 재예약해 주세요.</p>
+                <th:block th:if="${#lists.isEmpty(reserveList)}">
+                    <div class="alert">
+                        <h1>예약된 객실 정보가 없습니다.</h1>
+                    </div>
+                </th:block>
+                <div class="reserve-list-wrap">
+                    <th:block th:unless="${#lists.isEmpty(reserveList)}">
+                        <table class="reserve-list" th:each="rl: ${reserveList}">
+                            <tr>
+                                <td colspan="2">
+                                    예약 번호 : [[${rl.orderNum}]]
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>객실 이름</th>
+                                <td>[[${rl.roomName}]]동</td>
+                            </tr>
+                            <tr>
+                                <th>예약자 이름</th>
+                                <td>[[${rl.reserveName}]]</td>
+                            </tr>
+                            <tr>
+                                <th>예약자 연락처</th>
+                                <td>[[${rl.reserveTell}]]</td>
+                            </tr>
+                            <tr>
+                                <th>체크인 날짜</th>
+                                <td>[[${rl.checkin}]]</td>
+                            </tr>
+                            <tr>
+                                <th>체크아웃 날짜</th>
+                                <td>[[${rl.checkout}]] ([[${rl.dayNight}]]박)</td>
+                            </tr>
+                            <tr>
+                                <th>인원 수</th>
+                                <td>[[${rl.person}]]명</td>
+                            </tr>
+                            <tr>
+                                <th>결제 시간</th>
+                                <td>[[${#temporals.format(rl.settlementTime, 'yyyy-MM-dd HH:mm:ss')}]]</td>
+                            </tr>
+                            <tr>
+                                <th>결제 상태</th>
+                                <td>
+                                    <th:block th:if="${rl.settlementState eq 1}">
+                                        결제완료
+                                    </th:block>
+                                    <th:block th:unless="${rl.settlementState eq 1}">
+                                        결제취소
+                                    </th:block>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="btn-area">
+                                    <th:block th:if="${rl.settlementState eq 1}">
+                                        <th:block th:if="${rl.checkin >= nowDate}">
+                                            <button type="button" class="btn cancel-btn" th:onclick="cancelReserve([[${rl.orderNum}]])">결제취소</button>
+                                            <button type="button" class="btn delete-btn" th:onclick="deleteList([[${rl.orderNum}]])">예약내역 삭제</button>
+                                        </th:block>
+                                        <th:block th:unless="${rl.checkin >= nowDate}">
+                                            <button type="button" class="btn delete-btn" th:onclick="deleteList([[${rl.orderNum}]])">예약내역 삭제</button>
+                                        </th:block>
+                                    </th:block>
+                                    <th:block th:unless="${rl.settlementState eq 1}">
+                                        <button type="button" class="btn delete-btn" th:onclick="deleteList([[${rl.orderNum}]])">예약내역 삭제</button>
+                                    </th:block>
+                                </td>
+                            </tr>
+                        </table>
+                    </th:block>
                 </div>
             </div>
         </section>
@@ -105,6 +146,50 @@
             <i class="fa-solid fa-arrow-up"></i>
         </a>
     </div>
+
+    <script>
+        function deleteList(orderNum) {
+            if(confirm("예약내역을 삭제하면 복구하실 수 없습니다.\n삭제하시겠습니까?")) {
+                $.ajax({
+                    type: "post",
+                    url: "/mypage/deleteReserveList",
+                    dataType: "json",
+                    data: {orderNum: orderNum},
+                    success: function(result) {
+                        if(result.msg == "success") {
+                            alert("예약내역이 삭제되었습니다.");
+                            location.href = "/mypage/reserveList";
+                        }else if(result.msg == "failure") {
+                            alert("결제취소를 먼저 진행한 후 삭제해 주세요.");
+                            location.href = "/mypage/reserveList";
+                        }else {
+                            alert("예약내역 삭제에 문제가 발생하였습니다.\n관리자에게 문의 바랍니다.");
+                        }
+                    }
+                });
+            }
+        }
+
+        function cancelReserve(orderNum) {
+            if(confirm("결제를 취소하면 복구하실 수 없습니다.\n결제를 취소하시겠습니까?")) {
+                $.ajax({
+                    type: "post",
+                    url: "/mypage/cancelReserve",
+                    dataType: "json",
+                    data: {orderNum: orderNum},
+                    success: function(result) {
+                        if(result.msg == "success") {
+                            alert("결제가 취소 되었습니다.");
+                            location.href = "/mypage/reserveList";
+                        }else {
+                            alert("결제취소에 문제가 발생하였습니다.\n관리자에게 문의 바랍니다.");
+                            location.href = "/mypage/reserveList";
+                        }
+                    }
+                });
+            }
+        }
+    </script>
 
     <script src="../../../../static/js/header_nav.js"></script>
 </body>

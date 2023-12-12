@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약확인</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/css/reset.css">
+    <link rel="stylesheet" href="../../../../static/css/sub/sub_reserve/sub_reserve_check/style.css">
+</head>
+
+<body>
+    <div id="wrap">
+
+        <!-- header -->
+
+        <header th:insert="~{fragment/header.html::header_f}"></header>
+
+        <!-- main 시작 -->
+        <main>
+            <section class="sub-title-wrap">
+                <div class="sub-title-bg">
+                    <div class="sub-title-area">
+                        <h3 class="sub-title">Reservation</h3>
+                        <div class="line"></div>
+                        <p class="sub-title-txt">객실 예약하기
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- section 시작 -->
+
+        <section class="check-room-content-wrap">
+            <ul class="sub-navigate-nav">
+                <h4>예약</h4>
+                <li>
+                    <a href="/reserve/checkroom">예약하기</a>
+                </li>
+                <li>
+                    <a href="/reserve/reserveCheck" class="check-page">예약확인</a>
+                </li>
+            </ul>
+            <div class="reserve-check-content">
+                <h3>예약 확인</h3>
+                <p>오늘 날짜를 기준으로 입실 가능한 객실 예약정보를 조회합니다.</p>
+                <th:block th:if="${#lists.isEmpty(reserveList)}">
+                  <div class="reserve-check-list-wrap">
+                    <div class="alert">
+                        <h1>예약된 입실 가능한 객실 정보가 없습니다.</h1>
+                    </div>
+                </th:block>
+                <th:block th:unless="${#lists.isEmpty(reserveList)}">
+                  <ul class="reserve-check-list" th:each="rl: ${reserveList}">
+                    <li class="reserve-check-orderNum">
+                      예약 번호 : [[${rl.orderNum}]]
+                    </li>
+                    <li class="reserve-info">
+                      <ul>
+                        <li>
+                          객실 이름
+                        </li>
+                        <li>
+                          [[${rl.roomName}]]동
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          예약자 이름
+                        </li>
+                        <li>
+                          [[${rl.reserveName}]]
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          예약자 연락처
+                        </li>
+                        <li>
+                          [[${rl.reserveTell}]]
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          체크인 날짜
+                        </li>
+                        <li>
+                          [[${rl.checkin}]]
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          체크아웃 날짜
+                        </li>
+                        <li>
+                          [[${rl.checkout}]]
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          인원 수
+                        </li>
+                        <li>
+                          [[${rl.person}]]명
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          결제 상태
+                        </li>
+                        <li>
+                          <th:block th:if="${rl.settlementState eq 1}">
+                            결제 완료
+                          </th:block>
+                          <th:block th:unless="${rl.settlementState eq 1}">
+                            결제 취소
+                          </th:block>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </th:block>
+                  <div class="btn-area">
+                    <button class="reserve-set-btn">
+                      <a href="/mypage/reserveList">결제취소 및 예약내역 관리하기</a>
+                    </button>
+                  </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- section 끝 -->
+
+        <!-- footer 시작-->
+
+        <footer th:insert="~{fragment/footer.html::footer_f}"></footer>
+
+        <!-- Anchor -->
+
+        <a href="#top" class="anchor">
+            <i class="fa-solid fa-arrow-up"></i>
+        </a>
+    </div>
+
+    <script src="../../../../static/js/header_nav.js"></script>
+</body>
+
+</html>

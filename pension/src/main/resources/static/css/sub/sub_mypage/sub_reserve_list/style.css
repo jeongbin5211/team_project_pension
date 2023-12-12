@@ -194,54 +194,80 @@ nav {
     font-size: 24px;
 }
 
-.reserve_list p {
+.alert {
+    width: 100%;
+    margin-top: 80px;
+}
+
+.alert h1 {
+    text-align: center;
+}
+
+.info-txt {
     margin-bottom: 20px;
     font-size: 14px;
 }
 
-table {
+.change-info {
+    margin: 10px 0;
+    font-size: 14px;
+    color: tomato;
+}
+
+.reserve-list-wrap {
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+
+.reserve-list {
+    box-shadow: 0 0 5px 1px #ccc;
     border-collapse: collapse;
-    border-top: 2px solid #555;
-    text-align: center;
+    border-radius: 10px;
+}
+
+.reserve-list td, th {
+    padding: 10px;
+}
+
+.reserve-list th {
+    width: 40%;
+    text-align: right;
+}
+
+.reserve-list tr:first-child {
     border-bottom: 1px solid #ccc;
+    background-color: rgb(255, 250, 242);
 }
 
-th {
-    padding: 15px 5px;
-    border-right: 1px solid #ccc;
-    background-color: rgb(238, 241, 248);
+.btn-area {
+    text-align: center;
 }
 
-th:nth-child(1),
-th:nth-child(3),
-th:nth-child(8) {
-    width: 8%;
+.btn-area button:first-child {
+    margin-right: 10px;
 }
 
-th:nth-child(4) {
-    width: 14%;
+.btn {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
 }
 
-th:nth-child(5),
-th:nth-child(6),
-th:nth-child(7) {
-    width: 14%;
+.cancel-btn {
+    background-color: rgb(240, 94, 94);
 }
 
-th:last-child {
-    border-right: none;
+.delete-btn {
+    background-color: rgb(103, 159, 223);
 }
 
 
-td {
-    padding: 10px 5px;
-    border-right: 1px solid #ccc;
-}
 
-td:last-child {
-    border-right: none;
-}
 
 /* section 끝 */
 
