@@ -11,6 +11,6 @@ position char(1),
 primary key(id)
 );
 
-insert into member values(null, 'admin', '1234', 'admin', '01012345678', 'email@email.com', 'addr', now(), '2');
+insert into member values(null, 'admin', '1234', '관리자', '01012345678', 'email@email.com', 'addr', now(), '2');
 insert into member values(null, 'user', '1234', 'user', '01012345678', 'email@email.com', 'addr', now(), '1');
 

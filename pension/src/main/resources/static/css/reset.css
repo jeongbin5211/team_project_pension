@@ -25,3 +25,15 @@ a {
     text-decoration: none;
     color: #555;
 }
+
+.red {
+    background-color: #dc3545;
+}
+
+.green {
+    background-color: #198754;
+}
+
+.blue {
+    background-color: #0d6efd;
+}
