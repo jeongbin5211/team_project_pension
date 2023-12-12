@@ -160,7 +160,7 @@
 
                     </th:block>
                     <th:block th:unless="${#strings.isEmpty(session.admin)}">
-                        <a class="write_notice">
+                        <a th:href="@{/board/notice/write?(${name})}" class="write_notice">
                             글쓰기
                         </a>
                     </th:block>
