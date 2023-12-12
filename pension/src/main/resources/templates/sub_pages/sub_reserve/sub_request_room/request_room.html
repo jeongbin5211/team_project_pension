@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>예약하기 > 객실 예약하기</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -55,22 +57,29 @@
                         <ul>
                             <li class="reserve_name_area">
                                 <label>예약자 이름</label>
-                                <input type="text" class="reserve_name" value="김철수" placeholder="예약자 이름을 입력해 주세요."/>
+                                <input type="text" class="reserve_name" th:value="${session.user.name}" placeholder="예약자 이름을 입력해 주세요."/>
                             </li>
                             <li class="reserve_tell_area">
                                 <label>휴대폰 번호</label>
-                                <input type="text" class="reserve_tell" value="010-1234-5678" placeholder="휴대폰 번호를 입력해 주세요."/>
+                                <input type="text" class="reserve_tell" th:value="${session.user.phone}" placeholder="휴대폰 번호를 입력해 주세요."/>
+                            </li>
+                            <li class="reserve_email_area">
+                                <label>이메일 주소</label>
+                                <input type="email" class="reserve_email" th:value="${session.user.email}" placeholder="이메일 주소를 입력해 주세요."/>
                             </li>
                             <li class="reserve_checkbox_area">
                                 <input type="checkbox" id="reserve_checkbox" class="reserve_checkbox" value=""/>
                                 <label for="reserve_checkbox">입력한 예약자 정보를 확인했습니다.</label>
                             </li>
+                            <li>
+                                <p class="cal_area">([[${roomList.roomPrice}]] x [[${checkRoom.dayNight}]]박) + (추가인원 [[${checkRoom.Person} - ${roomList.minPerson}]]명 x [[${checkRoom.dayNight}]]박)</p> 
+                            </li>
                             <li class="price_area">
                                 <p class="price_txt">결제금액</p>
-                                <p class="price_room">300,000 원</p>
+                                <p class="price_room">[[${payMoney}]] 원</p>
                             </li>
                             <li>
-                                <button class="request_btn">결제하기</button>
+                                <button type="button" class="request_btn" onclick="settlement()">결제하기</button>
                             </li>
                         </ul>
                     </form>
@@ -81,20 +90,27 @@
                         <table>
                             <tr>
                                 <th>객실</th>
-                                <td>A동</td>
+                                <td>[[${roomList.roomName}]]동</td>
                             </tr>
                             <tr>
                                 <th>일정</th>
                                 <td>
-                                    0000-00-00<br/>
-                                    <span>~ 0000-00-00 (1박)</span>
+                                    [[${checkRoom.checkin}]]<br/>
+                                    <span>~ [[${checkRoom.checkout}]] ([[${checkRoom.dayNight}]]박)</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th>기준인원</th>
-                                <td>6인 기준 / 최대 12인</td>
+                                <td>[[${roomList.minPerson}]]인 기준 / 최대 [[${roomList.maxPerson}]]인</td>
                             </tr>
                         </table>
+                        <input type="hidden" name="roomName" th:value="${roomList.roomName}"/>
+                        <input type="hidden" name="checkin" th:value="${checkRoom.checkin}"/>
+                        <input type="hidden" name="checkout" th:value="${checkRoom.checkout}"/>
+                        <input type="hidden" name="dayNight" th:value="${checkRoom.dayNight}"/>
+                        <input type="hidden" name="person" th:value="${checkRoom.person}"/>
+                        <input type="hidden" name="payMoney" th:value="${payMoney}"/>
+                        <input type="hidden" name="id" th:value="${session.user.id}"/>
                     </div>
                 </div>
             </div>
@@ -114,22 +130,37 @@
     </div>
     
     <script>
-        let reserve_name = document.querySelector(".reserve_name");
-        let reserve_tell = document.querySelector(".reserve_tell");
-        let reserve_checkbox = document.querySelector(".reserve_checkbox");
-        let request_btn = document.querySelector(".request_btn");
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = String(date.getMonth() + 1).padStart(2, "0");
+        let day = String(date.getDate()).padStart(2, "0");
         
-        request_btn.addEventListener('click', function(e) {
-            e.preventDefault();
+        let reserve_checkbox = document.querySelector(".reserve_checkbox");
+        let roomName = document.querySelector("input[name=roomName]");
+        let checkin = document.querySelector("input[name=checkin]");
+        let checkout = document.querySelector("input[name=checkout]");
+        let dayNight = document.querySelector("input[name=dayNight]");
+        let person = document.querySelector("input[name=person]");
+        let payMoney = document.querySelector("input[name=payMoney]")
+        let reserveName = document.querySelector(".reserve_name");
+        let reserveEmail = document.querySelector(".reserve_email");
+        let reserveTell = document.querySelector(".reserve_tell");
+        let id = document.querySelector("input[name=id]");
+        let orderNum = year + month + day;
 
-            if(reserve_name.value == "") {
+        for(let i=0;i<10;i++) {
+        orderNum += Math.floor(Math.random() * 8);
+        }
+        
+        function settlement() {
+            if(reserveName.value == "") {
                 alert("예약자 이름을 입력해 주세요.");
-                reserve_name.focus();
+                reserveName.focus();
                 return false;
             }
-            if(reserve_tell.value == "") {
+            if(reserveTell.value == "") {
                 alert("휴대폰 번호를 입력해 주세요.");
-                reserve_tell.focus();
+                reserveTell.focus();
                 return false;
             }
             if(!reserve_checkbox.checked) {
@@ -137,11 +168,67 @@
                 reserve_checkbox.focus();
                 return false;
             }
-        });
+
+            $.ajax({
+                type: "post",
+                url: "/reserve/requestSettle",
+                dataType: "json",
+                data: {
+                    orderNum: orderNum,
+                    reserveName: reserveName.value,
+                    reserveEmail: reserveEmail.value,
+                    reserveTell: reserveTell.value,
+                    payMoney: payMoney.value,
+                    roomName: roomName.value
+                },
+                success: function payment(result) {
+                    let obj = {
+                        pg: "kakaopay.TC0ONETIME",
+                        pay_method: "card",
+                        merchant_uid: result.rs.orderNum,
+                        name: "개비리길펜션 "+result.rs.roomName+"동",
+                        amount: result.rs.payMoney,
+                        buyer_email: result.rs.reserveEmail,
+                        buyer_name: result.rs.reserveName,
+                        buyer_tel: result.rs.reserveTell
+                    }
+
+                    IMP.init("imp61615502");
+                    IMP.request_pay(obj, function(rsp) {
+                        if(rsp.success) {
+                            $.ajax({
+                            type: "post",
+                            url: "/reserve/settlement",
+                            dataType: "json",
+                            data: {
+                                id: id.value,
+                                orderNum: orderNum,
+                                checkin: checkin.value,
+                                checkout: checkout.value,
+                                person: person.value,
+                                reserveEmail: reserveEmail.value,
+                                reserveName: reserveName.value,
+                                reserveTell: reserveTell.value,
+                                payMoney: payMoney.value,
+                                roomName: roomName.value,
+                                dayNight: dayNight.value
+                            },
+                            success: function(result) {
+                                if(result.msg == "success"){
+                                location.href = "/mypage/reserveList";
+                                }
+                            }
+                            });
+                        }else {
+                            alert("실패");
+                        }
+                    });
+                }
+            });
+        }
     </script>
 
     <script src="../../../../static/js/header_nav.js"></script>
-    <script src="../../../../static/js/sub/sub_reserve/sub_check_room/calendar.js"></script>
 </body>
 
 </html>
