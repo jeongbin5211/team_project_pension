@@ -19,9 +19,9 @@ public interface ReserveMapper {
     @Select("select min_person from room_list where room_name = #{roomName}")
     public int reservePerson(String roomNum);
 
-    @Insert("insert into reserve_list values(#{id}, #{orderNum}, #{checkin}, #{checkout}, #{person}, #{reserveEmail}, #{reserveName}, #{reserveTell}, #{payMoney}, #{roomName}, now(), #{settlementState})")
+    @Insert("insert into reserve_list values(#{id}, #{orderNum}, #{checkin}, #{checkout}, #{person}, #{reserveEmail}, #{reserveName}, #{reserveTell}, #{payMoney}, #{roomName}, now(), #{settlementState}, #{dayNight})")
     public void setReserveList(ReserveListDto reserveListDto);
 
-    @Select("select * from reserve_list where id = #{id} and settlement_state = 1")
+    @Select("select * from reserve_list where checkin >= curdate() and id = #{id} and settlement_state = 1")
     public List<ReserveListDto> getReserveList(int id);
 }

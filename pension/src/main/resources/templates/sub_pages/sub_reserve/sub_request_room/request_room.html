@@ -214,13 +214,14 @@
                                 dayNight: dayNight.value
                             },
                             success: function(result) {
+                                alert("결제가 완료되어 예약이 확정되었습니다.")
                                 if(result.msg == "success"){
-                                location.href = "/mypage/reserveList";
+                                location.href = "/reserve/reserveCheck";
                                 }
                             }
                             });
                         }else {
-                            alert("실패");
+                            alert("결제에 실패하였습니다.\n재결제해 주세요.");
                         }
                     });
                 }
