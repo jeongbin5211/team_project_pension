@@ -12,118 +12,7 @@
     <link rel="stylesheet" href="../../../../static/css/reset.css">
     <link rel="stylesheet" href="../../../../static/css/sub/sub_board/sub_notice/style.css">
     <style>
-        /* 게시판 시작 */
 
-.notice-content {
-    width: 85%;
-    margin: 0 auto;
-    margin-left: 80px;
-}
-
-.search_box {
-    display: flex;
-    justify-content: end;
-    margin-bottom: 20px;
-}
-
-.search_box input {
-    outline: 0;
-    border: 1px solid #ccc;
-    height: 30px;
-}
-
-#searchType {
-    outline: 0;
-    border: 1px solid #ccc;
-    border-right: 0;
-}
-
-.search_words_box {
-    position: relative;
-}
-
-.words {
-    padding: 0 10px;
-
-}
-
-.searchBtn {
-    position: absolute;
-    background-color: #fff;
-    right: 5px;
-    top: 28%;
-    border: 0;
-    cursor: pointer;
-}
-
-.searchBtn i {
-    /* background-color: ; */
-    font-size: 16px;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-tr {
-    height: 40px;
-}
-
-tr:first-child {
-    border-top: 2px solid #555;
-    background-color: #eee;
-}
-
-td,
-th {
-    border-bottom: 1px solid #ccc;
-
-}
-
-th:nth-child(1) {
-    width: 13%;
-}
-
-th:nth-child(3) {
-    width: 15%;
-}
-
-th:nth-child(4) {
-    width: 15%;
-}
-
-th:nth-child(5) {
-    width: 10%;
-}
-
-td {
-    text-align: center;
-}
-
-td:nth-child(2) {
-    text-align: left;
-    padding: 0 10px;
-    font-weight: bold;
-}
-
-.content_bottom {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
-.write_notice_btn {
-    padding: 4px 8px;
-    border: 0;
-    background-color: rgba(225, 232, 234, 0.82);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: bold;
-    border-radius: 4px;
-}
-
-/* 게시판 끝 */
     </style>
 </head>
 <body>
@@ -267,9 +156,14 @@ td:nth-child(2) {
                     </a>
                 </div>
                 <div>
-                    <button class="write_notice_btn">
-                        글쓰기
-                    </button>
+                    <th:block th:if="${#strings.isEmpty(session.admin)}">
+
+                    </th:block>
+                    <th:block th:unless="${#strings.isEmpty(session.admin)}">
+                        <a class="write_notice">
+                            글쓰기
+                        </a>
+                    </th:block>
                 </div>
             </div>
         </div>
@@ -285,6 +179,6 @@ td:nth-child(2) {
         <i class="fa-solid fa-arrow-up"></i>
     </a>
 
-    <script src="../../../../static/js/header_nav.js"></script>
+    <script src="/static/js/header_nav.js"></script>
 </body>
 </html>
