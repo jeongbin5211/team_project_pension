@@ -203,79 +203,49 @@
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 
-        //삭제요망
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,dayGridWeek,dayGridDay'
-            },
-            initialDate: today,
-            navLinks: true, // can click day/week names to navigate views
-            editable: true,
-            dayMaxEvents: true, // allow "more" link when too many events
-            events: [
-                {
-                    title: '홍길동',
-                    start: '2023-12-03',
-                    end: '2023-12-04',
-                    display: 'daygird',
-                    color: '#ff9f89'
-                },
-                {
-                    title: '홍길동',
-                    start: '2023-12-03',
-                    end: '2023-12-04',
-                    display: 'daygird',
-                    color: '#406fd6'
+
+
+
+
+
+        $.ajax({
+            type: "get",
+            url: "/admin/cldList",
+            dataType: "json",
+            success: function(result) {
+
+                let obj = [];
+                for(let i=0; i<result.cldList.length; i++) {
+                    let color;
+                    if(result.cldList[i].roomName == "A") {
+                        color = "#ff9f89";
+                    }else if(result.cldList[i].roomName == "B") {
+                        color = "#406fdf";
+                    }
+                    obj[i] = {
+                        title: result.cldList[i].reserveName,
+                        start: result.cldList[i].checkin,
+                        end: result.cldList[i].checkout,
+                        display: "daygrid",
+                        color: color
+                    }
                 }
-            ]
+                console.log(obj);
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,dayGridWeek,dayGridDay'
+                    },
+                    initialDate: today,
+                    navLinks: true,
+                    editable: false,
+                    dayMaxEvents: true,
+                    events: obj
+                });
+                calendar.render();
+            }
         });
-
-        calendar.render();
-
-        //--삭제요망
-
-
-        //   $.ajax({
-        //     type: "get",
-        //     url: "/cldList",
-        //     dataType: "json",
-        //     success: function(result) {
-        //       console.log(result.cldList);
-
-        //       let obj = [];
-        //       for(let i=0; i<result.cldList.length; i++) {
-        //         let color;
-        //         if(result.cldList[i].room == "A") {
-        //           color = "#cccccc";
-        //         }else if(result.cldList[i].room == "B") {
-        //           color = "#ff9f89";
-        //         }
-        //         obj[i] = {
-        //           title: result.cldList[i].username,
-        //           start: result.cldList[i].checkin,
-        //           end: result.cldList[i].checkout,
-        //           display: "daygrid",
-        //           color: color
-        //         }
-        //       }
-        //       console.log(obj);
-        //       var calendar = new FullCalendar.Calendar(calendarEl, {
-        //       headerToolbar: {
-        //         left: 'prev,next today',
-        //         center: 'title',
-        //         right: 'dayGridMonth,dayGridWeek,dayGridDay'
-        //       },
-        //       initialDate: today,
-        //       navLinks: true, // can click day/week names to navigate views
-        //       editable: true,
-        //       dayMaxEvents: true, // allow "more" link when too many events
-        //       events: obj
-        //       });
-        //       calendar.render();
-        //     }
-        //   });
     });
 </script>
 </body>
