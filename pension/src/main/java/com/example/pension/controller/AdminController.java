@@ -1,6 +1,8 @@
 package com.example.pension.controller;
 
+import com.example.pension.dto.ReserveListDto;
 import com.example.pension.dto.RoomListDto;
+import com.example.pension.service.AdminService;
 import com.example.pension.service.RoomSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
+    @Autowired
+    AdminService adminService;
     @Autowired
     RoomSettingService roomSettingService;
 
@@ -41,6 +44,14 @@ public class AdminController {
     @GetMapping("/reserveList")
     public String getReserveList() {
         return "admin/admin_sub/admin_sub_reserveList/admin_sub_reserveList";
+    }
+    @GetMapping("/cldList")
+    @ResponseBody
+    public Map<String, Object> cldList(){
+        Map<String, Object> map = new HashMap<>();
+        List<ReserveListDto> list = adminService.cldList();
+        map.put("cldList", list);
+        return map;
     }
     @GetMapping("/members")
     public String getMembers(){
