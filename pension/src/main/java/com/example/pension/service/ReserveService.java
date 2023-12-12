@@ -1,5 +1,7 @@
 package com.example.pension.service;
 
+import com.example.pension.dto.CheckRoomDto;
+import com.example.pension.dto.ReserveListDto;
 import com.example.pension.dto.RoomListDto;
 import com.example.pension.mappers.ReserveMapper;
 import org.springframework.beans.factory.annotation.Autowired;
