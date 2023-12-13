@@ -16,4 +16,6 @@ public class AdminService {
     public List<ReserveListDto>cldList(){
         return adminMapper.cldList();
     }
+
+
 }

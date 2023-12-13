@@ -184,6 +184,7 @@ tbody li input {
     background-color: #c7e0f5;
     padding: 6px 15px;
     font-size: 14px;
+    font-weight: bold;
     border: 0;
     border-radius: 3px;
     color: #2185D0;
@@ -213,11 +214,13 @@ tr:last-child{
     width: 70%;
     margin: 0 auto;
     padding: 30px 10px;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    column-gap: 10%;
+    row-gap: 20px;
 }
 .room-list li {
-    width: 40%;
+    /*width: 40%;*/
     padding: 30px 10px;
     border: 1px solid #ccc;
 }
@@ -240,4 +243,12 @@ tr:last-child{
 }
 .room-list th{
     width: 40%;
+}
+
+.insert_img_wrap {
+    display: flex;
+    justify-content: end;
+    margin: 0 auto;
+    width: 100%;
+    padding: 20px;
 }
