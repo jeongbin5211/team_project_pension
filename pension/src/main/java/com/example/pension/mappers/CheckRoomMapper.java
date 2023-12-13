@@ -12,33 +12,21 @@ public interface CheckRoomMapper {
     @Select("select * from room_list")
     public List<RoomListDto> getAllRoomList();
 
-    @Select("select * from room_list where room_name = 'A'")
-    public List<RoomListDto> getARoomList();
+    @Select("select room_name from room_list")
+    public List<String> getRoomNameList();
 
-    @Select("select * from room_list where room_name = 'B'")
-    public List<RoomListDto> getBRoomList();
+    @Select("select checkin from reserve_list where room_name = #{roomName} and settlement_state = 1")
+    public List<LocalDate> getRoomCheckinList(String roomName);
 
-    @Select("select checkin from reserve_list where room_name = 'A' and settlement_state = 1")
-    public List<LocalDate> getCheckinRoomA();
+    @Select("select checkout from reserve_list where room_name = #{roomName} and settlement_state = 1")
+    public List<LocalDate> getRoomCheckoutList(String roomName);
 
-    @Select("select checkout from reserve_list where room_name = 'A' and settlement_state = 1")
-    public List<LocalDate> getCheckoutRoomA();
+    @Select("select max_person from room_list where room_name = #{roomName}")
+    public int maxPersonRoom(String roomName);
 
-    @Select("select max_person from room_list where room_name = 'A'")
-    public int getMaxPersonRoomA();
+    @Select("select min_person from room_list where room_name = #{roomName}")
+    public int minPersonRoom(String roomName);
 
-    @Select("select min_person from room_list where room_name = 'A'")
-    public int getMinPersonRoomA();
-
-    @Select("select checkin from reserve_list where room_name = 'B' and settlement_state = 1")
-    public List<LocalDate> getCheckinRoomB();
-
-    @Select("select checkout from reserve_list where room_name = 'B' and settlement_state = 1")
-    public List<LocalDate> getCheckoutRoomB();
-
-    @Select("select max_person from room_list where room_name = 'B'")
-    public int getMaxPersonRoomB();
-
-    @Select("select min_person from room_list where room_name = 'B'")
-    public int getMinPersonRoomB();
+    @Select("select * from room_list where room_name = #{roomName}")
+    public RoomListDto checkedRoom(String roomName);
 }

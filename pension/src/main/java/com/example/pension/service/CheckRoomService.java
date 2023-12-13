@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,63 +20,46 @@ public class CheckRoomService {
     }
 
     public List<RoomListDto> getCheckRoom(CheckRoomDto checkRoomDto) {
-        List<LocalDate> roomACheckinList = checkRoomMapper.getCheckinRoomA();
-        List<LocalDate> roomACheckoutList = checkRoomMapper.getCheckoutRoomA();
-        int MaxPersonRoomA = checkRoomMapper.getMaxPersonRoomA();
-        int MinPersonRoomA = checkRoomMapper.getMinPersonRoomA();
-        int roomAState = 0;
-        List<LocalDate> roomBCheckinList = checkRoomMapper.getCheckinRoomB();
-        List<LocalDate> roomBCheckoutList = checkRoomMapper.getCheckoutRoomB();
-        int MaxPersonRoomB = checkRoomMapper.getMaxPersonRoomB();
-        int MinPersonRoomB = checkRoomMapper.getMinPersonRoomB();
-        int roomBState = 0;
+        List<String> roomNameList = checkRoomMapper.getRoomNameList();
+        List<LocalDate> roomCheckinList = null;
+        List<LocalDate> roomCheckoutList = null;
+        int maxPersonRoom = 0;
+        int minPersonRoom = 0;
 
-        List<RoomListDto> list = null;
+        List<RoomListDto> checkedRoomList = new ArrayList<>();
+        RoomListDto roomListDto = new RoomListDto();
 
-        if(MinPersonRoomA <= checkRoomDto.getPerson() && checkRoomDto.getPerson() <= MaxPersonRoomA) {
-            int notA = 0;
-            for(int i=0;i<roomACheckinList.size();i++) {
-                if((!checkRoomDto.getCheckin().isBefore(roomACheckinList.get(i)) && !checkRoomDto.getCheckin().isAfter(roomACheckoutList.get(i))) || (!checkRoomDto.getCheckout().isBefore(roomACheckinList.get(i)) && (!checkRoomDto.getCheckout().isAfter(roomACheckoutList.get(i))))) {
-                    if(roomACheckoutList.get(i).equals(checkRoomDto.getCheckin()) || roomACheckinList.get(i).equals(checkRoomDto.getCheckout())) {
-                        notA += 0;
-                    }else {
-                        notA += 1;
-                    }
-                }else {
-                    notA += 0;
-                }
-            }
-            roomAState = notA;
-        }else {
-            roomAState = 1;
-        }
+        if(!roomNameList.isEmpty()) {
+            for (String s : roomNameList) {
+                roomCheckinList = checkRoomMapper.getRoomCheckinList(s);
+                roomCheckoutList = checkRoomMapper.getRoomCheckoutList(s);
+                minPersonRoom = checkRoomMapper.minPersonRoom(s);
+                maxPersonRoom = checkRoomMapper.maxPersonRoom(s);
 
-        if(MinPersonRoomB <= checkRoomDto.getPerson() && checkRoomDto.getPerson() <= MaxPersonRoomB) {
-            int notB = 0;
-            for(int i=0;i< roomBCheckinList.size();i++) {
-                if ((!checkRoomDto.getCheckin().isBefore(roomBCheckinList.get(i)) && !checkRoomDto.getCheckin().isAfter(roomBCheckoutList.get(i))) || (!checkRoomDto.getCheckout().isBefore(roomBCheckinList.get(i)) && (!checkRoomDto.getCheckout().isAfter(roomBCheckoutList.get(i))))) {
-                    if (roomBCheckoutList.get(i).equals(checkRoomDto.getCheckin()) || roomBCheckinList.get(i).equals(checkRoomDto.getCheckout())) {
-                        notB += 0;
-                    } else {
-                        notB += 1;
+                if (!roomCheckinList.isEmpty()) {
+                    if (minPersonRoom <= checkRoomDto.getPerson() && checkRoomDto.getPerson() <= maxPersonRoom) {
+                        for (int k = 0; k < roomCheckinList.size(); k++) {
+                            if ((!checkRoomDto.getCheckin().isBefore(roomCheckinList.get(k)) && !checkRoomDto.getCheckin().isAfter(roomCheckoutList.get(k))) || (!checkRoomDto.getCheckout().isBefore(roomCheckinList.get(k)) && (!checkRoomDto.getCheckout().isAfter(roomCheckoutList.get(k))))) {
+                                if (roomCheckoutList.get(k).equals(checkRoomDto.getCheckin()) || roomCheckinList.get(k).equals(checkRoomDto.getCheckout())) {
+                                    roomListDto = checkRoomMapper.checkedRoom(s);
+                                    checkedRoomList.add(roomListDto);
+                                } else {
+                                    break;
+                                }
+                            } else {
+                                roomListDto = checkRoomMapper.checkedRoom(s);
+                                checkedRoomList.add(roomListDto);
+                            }
+                        }
                     }
                 } else {
-                    notB += 0;
+                    if (minPersonRoom <= checkRoomDto.getPerson() && checkRoomDto.getPerson() <= maxPersonRoom) {
+                        roomListDto = checkRoomMapper.checkedRoom(s);
+                        checkedRoomList.add(roomListDto);
+                    }
                 }
             }
-            roomBState = notB;
-        }else {
-            roomBState = 1;
         }
-
-        if(roomAState == 0 && roomBState == 0) {
-            list = checkRoomMapper.getAllRoomList();
-        }else if(roomAState != 0 && roomBState == 0) {
-            list = checkRoomMapper.getBRoomList();
-        }else if(roomAState == 0) {
-            list = checkRoomMapper.getARoomList();
-        }
-
-        return list;
+        return checkedRoomList;
     }
 }
