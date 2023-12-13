@@ -11,9 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../static/css/reset.css">
     <link rel="stylesheet" href="../../../../static/css/sub/sub_board/sub_notice_write/style.css">
-    <style>
-
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
 <header th:insert="~{fragment/header.html::header_f}"></header>
@@ -51,21 +49,27 @@
                 <tr>
                     <th>제목</th>
                     <td>
-                        <input type="text" class="board_notice_subject">
+                        <input type="text" class="board_notice_subject" name="boardNoticeSubject">
                     </td>
                 </tr>
                 <tr>
                     <th>작성자</th>
                     <td>
-                        <input type="text" class="name" th:value="${name}" readonly>
+                        <input type="text" class="board_notice_writer" name="boardNoticeWriter" th:value="${name}" readonly>
                     </td>
                 </tr>
                 <tr>
                     <th>내용</th>
                     <td>
-                        <textarea name="boardNoticeContent" class="board_notice_content"></textarea>
+                        <textarea class="board_notice_content" name="boardNoticeContent"></textarea>
                     </td>
                 </tr>
+                <!--<tr>
+                    <th>첨부파일</th>
+                    <td>
+                        <input type="file" name="boardNoticeFiles" class="board_notice_files" multiple>
+                    </td>
+                </tr>-->
             </table>
             <div class="notice-content-bottom">
                 <input type="reset" class="notice_list_btn btn blue" value="공지사항 목록보기" onclick="move()">
@@ -91,6 +95,36 @@
     function move() {
         location.href = "/board/notice";
     }
+
+    // let btn = document.querySelector('button');
+    // let boardNoticeSubject = document.querySelector('.board_notice_subject');
+    // let boardNoticeWriter = document.querySelector('.board_notice_writer');
+    // let boardNoticeContent = document.querySelector('.board_notice_content');
+
+    // btn.addEventListener('click', (e) => {
+    //     e.preventDefault();
+
+    //     // alert("ok")
+
+    //     let obj = {
+    //         boardNoticeSubject: boardNoticeSubject.value,
+    //         boardNoticeWriter: boardNoticeWriter.value,
+    //         boardNoticeContent: boardNoticeContent.value
+    //     }
+
+    //     $.ajax({
+    //         type: 'post',
+    //         url: "/board/notice/write",
+    //         data: obj,
+    //         dataType: 'json',
+    //         success: (result) => {
+    //             if (result.msg == "success") {
+    //                 alert("공지사항을 등록하였습니다.");
+    //                 location.href="/board/notice";
+    //             }
+    //         }
+    //     })
+    // })
 </script>
 </body>
 </html>

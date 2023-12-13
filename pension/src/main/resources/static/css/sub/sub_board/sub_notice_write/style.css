@@ -190,7 +190,7 @@ table {
 }
 
 tr {
-    height: 40px;
+    height: 50px;
 }
 
 tr:first-child {
@@ -215,6 +215,13 @@ th {
 input {
     margin-left: 10px;
     font-size: 16px;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+}
+
+input:focus {
+    border: 0;
+    outline: 1px solid #88c6d6;
 }
 
 .board_notice_subject {
@@ -222,10 +229,10 @@ input {
 }
 
 .board_notice_content {
-    width: 97%;
+    width: 100%;
     height: 400px;
-    margin: 10px;
     padding: 10px;
+    border: 0;
     outline: 0;
     font-size: 16px;
 }
@@ -244,6 +251,10 @@ input {
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.board_notice_files {
+    border: 0;
 }
 
 .notice-content-bottom {
