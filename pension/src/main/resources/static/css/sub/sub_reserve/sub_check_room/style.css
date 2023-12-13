@@ -342,8 +342,10 @@ button {
     margin-top: 80px;
     padding-left: 0;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10%;
+    row-gap: 20px
 }
 
 .room-list h1 {
