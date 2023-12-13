@@ -47,8 +47,8 @@
                                 </tr>
                             </table>
                             <div class="room-btn">
-                                <a href="/admin/roomSettingUpdate" class="btn" onclick="">수정</a>
-                                <a href="#" class="btn" onclick="">삭제</a>
+                                <a th:href="@{/admin/roomSettingUpdate?(roomNum=${rl.roomNum})}" class="btn">수정</a>
+                                <button type="button" class="btn" th:onclick="deleteRoom([[${rl.roomNum}]])">삭제</button>
                             </div>
                         </li>
                     </ul>
@@ -198,6 +198,22 @@
                     }
                 }
             });
+        }
+        function deleteRoom(roomNum){
+            if( confirm("객실 정보를 삭제하면 복구할 수 없습니다.\n삭제하시겠습니까?")){
+                $.ajax({
+                    type: "get",
+                    url: "/admin/deleteRoom",
+                    dataType: "json",
+                    data: {roomNum: roomNum},
+                    success: function (res){
+                        if( res.msg == "success" ){
+                            alert("객실정보가 삭제 되었습니다.");
+                            location.href = "/admin/roomSetting";
+                        }
+                    }
+                });
+            }
         }
     </script>
 </body>
