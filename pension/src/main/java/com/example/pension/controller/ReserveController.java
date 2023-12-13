@@ -43,7 +43,11 @@ public class ReserveController {
     @ResponseBody
     public Map<String, Object> checkRoom(@ModelAttribute CheckRoomDto checkRoomDto) {
         Map<String, Object> map = new HashMap<>();
-        map.put("checkRoomList", checkRoomService.getCheckRoom(checkRoomDto));
+        List<RoomListDto> list = checkRoomService.getCheckRoom(checkRoomDto);
+        if(list.isEmpty()) {
+            list = null;
+        }
+        map.put("checkRoomList", list);
         map.put("check", checkRoomDto);
         return map;
     }
