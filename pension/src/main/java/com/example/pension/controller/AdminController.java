@@ -27,8 +27,8 @@ public class AdminController {
     AdminService adminService;
     @Autowired
     RoomSettingService roomSettingService;
-    @Value("${fileDir}")
-    String fileDir;
+//    @Value("${fileDir}")
+//    String fileDir;
 
     @GetMapping("")
     public String getAdmin(){
@@ -123,41 +123,41 @@ public class AdminController {
         }
         return map;
     }
-    @PostMapping("/imgUpload")
-    public String setImgUpload(@RequestParam("roomImages") List<MultipartFile> files, Model model, @ModelAttribute RoomListDto roomListDto) throws IOException {
-        if(!files.get(0).isEmpty()){
-
-            int fileId = roomListDto.getRoomNum();
-            String foldName = roomListDto.getRoomName();
-            System.out.println(roomListDto.getRoomName());
-            RoomImageDto roomImageDto = new RoomImageDto();
-            File makeFolder = new File(fileDir + foldName);
-            if(!makeFolder.exists()){
-                makeFolder.mkdir();
-            }
-
-            for(MultipartFile mf : files){
-                String savedPathName = fileDir + foldName;
-
-                String orgName = mf.getOriginalFilename();
-                String ext = orgName.substring(orgName.lastIndexOf("."));
-                String uuid = UUID.randomUUID().toString();
-//                String savedFileName = uuid + ext;
-
-                mf.transferTo(new File(savedPathName + "/" + orgName));
-
-                roomImageDto.setId(fileId);
-                roomImageDto.setOrgName(orgName);
-                roomImageDto.setSavedFileName(orgName);
-                roomImageDto.setSavedPathName(savedPathName);
-                roomImageDto.setFolderName(foldName);
-                roomImageDto.setExt(ext);
-
-                roomSettingService.setImgUpload(roomImageDto);
-            }
-        }
-        return "redirect:/admin/roomSetting";
-    }
+//    @PostMapping("/imgUpload")
+//    public String setImgUpload(@RequestParam("roomImages") List<MultipartFile> files, Model model, @ModelAttribute RoomListDto roomListDto) throws IOException {
+//        if(!files.get(0).isEmpty()){
+//
+//            int fileId = roomListDto.getRoomNum();
+//            String foldName = roomListDto.getRoomName();
+//            System.out.println(roomListDto.getRoomName());
+//            RoomImageDto roomImageDto = new RoomImageDto();
+//            File makeFolder = new File(fileDir + foldName);
+//            if(!makeFolder.exists()){
+//                makeFolder.mkdir();
+//            }
+//
+//            for(MultipartFile mf : files){
+//                String savedPathName = fileDir + foldName;
+//
+//                String orgName = mf.getOriginalFilename();
+//                String ext = orgName.substring(orgName.lastIndexOf("."));
+//                String uuid = UUID.randomUUID().toString();
+////                String savedFileName = uuid + ext;
+//
+//                mf.transferTo(new File(savedPathName + "/" + orgName));
+//
+//                roomImageDto.setId(fileId);
+//                roomImageDto.setOrgName(orgName);
+//                roomImageDto.setSavedFileName(orgName);
+//                roomImageDto.setSavedPathName(savedPathName);
+//                roomImageDto.setFolderName(foldName);
+//                roomImageDto.setExt(ext);
+//
+//                roomSettingService.setImgUpload(roomImageDto);
+//            }
+//        }
+//        return "redirect:/admin/roomSetting";
+//    }
 
     @GetMapping("/deleteRoom")
     @ResponseBody
