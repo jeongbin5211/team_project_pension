@@ -26,14 +26,17 @@ public class BoardController {
     NoticeMapper noticeMapper;
 
     @GetMapping("/notice")
-    public String getNotice(HttpSession hs, Model model, @ModelAttribute NoticeDto noticeDto) {
+    public String getNotice(HttpSession hs, Model model, @ModelAttribute NoticeDto noticeDto, @RequestParam(value="page", defaultValue = "1") int page, @RequestParam(value="searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "") String words) {
         String name = (String) hs.getAttribute("name");
-        model.addAttribute("name", name);
-//        model.addAttribute("list", noticeMapper.getNotice());
 
-        List<NoticeDto> list = noticeMapper.getNotice();
-        System.out.println(list);
-        model.addAttribute("list", list);
+        model.addAttribute("name", name);
+        model.addAttribute("cnt", noticeService.getSearchCnt(searchType,words));
+        model.addAttribute("list", noticeService.getSearch(page, searchType, words));
+        model.addAttribute("page", noticeService.pageCal(page));
+
+        int MaxGrp = noticeMapper.getMaxGrp();
+        noticeDto.setBoardNoticeGrp(MaxGrp);
+
 
         return "sub_pages/sub_board/sub_notice/notice.html";
     }
@@ -61,6 +64,12 @@ public class BoardController {
         noticeMapper.setWriteNotice(noticeDto);
         return Map.of("msg", "success");
     }*/
+
+    @GetMapping("/notice/view")
+    public String getView(@RequestParam int id) {
+        System.out.println(id);
+        return "sub_pages/sub_board/sub_notice_view/noticeView.html";
+    }
 
     @GetMapping("/qna")
     public String getQna() {
