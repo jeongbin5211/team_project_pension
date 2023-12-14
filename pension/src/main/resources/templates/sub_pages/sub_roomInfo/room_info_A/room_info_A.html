@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개비리길 펜션</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/css/reset.css">
+    <link rel="stylesheet" href="../../../../static/css/sub/sub_roomInfo/room_info_A/styleA.css">
+</head>
+
+<body>
+<div id="wrap">
+
+
+    <header th:insert="~{fragment/header.html::header_f}"></header>
+    <!-- main 시작 -->
+    <main>
+        <section class="sub-title-wrap">
+            <div class="sub-title-bg">
+                <div class="sub-title-area">
+                    <h3 class="sub-title">서브페이지 제목</h3>
+                    <div class="line"></div>
+                    <p class="sub-title-txt">서브페이지 소개입니다</p>
+                </div>
+            </div>
+        </section>
+
+        <!--  객실정보 -->
+        <div class="room_choice">
+            <a href="/room_info_A" class="r1">유채 A</a>
+            <a href="/room_info_B" class="r2">유채 B</a>
+        </div>
+        <div class="container">
+
+            <div class="main_left">
+                <div class="room-info">
+                    <div class="room_service">
+
+                        <p>인 원: 기준 6인 / 최대 12인</p>
+                        <p>체크인 시간: 15:00 / 체크아웃 : 11:00</p>
+                        <p>인원추가요금 : 성인 10,000원, 유아(24개월 미만) 무료</p>
+                        <p> </p>
+                    </div>
+                    <div class="roominfo_icons">
+
+
+                        <i class="fa-solid fa-water-ladder"> </i>
+                        <i class="fa-solid fa-wifi"></i>
+                        <i class="fa-solid fa-fire-burner"></i>
+                        <i class="fa-solid fa-music"></i>
+                        <i class="fa-solid fa-toilet-paper"></i>
+                        <i class="fa-solid fa-square-parking"></i>
+                        <i class="fa-solid fa-shower"></i>
+                        <i class="fa-solid fa-ban-smoking"></i>
+
+
+
+                    </div>
+                    <br />
+                    <hr>
+                    <div class="room_service2">
+
+                        <p>*비품 : 샴푸, 컨디셔너, 샤워젤, 바디로션, 비누, 칫솔, <br />치약, 면도기, 생수 무료 제공</p>
+                        <br />
+                        <p>*수영장 : 이용 가능 기간 : 6월1일 ~ 9월10일</p>
+                        <p> *족구장. 베드민턴장 무료사용</p>
+                        <p>*바비큐 이용 요금 (쌈장 제공) <br />
+                            ▷ 4인 기준 : 20,000원 <br />
+                            ▷ 8인 기준 : 30,000원 <br />
+                            ▷ 8인 초과 시 : 40,000원</p>
+                        <br />
+                        <hr>
+                        <br />
+
+                        <p>만 24개월 미만 유아는 인원수에 포함되지 않으며 무료입니다. 기준 인원 4명 외 1인당 추가요금이 발생합니다.</p>
+                        객실 정보
+                        <p></p>
+                        <p>거실+방, 독채형, 복층형 / 150평
+                            구비시설<br />
+                            침대,에어컨, TV, 취사시설, 식탁, 냉장고,헤어드라이어기<br />
+                            객실5개 + 거실 + 화장실2개</p>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="main_right">
+                <div id="slideShow">
+                    <ul class="slides">
+                        <li><img src="../../../../static/images/팬션.jpg" alt=""></li>
+                        <li><img src="../../../../static/images/a3.jpg" alt=""></li>
+                        <li><img src="../../../../static/images/a4.jpg" alt=""></li>
+                        <li><img src="../../../../static/images/a5.jpg" alt=""></li>
+                        <li><img src="../../../../static/images/a8.jpg" alt=""></li>
+                        <li><img src="../../../../static/images/a9.jpg" alt=""></li>
+                        <li><img src="../../../../static/images/a13.jpg" alt=""></li>
+                        <li><img src="../../../../static/images/a14.jpg" alt=""></li>
+                        <li><img src="../../../../static/images/a16.jpg" alt=""></li>
+                        <li><img src="../../../../static/images/a18.jpg" alt=""></li>
+                        <li><img src="../../../../static/images/a19.jpg" alt=""></li>
+                        <li><img src="../../../../static/images/7-1.jpg" alt=""></li>
+
+
+
+                        
+
+
+
+
+                    </ul>
+                    <p class="controller">
+
+
+                        <span class="prev">&lang;</span>
+                        <span class="next">&rang;</span>
+                    </p>
+                </div>
+                <div class="review_box">
+                    <div class="review">
+                        
+                    </div>
+                    <button class="reserve">
+                        <a href="../../../../templates/sub_pages/sub_reserve/sub_check_room/check_room.html">예약 바로가기</a>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer th:insert="~{fragment/footer.html::footer_f}"></footer>
+
+
+</div>
+
+<script src="../../../../static/js/sub/sub_roomInfo/slideshow.js"></script>
+<script src="../../../../static/js/header_nav.js"></script>
+</body>
+
+</html>

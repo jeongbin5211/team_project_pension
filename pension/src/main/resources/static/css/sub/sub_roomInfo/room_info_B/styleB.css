@@ -1,0 +1,463 @@
+#wrap {
+    width: 100%;
+  }
+  
+  header {
+    background-color: rgba(225, 232, 234, 0.82);
+    width: 100%;
+    height: 100px;
+    transition: 0.2s;
+  }
+  
+  .header-wrap {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    width: 70px;
+    height: 70px;
+    padding-top: 15px;
+  }
+  
+  .logo img {
+    width: 100%;
+  }
+  
+  .nav-box {
+    width: 80%;
+    height: 100px;
+  }
+  
+  .users {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    height: 45px;
+  }
+  
+  .users li {
+    margin-left: 15px;
+    line-height: 45px;
+  }
+  
+  .users li a {
+    font-size: 12px;
+  }
+  
+  nav {
+    float: right;
+    width: 700px;
+    height: 55px;
+    /* display: flex; */
+  }
+  
+  .nav-main {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .main-menu {
+    height: 55px;
+    font-size: 20px;
+    line-height: 55px;
+    text-align: center;
+  }
+  
+  .main-menu:hover {
+    border-bottom: 2px solid #fff;
+  }
+  
+  .main-menu a {
+    color: #000;
+    font-weight: 500;
+  }
+  
+  .sub-menu {
+    visibility: hidden;
+    z-index: 9999;
+  }
+  
+  .sub-menu li {
+    font-size: 16px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 5px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* border-bottom: 1px solid #fff; */
+  }
+  
+  .sub-menu li:hover {
+    background-color: #adadad;
+  }
+  
+  .sub-menu li:first-child {
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .sub-menu li:last-child {
+    border-bottom: 0;
+    border-radius: 0 0 5px 5px;
+  }
+  
+  /* main 시작 */
+  .sub-title-wrap {
+    width: 100%;
+    height: 300px;
+    background-image: linear-gradient(
+        rgba(84, 84, 84, 0.5),
+        rgba(84, 84, 84, 0.5)
+      ), url("../../../../images/s12.jpeg");
+    background-repeat: no-repeat;
+   background-position: 50% 30%;
+    background-size: cover;
+  }
+  
+  .sub-title-bg {
+    max-width: 1200px;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  
+  .sub-title {
+    font-size: 30px;
+    color: #fff;
+  }
+  
+  .sub-title-txt {
+    font-size: 18px;
+    color: #fff;
+  }
+  
+  .line {
+    margin: 5px 0 12px 0;
+    width: 100px;
+    height: 2px;
+    background-color: #fff;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+  }
+  
+  .room_choice {
+    text-align: center;
+    justify-content: center;
+    font-size: 35px;
+    display: flex;
+    gap: 300px;
+    padding: 100px;
+    
+  }
+  .r2{
+  border-bottom: 2px solid #333;
+  
+  
+  }
+  
+  .r1:hover,
+  .r2:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    color: #363535;
+    transition-duration: 0.5s;
+    
+  }
+  
+  .room_service p ,
+  .room_service2 p{
+    padding-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    padding-bottom: 100px;
+    justify-content: space-between;
+  }
+  
+  
+  .main_left {
+    
+    
+    max-width: 30%;
+  }
+  
+  
+  .room_service {
+  
+    margin-bottom: 30px;
+  }
+  
+  
+  .roominfo_icons i{
+    font-size: 25px;
+   display: inline-block;
+   margin-right: 15px;
+   width: 25px;
+  
+  }
+  .roominfo_icons i:last-child{
+    margin-right: 0;
+  }
+  
+  
+  .roominfo_icons i:hover {
+    transform: scale(1.2);
+  }
+  
+  
+  .room_service2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  
+  
+  /* ---------------------사진슬라이드 ------------------------- */
+  .main_right {
+    /* background-color: red; */
+    width: 65%;
+    text-align: center;
+   margin-top: 100px;
+    /* background-color: green;  오른쪽 배경 스타일 */
+  }
+  
+  
+  #slideShow{
+    width: 100%;
+    height: 70%;
+    position: relative;
+    margin: 0px auto;
+    overflow: hidden;   
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+  }
+  
+  
+  .slides{
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* width: 2500px;  */
+    transition: left 0.5s ease-out; 
+  
+  }
+  
+  
+  .slides li:first-child{
+    margin-left: 70px;
+  }
+  
+  
+  .slides li:not(:last-child){
+    float: left;
+    margin-right: 100px;
+  }
+  
+  .slides li{
+    float: left;
+      width:640px;
+    height: 480px;
+    overflow: hidden;
+  }
+
+  .slides li img{
+  width:100%;
+  }
+  
+  .controller span{
+    position:absolute;
+    background-color: transparent;
+    color: black;
+    text-align: center;
+    border-radius: 50%;
+    padding: 10px 20px;
+    top: 50%;
+    font-size: 1.3em;
+    cursor: pointer;
+  }
+  
+  
+  .controller span:hover{
+    background-color: rgba(128, 128, 128, 0.11);
+  }
+  
+  .prev{
+    left: 10px;
+  }
+  
+  
+  .prev:hover{
+    transform: translateX(-10px);
+  }
+  
+  .next{
+    right: 10px;
+  }
+  
+  
+  .next:hover{
+    transform: translateX(10px);
+  }
+  
+  
+  .slides_bar{
+    
+    display: inline-block;
+    margin: 0 auto;
+    width: 640px;
+  
+   
+  }
+  
+  
+  .slides_bar img{
+    width: 20%;
+    height: 100px;
+  
+  
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* footer 시작 */
+  
+  footer {
+    padding: 20px 0;
+    width: 100%;
+    background-color: #9ea2a9;
+    font-size: 12px;
+  }
+  
+  .footer-wrap {
+    max-width: 1200px;
+    height: 120px;
+    margin: 0 auto;
+  }
+  
+  .footer-wrap ul {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #555;
+  }
+  
+  .footer-logo {
+    padding-top: 0;
+  }
+  
+  .copyright p {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  
+  .tell p:first-child {
+    margin-bottom: 10px;
+  }
+  
+  .footer-sns {
+    width: 65px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .footer-sns a {
+    font-size: 25px;
+    color: #555;
+  }
+  
+  .footer-sns a:hover {
+    color: tomato;
+  }
+  /* footer 끝 */
+  
+  /* Anchor 시작 */
+  
+  .anchor {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(139, 131, 131);
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: 0.3s;
+    visibility: hidden;
+  }
+  
