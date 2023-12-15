@@ -16,7 +16,7 @@ public class NoticeService {
     @Autowired
     NoticeMapper noticeMapper;
 
-    public List<NoticeDto> getSearch(int page, String searchType, String words) {
+    public List<NoticeDto> getNotice(int page, String searchType, String words) {
 
         Map<String, Object> map = new HashMap<>();
 
@@ -43,7 +43,7 @@ public class NoticeService {
         return noticeMapper.getNotice(map);
     }
 
-    public int getSearchCnt(String searchType, String words) {
+    public String getSearch(String searchType, String words) {
 
         Map<String, Object> map = new HashMap<>();
 
@@ -57,17 +57,18 @@ public class NoticeService {
             searchQuery = "";
         }
 
-        System.out.println(searchQuery);
+        // System.out.println(searchQuery);
 
-        map.put("searchQuery", searchQuery);
 
-        return noticeMapper.getListCount(map);
+
+        return searchQuery;
     }
 
-    public PageDto pageCal(int page) {
+    public PageDto pageCal(int page, String searchType, String words) {
         PageDto pageDto = new PageDto();
+        String searchQuery = getSearch(searchType, words);
 
-        int totalCount = noticeMapper.totalCount();
+        int totalCount = noticeMapper.getListCount(searchQuery);
         int totalPage = (int)(Math.ceil((double) totalCount / pageDto.getPageCount()));
         int startPage = (int) (Math.ceil((double) page / pageDto.getBlockCount()) - 1) * pageDto.getBlockCount() + 1;
         int endPage = startPage + pageDto.getBlockCount() - 1;
