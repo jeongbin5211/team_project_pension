@@ -24,5 +24,5 @@ public interface NoticeMapper {
     int totalCount();
 
     @Select("select count(*) from board_notice ${searchQuery}")
-    int getListCount(Map<String, Object> map);
+    int getListCount(String searchQuery);
 }

@@ -28,11 +28,12 @@ public class BoardController {
     @GetMapping("/notice")
     public String getNotice(HttpSession hs, Model model, @ModelAttribute NoticeDto noticeDto, @RequestParam(value="page", defaultValue = "1") int page, @RequestParam(value="searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "") String words) {
         String name = (String) hs.getAttribute("name");
+        String searchQuery = noticeService.getSearch(searchType, words);
 
         model.addAttribute("name", name);
-        model.addAttribute("cnt", noticeService.getSearchCnt(searchType,words));
-        model.addAttribute("list", noticeService.getSearch(page, searchType, words));
-        model.addAttribute("page", noticeService.pageCal(page));
+        model.addAttribute("cnt", noticeMapper.getListCount(searchQuery));
+        model.addAttribute("list", noticeService.getNotice(page, searchType, words));
+        model.addAttribute("page", noticeService.pageCal(page, searchType, words));
 
         int MaxGrp = noticeMapper.getMaxGrp();
         noticeDto.setBoardNoticeGrp(MaxGrp);
