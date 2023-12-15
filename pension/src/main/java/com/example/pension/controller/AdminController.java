@@ -24,8 +24,10 @@ import java.util.UUID;
 public class AdminController {
     @Autowired
     AdminService adminService;
+
     @Autowired
     RoomSettingService roomSettingService;
+
     @Value("${roomImgFileDir}")
     String roomImgFileDir;
 
@@ -76,14 +78,6 @@ public class AdminController {
         return "admin/admin_sub/admin_sub_roomSetting/admin_sub_roomSetting";
     }
 
-    @GetMapping("/getRoomImg")
-    @ResponseBody
-    public Map<String, Object> getRoomImg(List<Integer> obj){
-        Map<String, Object> map = new HashMap<>();
-
-        return map;
-    }
-
     @PostMapping("/addRoom")
     @ResponseBody
     public Map<String, Object> addRoom(@ModelAttribute RoomListDto roomListDto){
@@ -115,7 +109,6 @@ public class AdminController {
         RoomListDto roomListDto = new RoomListDto();
         roomListDto = roomSettingService.getRoomUpdate(roomNum);
         model.addAttribute("roomList", roomListDto);
-//        model.addAttribute("img", roomSettingService.getThumbnail(roomNum));
         model.addAttribute("roomImgList", roomSettingService.getRoomImg(roomNum));
         return "admin/admin_sub/admin_sub_roomSetting/admin_sub_roomSetting_update";
     }
@@ -148,8 +141,7 @@ public class AdminController {
             roomImageDto.setExt(ext);
             roomImageDto.setThumbnailCheck(1);
 
-            System.out.println(roomImageDto);
-            roomSettingService.resetThumbnail(roomListDto.getRoomNum(), roomListDto.getRoomName());
+            roomSettingService.resetThumbnail(roomListDto.getRoomNum(), thumbnailName);
             roomSettingService.setImgUpload(roomImageDto);
         }
         roomSettingService.setRoomUpdate(roomListDto);
@@ -216,9 +208,19 @@ public class AdminController {
     @ResponseBody
     public Map<String, Object> deleteRoom(@RequestParam int roomNum){
         Map<String, Object> map = new HashMap<>();
-        if( roomNum > 0){
+        List<RoomImageDto> roomImages = roomSettingService.getDeleteRoomImages(roomNum);
+        if( roomNum > 0) {
+            if(!roomImages.isEmpty()){
+                for(RoomImageDto rid : roomImages) {
+                    File file = new File(rid.getSavedPathFileName()+ "/" + rid.getSavedFileName());
+                    file.delete();
+                }
             roomSettingService.deleteRoom(roomNum);
             map.put("msg", "success");
+            }else {
+                roomSettingService.deleteRoom(roomNum);
+                map.put("msg", "success");
+            }
         }
         return map;
     }

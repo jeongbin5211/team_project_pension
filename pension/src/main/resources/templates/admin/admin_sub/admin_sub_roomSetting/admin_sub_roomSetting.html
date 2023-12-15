@@ -24,16 +24,9 @@
                     <h3>객실 리스트</h3>
                     <ul class="room-list">
                         <li th:each="rl: ${roomList}">
-<!--                                    <th:block th:if="${rl.thumbnail eq 1}">-->
-                                        <div class="img-wrap">
-                                            <img th:src="@{|/${rl.roomName}/${rl.roomName}_thumbnail.jpg|}" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
-                                        </div>
-<!--                                    </th:block>-->
-<!--                                    <th:block th:unless="${rl.thumbnail eq 1}">-->
-<!--                                        <div class="img-wrap">-->
-<!--                                            <img src="../../../../static/images/none1_img.jpg" alt="">-->
-<!--                                        </div>-->
-<!--                                    </th:block>-->
+                                <div class="img-wrap">
+                                    <img th:src="@{|/${rl.roomName}/${rl.roomName}_thumbnail.jpg|}" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
+                                </div>
                                 <input type="hidden" name="roomNum" th:value="${rl.roomNum}"/>
                                 <h5>개비리길펜션 [[${rl.roomName}]]동</h5>
                                 <table>
@@ -58,7 +51,6 @@
                                     <a th:href="@{/admin/roomSettingUpdate?(roomNum=${rl.roomNum})}" class="btn">수정</a>
                                     <button type="button" th:onclick="deleteRoom([[${rl.roomNum}]])" class="btn">삭제</button>
                                 </div>
-
                         </li>
                     </ul>
                 </section>
@@ -209,6 +201,7 @@
                 }
             });
         }
+        
         function deleteRoom(roomNum){
             if( confirm("객실 정보를 삭제하면 복구할 수 없습니다.\n삭제하시겠습니까?")){
                 $.ajax({

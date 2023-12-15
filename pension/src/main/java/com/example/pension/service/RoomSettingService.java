@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class RoomSettingService {
@@ -38,35 +37,11 @@ public class RoomSettingService {
     }
 
     public List<RoomListDto> getRoomList() {
-        List<RoomListDto> roomList = roomSettingMapper.getRoomList();
-//        List<RoomListDto> roomThumbnailList = new ArrayList<>();
-//        RoomListDto roomListDto = new RoomListDto();
-//        RoomImageDto roomImageDto = new RoomImageDto();
-//        if(!roomList.isEmpty()) {
-//            for(int i=0;i<roomList.size();i++) {
-//                roomListDto = roomList.get(i);
-//                int roomNum = roomListDto.getRoomNum();
-//                roomImageDto = roomSettingMapper.getThumbnail(roomNum);
-//                if(roomImageDto != null) {
-//                    String folderName = roomImageDto.getFolderName();
-//                    String fileName = roomImageDto.getSavedFileName();
-//                    int thumbnail = roomImageDto.getThumbnail();
-//                    roomListDto.setFolderName(folderName);
-//                    roomListDto.setSavedFileName(fileName);
-//                    roomListDto.setThumbnail(thumbnail);
-//                    roomThumbnailList.add(roomListDto);
-//                }else {
-//                    roomThumbnailList.add(roomListDto);
-//                }
-//            }
-//        }
-//        return roomThumbnailList;
-        return roomList;
+        return roomSettingMapper.getRoomList();
     }
 
     public void resetThumbnail(int roomNum, String thumbnailName){
-        String thumbnailNow = thumbnailName;
-        roomSettingMapper.resetThumbnail(roomNum, thumbnailNow);
+        roomSettingMapper.resetThumbnail(roomNum, thumbnailName);
     }
 
     public RoomListDto getRoomUpdate(int roomNum) {
@@ -89,7 +64,12 @@ public class RoomSettingService {
     }
 
     public void deleteRoom(int roomNum){
+        roomSettingMapper.deleteRoomImages(roomNum);
         roomSettingMapper.deleteRoom(roomNum);
+    }
+
+    public List<RoomImageDto> getDeleteRoomImages(int roomNum) {
+        return roomSettingMapper.getDeleteRoomImages(roomNum);
     }
 
     public void setImgUpload(RoomImageDto roomImageDto){
@@ -99,11 +79,6 @@ public class RoomSettingService {
     public RoomImageDto getDeleteImg(int roomNum, String savedFileName) {
         return roomSettingMapper.getDeleteImg(roomNum, savedFileName);
     }
-
-//    public void setThumbnail(String savedFileName, int roomNum){
-//        roomSettingMapper.resetThumbnail(roomNum);
-//        roomSettingMapper.setThumbnail(savedFileName);
-//    }
 
     public List<RoomImageDto> getRoomImg(int roomNum){
         List<RoomImageDto> roomList = new ArrayList<>();
@@ -118,8 +93,4 @@ public class RoomSettingService {
     public void deleteRoomInfoImg(int roomNum, String savedFileName){
         roomSettingMapper.deleteRoomInfoImg(roomNum, savedFileName);
     }
-
-//    public List<RoomImageDto> getRoomThumbnail() {
-//        return roomSettingMapper.getRoomThumbnail();
-//    }
 }

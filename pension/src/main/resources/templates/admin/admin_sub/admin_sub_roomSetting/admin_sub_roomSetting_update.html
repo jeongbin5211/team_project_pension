@@ -23,19 +23,12 @@
                 <section class="room-write-wrap">
                     <h3>객실 수정하기</h3>
                     <div class="room-write">
-                        <form method="post" action="/admin/roomSettingUpdate" enctype="multipart/form-data">
-<!--                             <th:block th:if="${img eq null}">-->
-                                <div class="view-img-wrap">
-                                    <img th:src="@{|/${roomList.roomName}/${roomList.roomName}_thumbnail.jpg|}" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="" onclick="clickThumbnail()">
-                                    <input type="file" name="main" class="thumbnail-btn" onchange="extCheck()">
-                                </div>
-<!--                             </th:block>-->
-
-<!--                            <th:block th:unless="${img eq null}">-->
-<!--                                <div class="view-img-wrap">-->
-<!--                                    <img th:src="@{|/${img.folderName}/${img.savedFileName}|}" alt="" onclick="clickThumbnail()">-->
-<!--                                </div>-->
-<!--                             </th:block>-->
+                        <form method="post" action="/admin/roomSettingUpdate" enctype="multipart/form-data" onsubmit="return changeRoom()">
+                            <div class="view-img-wrap">
+                                <p>사진을 클릭하여 객실 메인 이미지를 변경하세요.(jpg로 업로드 하십시오.)</p>
+                                <img th:src="@{|/${roomList.roomName}/${roomList.roomName}_thumbnail.jpg|}" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="" onclick="clickThumbnail()">
+                                <input type="file" name="main" class="thumbnail-btn" onchange="extCheck()" accept="image/*">
+                            </div>
                             <table>
                                 <tbody>
                                     <tr>
@@ -104,7 +97,7 @@
                             <div class="insert_img_wrap">
                                 <input type="hidden" name="roomName" th:value="${roomList.roomName}">
                                 <input type="hidden" name="roomNum" th:value="${roomList.roomNum}">
-                                <input type="file" name="roomImages" multiple onchange="imagesCheck()">
+                                <input type="file" name="roomImages" multiple onchange="imagesCheck()" accept="image/*">
                                 <button class="btn">객실 이미지 등록하기</button>
                             </div>
                         </form>
@@ -129,7 +122,6 @@
     let minPerson = document.querySelector("input[name=minPerson]");
     let checkinTime = document.querySelector("input[name=checkinTime]");
     let checkoutTime = document.querySelector("input[name=checkoutTime]");
-    let addRoom_btn = document.querySelector(".addRoom_btn");
     let fileName_input = document.querySelector("input[name=savedFileName]");
 
     let thumbnail_btn = document.querySelector(".thumbnail-btn");
@@ -138,26 +130,16 @@
     let roomImages = document.querySelector("input[name=roomImages]");
     let maxSize = 1 * 1024 * 1024;
 
-    // function imagesCheck() {
-    //     for(let i=0;roomImages.files.length;i++) {
-    //         let fileSize = roomImages.files[i].size;
-    //         if(fileSize > maxSize) {
-    //             alert("파일이 크다");
-    //             $(roomImages).val('');
-    //             break;
-    //         }
-    //
-    //         ext = roomImages.files[i].split(".").pop().toLowerCase();
-    //         if (ext == "jpg" || ext == "png" || ext == "jpeg") {
-    //             continue;
-    //         } else {
-    //             alert("확장자 다르다 크다");
-    //             $(roomImages).val('');
-    //             break;
-    //         }
-    //     }
-    // }
-
+    function imagesCheck() {
+        for(let i=0;roomImages.files.length;i++) {
+            let fileSize = roomImages.files[i].size;
+            if(fileSize > maxSize) {
+                alert("첨부파일의 용량이 너무 큽니다.\n1MB미만의 파일을 업로드 하세요.");
+                $(roomImages).val('');
+                break;
+            }
+        }
+    }
 
     function clickThumbnail() {
         $(".thumbnail-btn").click();
@@ -165,11 +147,17 @@
 
     function extCheck() {
         ext = thumbnail_btn.value.split(".").pop().toLowerCase();
-
+        
         if(ext != "jpg") {
             alert("jpg 이미지만 업로드 가능 합니다.\n확장자 명을 확인 후 다시 업로드 하세요.");
             thumbnail_btn.value = "";
             return false;
+        }
+        let fileSize = thumbnail_btn.files[0].size;
+
+        if(fileSize > maxSize) {
+            alert("첨부파일의 용량이 너무 큽니다.\n1MB미만의 파일을 업로드 하세요.");
+            thumbnail_btn.value = "";
         }
     }
 
@@ -178,8 +166,7 @@
         orgName_input.value = orgName;
     }
 
-    addRoom_btn.addEventListener('click', function(e) {
-        e.preventDefault();
+    function changeRoom() {
 
         if (roomName.value == "") {
             alert("객실 이름을 입력하세요");
@@ -195,26 +182,28 @@
             alert("객실 최대 인원 수를 입력하세요");
             maxPerson.focus();
             return false;
-        } else {
-            if (maxPerson.value > 12) {
-                alert("설정 가능한 객실 최대 인원 수는 12명 입니다.\n확인 후 다시 입력해 주세요.");
-                maxPerson.value = "";
-                maxPerson.focus();
-                return false;
-            }
         }
+        
+        if(maxPerson.value > 12) {
+            alert("설정 가능한 객실 최대 인원 수는 12명 입니다.\n확인 후 다시 입력해 주세요.");
+            maxPerson.value = "";
+            maxPerson.focus();
+            return false;
+        }
+        
         if (minPerson.value == "") {
             alert("객실 최소 인원 수를 입력하세요.");
             minPerson.focus();
             return false;
-        } else {
-            if (minPerson.value < 4) {
-                alert("설정 가능한 객실 최소 인원 수는 4명 입니다.\n확인 후 다시 입력해 주세요.");
-                minPerson.value = "";
-                minPerson.focus();
-                return false;
-            }
         }
+        
+        if (minPerson.value < 4) {
+            alert("설정 가능한 객실 최소 인원 수는 4명 입니다.\n확인 후 다시 입력해 주세요.");
+            minPerson.value = "";
+            minPerson.focus();
+            return false;
+        }
+        
         if (checkinTime.value == "") {
             alert("체크인 시간을 입력하세요.");
             checkinTime.focus();
@@ -225,7 +214,7 @@
             checkoutTime.focus();
             return false;
         }
-    });
+    }
 
     function roomNameCheck() {
         $.ajax({

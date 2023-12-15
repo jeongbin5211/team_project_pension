@@ -224,6 +224,11 @@ tr:last-child{
     padding: 30px 10px;
     border: 1px solid #ccc;
 }
+
+.room-list td {
+    text-align: left;
+}
+
 .img-wrap {
     width: 100%;
 }
@@ -285,6 +290,12 @@ tr:last-child{
     column-gap: 5%;
     row-gap: 15px;
 }
+
+.view-img-wrap p {
+    margin-bottom: 10px;
+    color: tomato;
+}
+
 .view_imgs li {
     width: 100%;
     cursor: pointer;
