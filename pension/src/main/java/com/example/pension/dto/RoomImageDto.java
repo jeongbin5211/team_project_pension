@@ -4,10 +4,19 @@ public class RoomImageDto {
     private int id;
     private String orgName;
     private String savedFileName;
-    private String savedPathName;
+    private String savedPathFileName;
     private String savedFileSize;
     private String folderName;
     private String ext;
+    private int thumbnailCheck;
+
+    public int getThumbnailCheck() {
+        return thumbnailCheck;
+    }
+
+    public void setThumbnailCheck(int thumbnailCheck) {
+        this.thumbnailCheck = thumbnailCheck;
+    }
 
     public int getId() {
         return id;
@@ -33,12 +42,12 @@ public class RoomImageDto {
         this.savedFileName = savedFileName;
     }
 
-    public String getSavedPathName() {
-        return savedPathName;
+    public String getSavedPathFileName() {
+        return savedPathFileName;
     }
 
-    public void setSavedPathName(String savedPathName) {
-        this.savedPathName = savedPathName;
+    public void setSavedPathFileName(String savedPathFileName) {
+        this.savedPathFileName = savedPathFileName;
     }
 
     public String getSavedFileSize() {
@@ -68,13 +77,14 @@ public class RoomImageDto {
     @Override
     public String toString() {
         return "RoomImageDto{" +
-                ", id=" + id +
+                "id=" + id +
                 ", orgName='" + orgName + '\'' +
                 ", savedFileName='" + savedFileName + '\'' +
-                ", savedPathName='" + savedPathName + '\'' +
+                ", savedPathFileName='" + savedPathFileName + '\'' +
                 ", savedFileSize='" + savedFileSize + '\'' +
                 ", folderName='" + folderName + '\'' +
                 ", ext='" + ext + '\'' +
+                ", thumbnailCheck=" + thumbnailCheck +
                 '}';
     }
 }

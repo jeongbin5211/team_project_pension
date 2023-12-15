@@ -252,3 +252,74 @@ tr:last-child{
     width: 100%;
     padding: 20px;
 }
+.view-img-wrap {
+    text-align: center;
+    margin: 20px 0 40px 0;
+    width: 100%;
+    /*display: flex;*/
+    /*justify-content: center;*/
+}
+
+.view-img-wrap img {
+    width: 60%;
+    cursor: pointer;
+}
+.thumbnail-btn {
+    width: 20%;
+    text-align: center;
+    background-color: #eee;
+    padding: 5px 10px;
+    margin: 0 auto;
+    display: block;
+}
+
+.thumbnail-btn::-webkit-file-upload-button {
+    display: none;
+}
+
+.view_imgs {
+    width: 80%;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 5%;
+    row-gap: 15px;
+}
+.view_imgs li {
+    width: 100%;
+    cursor: pointer;
+}
+
+.view_imgs li img:active {
+    box-shadow: 0 0 10px 2px #555;
+}
+.view_imgs li img {
+    width: 100%;
+    height: 120px;
+}
+.empty-alert{
+    text-align: center;
+    margin-top: 30px;
+}
+.insert_img p {
+    width: 20%;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+input[name=roomImages] {
+    width: 20%;
+    padding: 5px 10px;
+}
+
+input[name=orgName] {
+    font-weight: bold;
+    text-align: center;
+    margin-right: 10px;
+    background-color: #eee;
+    outline: none;
+    border: none;
+}
+.red{
+    background-color: #ef3d3d;
+    color: #fff;
+}
