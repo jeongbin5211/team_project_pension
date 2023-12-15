@@ -149,7 +149,7 @@
             result.roomList.forEach((r) => {
               output += `<li>
                           <form action="/reserve/requestRoom" onsubmit="return frmCheck()">
-                            <img src="../../../../static/images/거실.jpg" alt="">
+                            <img src="../../../../static/roomImages/${r.roomName}/${r.roomName}_thumbnail.jpg" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
                             <h5>${r.roomName}동</h5>
                             <div class="list-title-line"></div>
                             <p class="room-list-txt">
@@ -224,7 +224,7 @@
               result.checkRoomList.forEach((r) => {
                 output += `<li>
                             <form action="/reserve/requestRoom" method="post">
-                              <img src="../../../../static/images/거실.jpg" alt="">
+                              <img src="../../../../static/roomImages/${r.roomName}/${r.roomName}_thumbnail.jpg" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
                               <h5>${r.roomName}동</h5>
                               <div class="list-title-line"></div>
                               <p class="room-list-txt">

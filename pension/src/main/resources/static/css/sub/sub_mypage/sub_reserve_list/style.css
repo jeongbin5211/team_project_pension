@@ -251,7 +251,9 @@ nav {
 }
 
 .btn {
+    margin: 0 auto;
     padding: 5px 10px;
+    display: inline;
     border: 1px solid #ccc;
     border-radius: 10px;
     cursor: pointer;

@@ -1,5 +1,6 @@
 package com.example.pension.mappers;
 
+import com.example.pension.dto.ReserveListDto;
 import com.example.pension.dto.RoomListDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -15,11 +16,14 @@ public interface CheckRoomMapper {
     @Select("select room_name from room_list")
     public List<String> getRoomNameList();
 
-    @Select("select checkin from reserve_list where room_name = #{roomName} and settlement_state = 1")
-    public List<LocalDate> getRoomCheckinList(String roomName);
+    @Select("select * from reserve_list where room_name = #{roomName} and settlement_state = 1 and checkin > curdate()")
+    public List<ReserveListDto> getRoomCheckList(String roomName);
 
-    @Select("select checkout from reserve_list where room_name = #{roomName} and settlement_state = 1")
-    public List<LocalDate> getRoomCheckoutList(String roomName);
+//    @Select("select checkin from reserve_list where room_name = #{roomName} and settlement_state = 1")
+//    public List<LocalDate> getRoomCheckinList(String roomName);
+//
+//    @Select("select checkout from reserve_list where room_name = #{roomName} and settlement_state = 1")
+//    public List<LocalDate> getRoomCheckoutList(String roomName);
 
     @Select("select max_person from room_list where room_name = #{roomName}")
     public int maxPersonRoom(String roomName);
