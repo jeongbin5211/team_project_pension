@@ -1,6 +1,7 @@
 @charset 'utf-8';
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 * {
     margin: 0;
@@ -36,4 +37,14 @@ a {
 
 .blue {
     background-color: #0d6efd;
+}
+
+.btn {
+    display: block;
+    margin: 0;
+    border: 0;
+    padding: 8px 12px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
 }

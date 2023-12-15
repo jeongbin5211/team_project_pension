@@ -4,6 +4,7 @@ import com.example.pension.dto.NoticeDto;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -25,4 +26,10 @@ public interface NoticeMapper {
 
     @Select("select count(*) from board_notice ${searchQuery}")
     int getListCount(String searchQuery);
+
+    @Update("update board_notice set board_notice_visit = board_notice_visit + 1 where board_notice_id = #{id}")
+    void updateVisit(int id);
+
+    @Select("select * from board_notice where board_notice_id = ${id}")
+    NoticeDto getView(int id, NoticeDto noticeDto);
 }
