@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,8 +26,8 @@ public class AdminController {
     AdminService adminService;
     @Autowired
     RoomSettingService roomSettingService;
-//    @Value("${fileDir}")
-//    String fileDir;
+    @Value("${roomImgFileDir}")
+    String roomImgFileDir;
 
     @GetMapping("")
     public String getAdmin(){
@@ -54,6 +53,7 @@ public class AdminController {
     public String getReserveList() {
         return "admin/admin_sub/admin_sub_reserveList/admin_sub_reserveList";
     }
+
     @GetMapping("/cldList")
     @ResponseBody
     public Map<String, Object> cldList(){
@@ -62,16 +62,28 @@ public class AdminController {
         map.put("cldList", list);
         return map;
     }
+
     @GetMapping("/members")
     public String getMembers(){
         return "admin/admin_sub/admin_sub_members/admin_sub_members";
     }
+
     @GetMapping("/roomSetting")
     public String getRoomSetting(Model model){
         List<RoomListDto> roomList = roomSettingService.getRoomList();
         model.addAttribute("roomList", roomList);
+
         return "admin/admin_sub/admin_sub_roomSetting/admin_sub_roomSetting";
     }
+
+    @GetMapping("/getRoomImg")
+    @ResponseBody
+    public Map<String, Object> getRoomImg(List<Integer> obj){
+        Map<String, Object> map = new HashMap<>();
+
+        return map;
+    }
+
     @PostMapping("/addRoom")
     @ResponseBody
     public Map<String, Object> addRoom(@ModelAttribute RoomListDto roomListDto){
@@ -103,12 +115,54 @@ public class AdminController {
         RoomListDto roomListDto = new RoomListDto();
         roomListDto = roomSettingService.getRoomUpdate(roomNum);
         model.addAttribute("roomList", roomListDto);
+//        model.addAttribute("img", roomSettingService.getThumbnail(roomNum));
+        model.addAttribute("roomImgList", roomSettingService.getRoomImg(roomNum));
         return "admin/admin_sub/admin_sub_roomSetting/admin_sub_roomSetting_update";
     }
     @PostMapping("/roomSettingUpdate")
-    public String setRoomUpdate(@ModelAttribute RoomListDto roomListDto){
+    public String setRoomUpdate(@ModelAttribute RoomListDto roomListDto, @RequestParam("main") MultipartFile main) throws IOException {
+        if(!main.isEmpty()){
+
+            int fileId = roomListDto.getRoomNum();
+            String folderName = roomListDto.getRoomName();
+            RoomImageDto roomImageDto = new RoomImageDto();
+            File makeFolder = new File(roomImgFileDir + folderName);
+            if(!makeFolder.exists()){
+                makeFolder.mkdir();
+            }
+
+
+            String savedPathFileName = roomImgFileDir + folderName;
+
+            String orgName = main.getOriginalFilename();
+            String ext = orgName.substring(orgName.lastIndexOf("."));
+            String thumbnailName = roomListDto.getRoomName() + "_thumbnail" + ext;
+
+            main.transferTo(new File(savedPathFileName + "/" + thumbnailName));
+
+            roomImageDto.setId(fileId);
+            roomImageDto.setOrgName(orgName);
+            roomImageDto.setSavedFileName(thumbnailName);
+            roomImageDto.setSavedPathFileName(savedPathFileName);
+            roomImageDto.setFolderName(folderName);
+            roomImageDto.setExt(ext);
+            roomImageDto.setThumbnailCheck(1);
+
+            System.out.println(roomImageDto);
+            roomSettingService.resetThumbnail(roomListDto.getRoomNum(), roomListDto.getRoomName());
+            roomSettingService.setImgUpload(roomImageDto);
+        }
         roomSettingService.setRoomUpdate(roomListDto);
         return "redirect:/admin/roomSetting";
+    }
+
+    @PostMapping("/deleteRoomInfoImg")
+    public String deleteRoomInfoImg(@RequestParam String savedFileName, @RequestParam int roomNum) {
+        RoomImageDto rd = roomSettingService.getDeleteImg(roomNum, savedFileName);
+        File file = new File(rd.getSavedPathFileName() + "/" + rd.getSavedFileName());
+        file.delete();
+        roomSettingService.deleteRoomInfoImg(roomNum, savedFileName);
+        return "redirect:/admin/roomSettingUpdate?roomNum="+roomNum;
     }
 
     @GetMapping("/roomUpdateCheck")
@@ -123,41 +177,40 @@ public class AdminController {
         }
         return map;
     }
-//    @PostMapping("/imgUpload")
-//    public String setImgUpload(@RequestParam("roomImages") List<MultipartFile> files, Model model, @ModelAttribute RoomListDto roomListDto) throws IOException {
-//        if(!files.get(0).isEmpty()){
-//
-//            int fileId = roomListDto.getRoomNum();
-//            String foldName = roomListDto.getRoomName();
-//            System.out.println(roomListDto.getRoomName());
-//            RoomImageDto roomImageDto = new RoomImageDto();
-//            File makeFolder = new File(fileDir + foldName);
-//            if(!makeFolder.exists()){
-//                makeFolder.mkdir();
-//            }
-//
-//            for(MultipartFile mf : files){
-//                String savedPathName = fileDir + foldName;
-//
-//                String orgName = mf.getOriginalFilename();
-//                String ext = orgName.substring(orgName.lastIndexOf("."));
-//                String uuid = UUID.randomUUID().toString();
-////                String savedFileName = uuid + ext;
-//
-//                mf.transferTo(new File(savedPathName + "/" + orgName));
-//
-//                roomImageDto.setId(fileId);
-//                roomImageDto.setOrgName(orgName);
-//                roomImageDto.setSavedFileName(orgName);
-//                roomImageDto.setSavedPathName(savedPathName);
-//                roomImageDto.setFolderName(foldName);
-//                roomImageDto.setExt(ext);
-//
-//                roomSettingService.setImgUpload(roomImageDto);
-//            }
-//        }
-//        return "redirect:/admin/roomSetting";
-//    }
+    @PostMapping("/imgUpload")
+    public String setImgUpload(@RequestParam("roomImages") List<MultipartFile> files, @RequestParam String roomName, @RequestParam int roomNum) throws IOException {
+        if(!files.get(0).isEmpty()){
+
+                int fileId = roomNum;
+                String folderName = roomName;
+                RoomImageDto roomImageDto = new RoomImageDto();
+                File makeFolder = new File(roomImgFileDir + folderName);
+                if(!makeFolder.exists()){
+                    makeFolder.mkdir();
+                }
+
+                for(MultipartFile mf : files){
+                    String savedPathFileName = roomImgFileDir + folderName;
+
+                    String orgName = mf.getOriginalFilename();
+                    String ext = orgName.substring(orgName.lastIndexOf("."));
+                    String uuid = UUID.randomUUID().toString() + ext;
+
+                    mf.transferTo(new File(savedPathFileName + "/" + uuid));
+
+                    roomImageDto.setId(fileId);
+                    roomImageDto.setOrgName(orgName);
+                    roomImageDto.setSavedFileName(uuid);
+                    roomImageDto.setSavedPathFileName(savedPathFileName);
+                    roomImageDto.setFolderName(folderName);
+                    roomImageDto.setExt(ext);
+                    roomImageDto.setThumbnailCheck(0);
+
+                    roomSettingService.setImgUpload(roomImageDto);
+                }
+            }
+        return "redirect:/admin/roomSettingUpdate?roomNum="+roomNum;
+    }
 
     @GetMapping("/deleteRoom")
     @ResponseBody

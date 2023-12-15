@@ -8,6 +8,9 @@ public class RoomListDto {
     private int minPerson;
     private String checkinTime;
     private String checkoutTime;
+//    private String savedFileName;
+//    private String folderName;
+//    private int thumbnailCheck;
 
     public int getRoomNum() {
         return roomNum;
@@ -64,4 +67,29 @@ public class RoomListDto {
     public void setCheckoutTime(String checkoutTime) {
         this.checkoutTime = checkoutTime;
     }
+
+//    public String getSavedFileName() {
+//        return savedFileName;
+//    }
+//
+//    public void setSavedFileName(String savedFileName) {
+//        this.savedFileName = savedFileName;
+//    }
+//
+//    public String getFolderName() {
+//        return folderName;
+//    }
+//
+//    public void setFolderName(String folderName) {
+//        this.folderName = folderName;
+//    }
+//
+//    public int getThumbnailCheck() {
+//        return thumbnailCheck;
+//    }
+//
+//    public void setThumbnailCheck(int thumbnailCheck) {
+//        this.thumbnailCheck = thumbnailCheck;
+//    }
+
 }

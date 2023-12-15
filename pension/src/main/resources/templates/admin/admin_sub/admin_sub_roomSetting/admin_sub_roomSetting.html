@@ -24,32 +24,41 @@
                     <h3>객실 리스트</h3>
                     <ul class="room-list">
                         <li th:each="rl: ${roomList}">
-                            <div class="img-wrap">
-                                <img src="../../../../static/images/팬션.jpg" alt="">
-                            </div>
-                            <h5>개비리길펜션 [[${rl.roomName}]]동</h5>
-                            <table>
-                                <tr>
-                                    <th>인원수 :</th>
-                                    <td>
-                                        최소 : [[${rl.minPerson}]], 최대 : [[${rl.maxPerson}]] (기준[[${rl.minPerson}]]인)
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>입실 / 퇴실 시간 :</th>
-                                    <td>
-                                        [[${rl.checkinTime}]] ~ [[${rl.checkoutTime}]]
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>가격 :</th>
-                                    <td>[[${rl.roomPrice}]]원</td>
-                                </tr>
-                            </table>
-                            <div class="room-btn">
-                                <a th:href="@{/admin/roomSettingUpdate?(roomNum=${rl.roomNum})}" class="btn">수정</a>
-                                <button type="button" class="btn" th:onclick="deleteRoom([[${rl.roomNum}]])">삭제</button>
-                            </div>
+<!--                                    <th:block th:if="${rl.thumbnail eq 1}">-->
+                                        <div class="img-wrap">
+                                            <img th:src="@{|/${rl.roomName}/${rl.roomName}_thumbnail.jpg|}" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
+                                        </div>
+<!--                                    </th:block>-->
+<!--                                    <th:block th:unless="${rl.thumbnail eq 1}">-->
+<!--                                        <div class="img-wrap">-->
+<!--                                            <img src="../../../../static/images/none1_img.jpg" alt="">-->
+<!--                                        </div>-->
+<!--                                    </th:block>-->
+                                <input type="hidden" name="roomNum" th:value="${rl.roomNum}"/>
+                                <h5>개비리길펜션 [[${rl.roomName}]]동</h5>
+                                <table>
+                                    <tr>
+                                        <th>인원수 :</th>
+                                        <td>
+                                            최소 : [[${rl.minPerson}]], 최대 : [[${rl.maxPerson}]] (기준[[${rl.minPerson}]]인)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>입실 / 퇴실 시간 :</th>
+                                        <td>
+                                            [[${rl.checkinTime}]] ~ [[${rl.checkoutTime}]]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>가격 :</th>
+                                        <td>[[${rl.roomPrice}]]원</td>
+                                    </tr>
+                                </table>
+                                <div class="room-btn">
+                                    <a th:href="@{/admin/roomSettingUpdate?(roomNum=${rl.roomNum})}" class="btn">수정</a>
+                                    <button type="button" th:onclick="deleteRoom([[${rl.roomNum}]])" class="btn">삭제</button>
+                                </div>
+
                         </li>
                     </ul>
                 </section>
@@ -122,7 +131,8 @@
         let checkinTime = document.querySelector("input[name=checkinTime]");
         let checkoutTime = document.querySelector("input[name=checkoutTime]");
         let addRoom_btn = document.querySelector(".addRoom_btn");
-        
+
+
 
         addRoom_btn.addEventListener('click', function(e){
             e.preventDefault();

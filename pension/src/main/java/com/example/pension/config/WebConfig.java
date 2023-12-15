@@ -1,14 +1,14 @@
-//package com.example.pension.config;
-//
+package com.example.pension.config;
+
 //import com.example.pension.interceptor.SessionCheckInterceptor;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-//import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-//import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-//
-//@Configuration
-//public class WebConfig implements WebMvcConfigurer {
-//
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
 //    @Override
 //    public void addInterceptors(InterceptorRegistry registry) {
 //
@@ -20,13 +20,13 @@
 //                .excludePathPatterns("/"); // index.html 접속 허용
 //    }
 //
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-////        / : resources, ** : 모두
-//        registry.addResourceHandler("/**")
-//                .addResourceLocations("file:src/main/resources/static/upload/")
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        / : resources, ** : 모두
+        registry.addResourceHandler("/**")
+                .addResourceLocations("file:src/main/resources/static/roomImages/");
 //                .addResourceLocations("file:///D:/temp/");
-//        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/css");
-//        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/js");
-//    }
-//}
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/css");
+        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/js");
+    }
+}
