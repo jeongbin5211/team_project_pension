@@ -10,7 +10,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../static/css/reset.css">
-    <link rel="stylesheet" href="../../../../static/css/sub/sub_board/sub_notice_write/style.css">
+    <link rel="stylesheet" href="../../../../static/css/sub/sub_board/sub_notice_view/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
@@ -44,39 +44,36 @@
         </li>
     </ul>
     <div class="notice-content">
-        <form action="/board/notice/write" method="post" enctype="multipart/form-data">
-            <table>
-                <tr>
-                    <th>제목</th>
-                    <td>
-
-                    </td>
-                </tr>
-                <tr>
-                    <th>작성자</th>
-                    <td>
-
-                    </td>
-                </tr>
-                <tr>
-                    <th>내용</th>
-                    <td>
-
-                    </td>
-                </tr>
-                <!--<tr>
-                    <th>첨부파일</th>
-                    <td>
-                        <input type="file" name="boardNoticeFiles" class="board_notice_files" multiple>
-                    </td>
-                </tr>-->
-            </table>
-            <div class="notice-content-bottom">
-                <input type="reset" class="notice_list_btn btn blue" value="공지사항 목록보기" onclick="move()">
-                <input type="reset" class="btn red">
-                <input type="submit" class="btn green" value="등록하기">
+        <div class="notice-content-top">
+            [[${subject}]]
+        </div>
+        <div class="notice-info-box">
+                <div>
+                    작성자 : [[${writer}]]
+                </div>
+                <div>
+                    <i class="fa-solid fa-eye"></i><span class="visit">[[${visit}]]</span><i class="fa-solid fa-clock"></i><span class="regdate">[[${regdate}]]</span>
+                </div>
+        </div>
+        <div class="notice-content-middle">
+            [[${content}]]
+        </div>
+        <div class="notice-content-bottom">
+            <div>
+                <a href="/board/notice" class="btn blue">
+                    공지사항 목록보기
+                </a>
             </div>
-        </form>
+            <div class="notice-update-box">
+                <th:block th:if="${#strings.isEmpty(session.admin)}">
+
+                </th:block>
+                <th:block th:unless="${#strings.isEmpty(session.admin)}">
+                    <a th:href="@{/board/notice/update?(id=${id})}" class="btn green">수정</a>
+                    <button class="btn red">삭제</button>
+                </th:block>
+            </div>
+        </div>
     </div>
 </section>
 

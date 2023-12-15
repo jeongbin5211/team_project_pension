@@ -31,6 +31,7 @@ public class BoardController {
         String searchQuery = noticeService.getSearch(searchType, words);
 
         model.addAttribute("name", name);
+
         model.addAttribute("cnt", noticeMapper.getListCount(searchQuery));
         model.addAttribute("list", noticeService.getNotice(page, searchType, words));
         model.addAttribute("page", noticeService.pageCal(page, searchType, words));
@@ -52,23 +53,22 @@ public class BoardController {
 
     @PostMapping("/notice/write")
     public String setWriteNotice(@ModelAttribute NoticeDto noticeDto) {
-        System.out.println(noticeDto.toString());
+        // System.out.println(noticeDto.toString());
         noticeMapper.setWriteNotice(noticeDto);
-//        noticeMapper.setWriteNotice(noticeDto);
         return "redirect:/board/notice";
     }
 
-    /*@PostMapping("/notice/write")
-    @ResponseBody
-    public Map<String, Object> setWriteNotice(@ModelAttribute NoticeDto noticeDto) {
-        System.out.println(noticeDto.toString());
-        noticeMapper.setWriteNotice(noticeDto);
-        return Map.of("msg", "success");
-    }*/
-
     @GetMapping("/notice/view")
-    public String getView(@RequestParam int id) {
-        System.out.println(id);
+    public String getView(@RequestParam int id, @ModelAttribute NoticeDto noticeDto, Model model) {
+        // System.out.println(id);
+        noticeMapper.updateVisit(id);
+        NoticeDto n = noticeMapper.getView(id, noticeDto);
+        model.addAttribute("id", n.getBoardNoticeId());
+        model.addAttribute("subject", n.getBoardNoticeSubject());
+        model.addAttribute("writer", n.getBoardNoticeWriter());
+        model.addAttribute("visit", n.getBoardNoticeVisit());
+        model.addAttribute("regdate", n.getBoardNoticeRegdate());
+        model.addAttribute("content", n.getBoardNoticeContent());
         return "sub_pages/sub_board/sub_notice_view/noticeView.html";
     }
 
