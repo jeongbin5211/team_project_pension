@@ -36,8 +36,8 @@ public class BoardController {
         model.addAttribute("list", noticeService.getNotice(page, searchType, words));
         model.addAttribute("page", noticeService.pageCal(page, searchType, words));
 
-        int MaxGrp = noticeMapper.getMaxGrp();
-        noticeDto.setBoardNoticeGrp(MaxGrp);
+        // int MaxGrp = noticeMapper.getMaxGrp();
+        // noticeDto.setBoardNoticeGrp(MaxGrp);
 
 
         return "sub_pages/sub_board/sub_notice/notice.html";
@@ -70,6 +70,34 @@ public class BoardController {
         model.addAttribute("regdate", n.getBoardNoticeRegdate());
         model.addAttribute("content", n.getBoardNoticeContent());
         return "sub_pages/sub_board/sub_notice_view/noticeView.html";
+    }
+
+    @GetMapping("/notice/update")
+    public String getUpdate(@RequestParam int id, Model model, @ModelAttribute NoticeDto noticeDto) {
+        // System.out.println(id);
+        // noticeDto.setBoardNoticeId(id);
+        NoticeDto n = noticeMapper.getView(id, noticeDto);
+        System.out.println(n);
+
+        model.addAttribute("modify", n);
+
+        return "sub_pages/sub_board/sub_notice_update/noticeUpdate.html";
+    }
+
+    @PostMapping("/notice/update")
+    public String setUpdate(@ModelAttribute NoticeDto noticeDto) {
+
+        // System.out.println(noticeDto);
+        noticeMapper.setUpdate(noticeDto);
+
+        return "redirect:/board/notice";
+    }
+
+    @GetMapping("/notice/delete")
+    public String getDelete(@RequestParam int id) {
+        // System.out.println(id);
+        noticeMapper.getDelete(id);
+        return "redirect:/board/notice";
     }
 
     @GetMapping("/qna")
