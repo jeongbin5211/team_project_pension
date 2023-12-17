@@ -2,7 +2,7 @@ package com.example.pension.dto;
 
 public class PageDto {
     private int pageCount = 10; // 한 페이지 게시물 수
-    private int blockCount = 5;
+    private int blockCount = 10;
     private int page; // 현재 페이지 번호
     private int startPage;
     private int endPage;

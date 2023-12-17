@@ -7,7 +7,6 @@ public class NoticeDto {
     private String boardNoticeContent;
     private String boardNoticeRegdate;
     private int boardNoticeVisit;
-    private int boardNoticeGrp;
 
     public int getBoardNoticeId() {
         return boardNoticeId;
@@ -57,14 +56,6 @@ public class NoticeDto {
         this.boardNoticeVisit = boardNoticeVisit;
     }
 
-    public int getBoardNoticeGrp() {
-        return boardNoticeGrp;
-    }
-
-    public void setBoardNoticeGrp(int boardNoticeGrp) {
-        this.boardNoticeGrp = boardNoticeGrp;
-    }
-
     @Override
     public String toString() {
         return "NoticeDto{" +
@@ -74,7 +65,6 @@ public class NoticeDto {
                 ", boardNoticeContent='" + boardNoticeContent + '\'' +
                 ", boardNoticeRegdate='" + boardNoticeRegdate + '\'' +
                 ", boardNoticeVisit=" + boardNoticeVisit +
-                ", boardNoticeGrp=" + boardNoticeGrp +
                 '}';
     }
 }

@@ -70,9 +70,10 @@
                 </th:block>
                 <th:block th:unless="${#strings.isEmpty(session.admin)}">
                     <a th:href="@{/board/notice/update?(id=${id})}" class="btn green">수정</a>
-                    <button class="btn red">삭제</button>
+                    <button class="btn red" name="delete_btn" th:onclick="remove([[${id}]])">삭제</button>
                 </th:block>
             </div>
+            <!-- [[${id}]] -->
         </div>
     </div>
 </section>
@@ -88,10 +89,6 @@
 </a>
 
 <script src="/static/js/header_nav.js"></script>
-<script>
-    function move() {
-        location.href = "/board/notice";
-    }
-</script>
+<script src="/static/js/sub/sub_notice/view.js"></script>
 </body>
 </html>
