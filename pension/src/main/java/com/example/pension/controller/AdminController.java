@@ -1,8 +1,10 @@
 package com.example.pension.controller;
 
+import com.example.pension.dto.MemberDto;
 import com.example.pension.dto.ReserveListDto;
 import com.example.pension.dto.RoomImageDto;
 import com.example.pension.dto.RoomListDto;
+import com.example.pension.mappers.AdminMapper;
 import com.example.pension.service.AdminService;
 import com.example.pension.service.RoomSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +25,9 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    @Autowired
+    AdminMapper adminMapper;
+
     @Autowired
     AdminService adminService;
 
@@ -52,8 +58,35 @@ public class AdminController {
     }
 
     @GetMapping("/reserveList")
-    public String getReserveList() {
+    public String getReserveList(Model model, @RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words) {
+        String queryString = "";
+        if(searchType.equals("room_A")){
+            queryString = "WHERE roomName = '" +words+ "'";
+        }else if(searchType.equals("room_B")){
+            queryString = "WHERE roomName = '"+words+"'";
+        }else{
+            queryString = "";
+        }
+        model.addAttribute("cnt", adminMapper.getReserveCount(queryString));
+        model.addAttribute("reserveList", adminMapper.getReserveList(queryString));
         return "admin/admin_sub/admin_sub_reserveList/admin_sub_reserveList";
+    }
+
+    @GetMapping("/reserveListDelete")
+    @ResponseBody
+    public Map<String, Object> getReserveDelete(@RequestParam String orderNum){
+        System.out.println(orderNum);
+        Map<String, Object> map = new HashMap<>();
+        int cnt = adminMapper.getCheckReserveDelete(orderNum);
+        if(orderNum != null){
+            if( cnt > 0){
+                map.put("mes", "failure");
+            }else{
+                adminMapper.getReserveDelete(orderNum);
+                map.put("mes", "success");
+            }
+        }
+        return map;
     }
 
     @GetMapping("/cldList")
@@ -66,8 +99,46 @@ public class AdminController {
     }
 
     @GetMapping("/members")
-    public String getMembers(){
+    public String getMembers(Model model, @RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
+        String queryString = "";
+        if(searchType.equals("userid")){
+            queryString = "WHERE userid = '"+words+"'" + " and position = 1";
+        }else if(searchType.equals("name")){
+            queryString = "WHERE name = '"+words+"'"+ " and position = 1";
+        }else if(searchType.equals("phone")){
+            queryString = "WHERE phone = '"+words+"'"+ " and position = 1";
+        }else{
+            queryString = "WHERE position = 1";
+        }
+        model.addAttribute("cnt", adminMapper.getMemberCount(queryString));
+        model.addAttribute("mem", adminMapper.getMembers(queryString));
         return "admin/admin_sub/admin_sub_members/admin_sub_members";
+    }
+    @GetMapping("/memberUpdate")
+    public String getMemberUpdate(Model model, @RequestParam int id){
+        model.addAttribute("mem", adminMapper.getMemberUpdate(id));
+        return "admin/admin_sub/admin_sub_members/admin_sub_membersUpdate";
+    }
+    @PostMapping("/membersUpdate")
+    public String getMembersUpdate(@ModelAttribute MemberDto memberDto, RedirectAttributes ra){
+        adminMapper.setUpdate(memberDto);
+        ra.addFlashAttribute("message", "회원정보가 수정 되었습니다.");
+        return "redirect:/admin/members";
+    }
+    @GetMapping("/memberDelete")
+    @ResponseBody
+    public Map<String, Object> getMembersDelete(@RequestParam int id){
+        Map<String, Object> map = new HashMap<>();
+        int cnt = adminMapper.getCheckDelete(id);
+        if(id > 0){
+            if( cnt > 0){
+                map.put("mes", "failure");
+            }else{
+                adminMapper.getMembersDelete(id);
+                map.put("mes", "success");
+            }
+        }
+        return map;
     }
 
     @GetMapping("/roomSetting")

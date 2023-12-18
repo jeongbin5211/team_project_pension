@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지</title>
+    <title>회원 정보 관리 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../static/css/admin/reset.css">
     <link rel="stylesheet" href="../../../../static/css/admin/admin_sub/admin_sub_members/sub_style.css">
@@ -22,13 +23,13 @@
 
             <form class="top-search">
                     <span class="cnt-wrap">
-                        전체 회원 수 : 명
+                        전체 회원 수 : [[${cnt}]]명
                     </span>
                 <div>
                     <select name="searchType" class="searchType">
-                        <option value="subject">아이디</option>
-                        <option value="writer" selected>이름</option>
-                        <option value="content">연락처</option>
+                        <option value="userid">아이디</option>
+                        <option value="name" selected>이름</option>
+                        <option value="phone">연락처</option>
                     </select>
                     <input type="text" name="words" class="words" required>
                     <input type="submit" class="btn" value="search">
@@ -42,18 +43,20 @@
                     <th>전화번호</th>
                     <th>이메일</th>
                     <th>주소</th>
+                    <th>가입일</th>
                     <th>비고</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
+                <tr th:each="m: ${mem}">
+                    <td>[[${m.id}]]</td>
+                    <td>[[${m.name}]]</td>
+                    <td>[[${m.userid}]]</td>
+                    <td>[[${m.phone}]]</td>
+                    <td>[[${m.email}]]</td>
+                    <td>[[${m.addr}]]</td>
+                    <td>[[${m.regdate}]]</td>
                     <td>
-                        <a href="#" class="btn2 yellow" onclick="">수정</a>
-                        <a href="#" class="btn2 red" onclick="">삭제</a>
+                        <a th:href="@{/admin/memberUpdate?(id=${m.id})}" class="btn2 yellow">수정</a>
+                        <a href="#" class="btn2 red" th:onclick="deleteMember([[${m.id}]])">삭제</a>
                     </td>
 
                 </tr>
@@ -66,7 +69,27 @@
         </main>
     </div>
 </div>
-
+<script>
+    function deleteMember(id){
+        if(confirm("회원 정보를 삭제 하시면 복구할수 없습니다.\n 삭제하시겠습니까?")){
+            $.ajax({
+                type: "get",
+                url: "/admin/memberDelete",
+                dataType: "json",
+                data: {id},
+                success: function(res){
+                    if(res.mes == "success"){
+                        alert("회원정보가 삭제 됩니다.");
+                        location.href = "/admin/members";
+                    }else if(res.mes == "failure"){
+                        alert("체크인하지 않은 예약내역이 존재합니다.\n 취소 후 삭제 바랍니다.");
+                        location.href = "/admin/members";
+                    }
+                }
+            });
+        }
+    }
+</script>
 </body>
 
 </html>

@@ -22,15 +22,14 @@
 
             <form class="top-search">
                     <span class="cnt-wrap">
-                        전체 예약 수 : 개
+                        전체 예약 수 : [[${cnt}]]개
                     </span>
                 <div>
                     <select name="searchType" class="searchType">
                         <option value="">전체</option>
                         <option value="room_A">A동</option>
-                        <option value="romm_B">B동</option>
+                        <option value="room_B">B동</option>
                     </select>
-                    <input type="text" name="words" class="words" required>
                     <input type="submit" class="btn" value="search">
                 </div>
             </form>
@@ -42,18 +41,27 @@
                     <th>체크인 날짜</th>
                     <th>체크아웃 날짜</th>
                     <th>예약날짜</th>
+                    <th>결제상태</th>
                     <th>비고</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
+                <tr th:each="rl:${reserveList}">
+                    <td>[[${rl.id}]]</td>
+                    <td>[[${rl.roomName}]]</td>
+                    <td>[[${rl.reserveName}]]</td>
+                    <td>[[${rl.checkin}]]</td>
+                    <td>[[${rl.checkout}]]</td>
+                    <td>[[${#temporals.format(rl.settlementTime, 'yyyy-MM-dd')}]]</td>
+                    <td>
+                        <th:block th:if="${rl.settlementState eq 1}">
+                            결제 완료
+                        </th:block>
+                        <th:block th:unless="${rl.settlementState eq 1}">
+                            결제 취소
+                        </th:block>
+                    </td>
                     <td>
                         <a href="#" class="btn2 yellow" onclick="">예약정보</a>
-                        <a href="#" class="btn2 red" onclick="">예약취소</a>
+                        <a href="#" class="btn2 red" th:onclick="reserveDelete([[${rl.orderNum}]])">예약취소</a>
                     </td>
                 </tr>
             </table>
@@ -65,7 +73,28 @@
         </main>
     </div>
 </div>
+<script>
+    function reserveDelete(orderNum){
+        if(confirm("예약 정보를 삭제 하시면 복구할수 없습니다.\n 삭제하시겠습니까?")){
+            $.ajax({
+                type: "get",
+                url: "/admin/reserveListDelete",
+                dataType: "json",
+                data: {orderNum: orderNum},
+                success: function(res){
+                    if(res.mes == "success"){
+                        alert("예약정보가 삭제 됩니다.");
+                        location.href = "/admin/reserveList";
+                    }else if(res.mes == "failure"){
+                        alert("결제 취소 후 삭제 바랍니다.");
+                        location.href = "/admin/reserveList";
+                    }
+                }
+            });
+        }
 
+    }
+</script>
 </body>
 
 </html>
