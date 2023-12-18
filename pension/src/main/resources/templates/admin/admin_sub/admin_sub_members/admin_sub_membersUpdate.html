@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 정보 수정 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/css/admin/reset.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_sub/admin_sub_members/sub_memberUpdate_style.css">
+</head>
+
+<body>
+
+<div id="wrap">
+
+    <div th:insert="~{admin/fragment/side.html::side_f}"></div>
+    <div class="main-wrap">
+        <div th:insert="~{admin/fragment/header.html::header_f}"></div>
+        <main>
+            <h4>회원관리 > 회원 정보 수정</h4>
+            <form method="post" action="/admin/membersUpdate" onsubmit="return frmCheck()">
+                <table class="memUpdate-wrap">
+                    <tr>
+                        <th>이름 :</th>
+                        <td>
+                           <input type="text" name="name" th:value="${mem.name}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>아이디 :</th>
+                        <td>
+                            <input type="text" name="userid" th:value="${mem.userid}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>전화번호 :</th>
+                        <td>
+                            <input type="text" name="phone" th:value="${mem.phone}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이메일 :</th>
+                        <td>
+                            <input type="text" name="email" th:value="${mem.email}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>주소 :</th>
+                        <td>
+                            <input type="text" name="addr" th:value="${mem.addr}">
+                        </td>
+                    </tr>
+                </table>
+                <div class="bottom-area">
+                    <div class="bottom-left">
+                        <p>가입일 : <span>[[${mem.regdate}]]</span></p>
+                    </div>
+                    <div class="bottom-right">
+                        <input type="submit" class="btn2 yellow" value="수정">
+                        <button type="button" class="btn2 red" th:onclick="deleteMember([[${mem.id}]])">삭제</button>
+                    </div>
+                </div>
+                <input type="hidden" name="id" th:value="${mem.id}">
+            </form>
+        </main>
+    </div>
+</div>
+    <script>
+        function deleteMember(id){
+            if(confirm("회원 정보를 삭제 하시면 복구할수 없습니다.\n 삭제하시겠습니까?")){
+                $.ajax({
+                    type: "get",
+                    url: "/admin/memberDelete",
+                    dataType: "json",
+                    data:{id: id},
+                    success: function (res){
+                        if(res.mes == "success"){
+                            alert("회원정보가 삭제 됩니다.");
+                            location.href = "/admin/members";
+                        }else if(res.mes == "failure"){
+                            alert("체크인하지 않은 예약내역이 존재합니다.\n 취소 후 삭제 바랍니다.");
+                            location.href = "/admin/members";
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

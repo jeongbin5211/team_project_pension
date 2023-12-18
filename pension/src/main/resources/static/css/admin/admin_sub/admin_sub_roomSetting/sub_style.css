@@ -1,4 +1,3 @@
-@charset 'utf-8';
 
 /*사이드네비바 시작*/
 .content-wrap{
@@ -149,7 +148,6 @@ main h3 {
 }
 .room-write form {
     border: 1px solid #eee;
-    padding: 0px 0;
 }
 table{
     width: 100%;
@@ -191,72 +189,69 @@ tbody li input {
     cursor: pointer;
     vertical-align: middle;
 }
-th {
+.room-write th {
     border: none;
     text-align: right;
     padding: 10px 15px;
 }
-tr {
+.room-write tr {
     height: 45px;
 }
-td {
+.room-write td {
     border: none;
     padding: 10px 15px;
 }
-tr:last-child{
+.room-write tr:last-child{
     text-align: center;
 }
 .room-list-wrap {
     width: 100%;
-    
 }
-.room-list{
-    width: 70%;
+
+.room-list {
+    width: 90%;
     margin: 0 auto;
-    padding: 30px 10px;
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    column-gap: 10%;
-    row-gap: 20px;
 }
-.room-list li {
-    /*width: 40%;*/
-    padding: 30px 10px;
-    border: 1px solid #ccc;
+.room-list tr {
+    border-bottom: 1px solid #666;
 }
 
+.room-list th {
+    height: 50px;
+    text-align: center;
+    background-color: rgb(236, 239, 247);
+    border-right: 1px solid #fff;
+    border-bottom: 2px solid #666;
+}
 .room-list td {
-    text-align: left;
+    height: 100px;
+    text-align: center;
+    padding: 10px 15px;
 }
 
-.img-wrap {
-    width: 100%;
+.room_list th:nth-child(1){
+    width: 12%;
 }
-.img-wrap img{
-    width: 100%;
+.room_list th:nth-child(2) {
+    width: 30%;
 }
+
+.room_list th:nth-child(4),
+.room_list th:nth-child(5){
+    width: 20%;
+}
+.room_list th:nth-child(6){
+    width: 10%;
+}
+.room-list img{
+    width: 70%;
+    height: 100px;
+}
+
 .room-btn{
     text-align: right;
 }
-.room-list li h5{
-    text-align: center;
-    margin: 10px 0;
-    font-size: 22px;
-}
-.room-list table {
-    border: none;
-}
-.room-list th{
-    width: 40%;
-}
 
-.insert_img_wrap {
-    display: flex;
-    justify-content: end;
-    margin: 0 auto;
-    width: 100%;
-    padding: 20px;
-}
 .view-img-wrap {
     text-align: center;
     margin: 20px 0 40px 0;
