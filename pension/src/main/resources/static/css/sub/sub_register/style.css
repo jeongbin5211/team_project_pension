@@ -90,12 +90,12 @@ input {
     padding-left: 10px;
 }
 
-.red {
+.red_text {
     color: tomato;
     font-size: 12px;
 }
 
-.green {
+.green_text {
     color: green;
     font-size: 12px;
 }

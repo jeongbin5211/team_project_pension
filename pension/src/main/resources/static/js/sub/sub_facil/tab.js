@@ -3,7 +3,7 @@ let contents = document.querySelectorAll(".cont");
 let activeCont = "";
 
 for(let i=0;i<tabList.length;i++) {
-    tabList[i].querySelector(".btn").addEventListener('click', function(e) {
+    tabList[i].querySelector(".tab-btn").addEventListener('click', function(e) {
     e.preventDefault();
             
     for(let j=0;j<tabList.length;j++) {

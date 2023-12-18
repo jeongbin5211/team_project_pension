@@ -150,7 +150,7 @@ nav {
 
 /* section 시작 */
 
-.notice-content-wrap {
+.qna-content-wrap {
     max-width: 1200px;
     margin: 0 auto;
     padding: 150px 0;
@@ -177,51 +177,10 @@ nav {
 
 /* 게시판 시작 */
 
-.notice-content {
+.qna-content {
     width: 85%;
     margin: 0 auto;
     margin-left: 80px;
-}
-
-.search_box {
-    display: flex;
-    justify-content: end;
-    margin-bottom: 20px;
-}
-
-.search_box input {
-    outline: 0;
-    border: 1px solid #ccc;
-    height: 30px;
-}
-
-#searchType {
-    outline: 0;
-    border: 1px solid #ccc;
-    border-right: 0;
-}
-
-.search_words_box {
-    position: relative;
-}
-
-.words {
-    padding: 0 10px;
-
-}
-
-.searchBtn {
-    position: absolute;
-    background-color: #fff;
-    right: 5px;
-    top: 28%;
-    border: 0;
-    cursor: pointer;
-}
-
-.searchBtn i {
-    /* background-color: ; */
-    font-size: 16px;
 }
 
 table {
@@ -231,12 +190,20 @@ table {
 }
 
 tr {
-    height: 40px;
+    height: 50px;
 }
 
 tr:first-child {
     border-top: 2px solid #555;
+}
+
+th {
+    width: 20%;
     background-color: #eee;
+}
+
+td {
+    border-right: 1px solid #ccc;
 }
 
 td,
@@ -245,36 +212,47 @@ th {
 
 }
 
-th:nth-child(1) {
-    width: 13%;
+input {
+    margin-left: 10px;
+    font-size: 16px;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
 }
 
-th:nth-child(3) {
-    width: 15%;
+input:focus {
+    border: 0;
+    outline: 1px solid #88c6d6;
 }
 
-th:nth-child(4) {
-    width: 15%;
+.board_qna_subject {
+    width: 50%;
 }
 
-th:nth-child(5) {
-    width: 10%;
+.board_qna_content {
+    width: 100%;
+    height: 400px;
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
 }
 
-td {
-    text-align: center;
+.board_qna_files {
+    border: 0;
 }
 
-td:nth-child(2) {
-    text-align: left;
-    padding: 0 10px;
-    font-weight: bold;
-}
-
-.content_bottom {
+.qna-content-bottom {
     display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
+    justify-content: right;
+}
+
+.btn {
+    margin: 20px 0 0 10px;
+    border: 0;
+    padding: 8px 12px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
 }
 
 /* 게시판 끝 */

@@ -45,6 +45,7 @@ a {
     border: 0;
     padding: 8px 12px;
     font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
     color: #fff;
     cursor: pointer;
 }

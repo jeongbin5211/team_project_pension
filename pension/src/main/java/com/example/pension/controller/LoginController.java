@@ -39,11 +39,13 @@ public class LoginController {
             HttpSession hs = hsr.getSession();
             hs.setAttribute("admin", m);
             hs.setAttribute("name", m.getName());
+            hs.setAttribute("userid", m.getUserid());
             hs.setMaxInactiveInterval(3600);
             map.put("msg", "admin");
         } else if (m.getPosition().equals("1")) {
             HttpSession hs = hsr.getSession();
             hs.setAttribute("user", m);
+            hs.setAttribute("userid", m.getUserid());
             hs.setMaxInactiveInterval(3600);
             map.put("msg", "user");
             map.put("userid", m.getUserid());
