@@ -207,6 +207,100 @@ nav {
     margin-left: 80px;
 }
 
+.search_box {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20px;
+}
+
+.search_box input {
+    outline: 0;
+    border: 1px solid #ccc;
+    height: 30px;
+}
+
+#searchType {
+    outline: 0;
+    border: 1px solid #ccc;
+    border-right: 0;
+}
+
+.search_words_box {
+    position: relative;
+}
+
+.words {
+    padding: 0 10px;
+
+}
+
+.searchBtn {
+    position: absolute;
+    background-color: #fff;
+    right: 5px;
+    top: 28%;
+    border: 0;
+    cursor: pointer;
+}
+
+.searchBtn i {
+    /* background-color: ; */
+    font-size: 16px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+tr {
+    height: 40px;
+}
+
+tr:first-child {
+    border-top: 2px solid #555;
+    background-color: #eee;
+}
+
+td,
+th {
+    border-bottom: 1px solid #ccc;
+
+}
+
+th:nth-child(1) {
+    width: 13%;
+}
+
+th:nth-child(3) {
+    width: 15%;
+}
+
+th:nth-child(4) {
+    width: 15%;
+}
+
+th:nth-child(5) {
+    width: 10%;
+}
+
+td {
+    text-align: center;
+}
+
+td:nth-child(2) {
+    text-align: left;
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+.content_bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
 /* section 끝 */
 
 /* footer 시작 */

@@ -39,15 +39,15 @@ idCheckBtn.addEventListener("click", (e) => {
         // console.log(result)
         if (result.msg == "no") {
           alert("중복된 아이디입니다.");
-          msg.classList.remove("green");
-          msg.classList.add("red");
+          msg.classList.remove("green_text");
+          msg.classList.add("red_text");
           msg.innerHTML = "중복된 아이디입니다.";
           userid.value = "";
           userid.focus();
         } else {
           alert("사용 가능한 아이디입니다.");
-          msg.classList.remove("red");
-          msg.classList.add("green");
+          msg.classList.remove("red_text");
+          msg.classList.add("green_text");
           msg.innerHTML = "사용 가능한 아이디입니다.";
           duplication = false;
         }

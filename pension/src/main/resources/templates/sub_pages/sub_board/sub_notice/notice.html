@@ -86,7 +86,8 @@
             <div class="content_bottom">
                 <div class="bottom-left"></div>
                 <div class="page_number">
-                    <a href="#">
+                    <a href="#" th:if="${page.page <= 1}"></a>
+                    <a th:href="@{/board/notice?(page=${page.page - 1})}" th:unless="${page.page <= 1}">
                         &nbsp;<i class="fa-solid fa-angle-left"></i>&nbsp;
                     </a>
                     <a th:href="@{/board/notice?(page=${i})}" th:each="i : ${ #numbers.sequence(page.startPage, page.endPage, 1) }">
@@ -101,7 +102,8 @@
                             </span>
                         </th:block>
                     </a>
-                    <a href="#">
+                    <a href="#" th:if="${page.page >= page.totalPage}"></a>
+                    <a th:href="@{/board/notice?(page=${page.page + 1})}" th:unless="${page.page >= page.totalPage}">
                         &nbsp;<i class="fa-solid fa-angle-right"></i>&nbsp;
                     </a>
                 </div>
@@ -110,7 +112,7 @@
 
                     </th:block>
                     <th:block th:unless="${#strings.isEmpty(session.admin)}">
-                        <a th:href="@{/board/notice/write?(${name})}" class="write_notice">
+                        <a th:href="@{/board/notice/write?(${session.name})}" class="btn blue">
                             글쓰기
                         </a>
                     </th:block>

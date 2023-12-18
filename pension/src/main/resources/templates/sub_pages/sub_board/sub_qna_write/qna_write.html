@@ -10,7 +10,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../static/css/reset.css">
-    <link rel="stylesheet" href="../../../../static/css/sub/sub_board/sub_notice_write/style.css">
+    <link rel="stylesheet" href="../../../../static/css/sub/sub_board/sub_qna_write/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
@@ -20,17 +20,17 @@
     <section class="sub-title-wrap">
         <div class="sub-title-bg">
             <div class="sub-title-area">
-                <h3 class="sub-title">Notice</h3>
+                <h3 class="sub-title">QnA</h3>
                 <div class="line"></div>
                 <p class="sub-title-txt">
-                    개비리길 공지사항입니다.
+                    궁금하신점을 찾아보세요.
                 </p>
             </div>
         </div>
     </section>
 </main>
 
-<section class="notice-content-wrap">
+<section class="qna-content-wrap">
     <ul class="sub-navigate-nav">
         <h4>Community</h4>
         <li>
@@ -43,38 +43,38 @@
             <a href="/board/review">Review</a>
         </li>
     </ul>
-    <div class="notice-content">
-        <form action="/board/notice/write" method="post" enctype="multipart/form-data">
+    <div class="qna-content">
+        <form action="/board/qna/write" method="post" enctype="multipart/form-data">
             <table>
                 <tr>
                     <th>제목</th>
                     <td>
-                        <input type="text" class="board_notice_subject" name="boardNoticeSubject">
+                        <input type="text" class="board_qna_subject" name="boardQnaSubject">
                     </td>
                 </tr>
                 <tr>
                     <th>작성자</th>
                     <td>
-                        <input type="text" class="board_notice_writer" name="boardNoticeWriter" th:value="${session.name}" readonly>
+                        <input type="text" class="board_qna_writer" name="boardQnaWriter" th:value="${session.userid}" readonly>
                     </td>
                 </tr>
                 <tr>
                     <th>내용</th>
                     <td>
-                        <textarea class="board_notice_content" name="boardNoticeContent"></textarea>
+                        <textarea class="board_qna_content" name="boardQnaContent"></textarea>
                     </td>
                 </tr>
                 <!--<tr>
                     <th>첨부파일</th>
                     <td>
-                        <input type="file" name="boardNoticeFiles" class="board_notice_files" multiple>
+                        <input type="file" name="boardQnaFiles" class="board_qna_files" multiple>
                     </td>
                 </tr>-->
             </table>
-            <div class="notice-content-bottom">
-                <input type="reset" class="notice_list_btn btn blue" value="공지사항 목록보기" onclick="move()">
+            <div class="qna-content-bottom">
+                <input type="reset" class="qna_list_btn btn blue" value="QnA 목록보기" onclick="move()">
                 <input type="reset" class="btn red">
-                <input type="submit" class="btn green" value="등록하기" onclick="return formCheck()">
+                <input type="submit" class="btn green" value="문의하기" onclick="return formCheck()">
             </div>
         </form>
     </div>
@@ -91,6 +91,6 @@
 </a>
 
 <script src="/static/js/header_nav.js"></script>
-<script src="/static/js/sub/sub_notice/notice.js"></script>
+<script src="/static/js/sub/sub_qna/write.js"></script>
 </body>
 </html>
