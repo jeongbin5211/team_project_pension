@@ -1,6 +1,7 @@
 package com.example.pension.mappers;
 
 import com.example.pension.dto.MemberDto;
+import com.example.pension.dto.NoticeDto;
 import com.example.pension.dto.ReserveListDto;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
@@ -44,4 +45,9 @@ public interface AdminMapper {
     @Select("select count(*) from reserve_list where order_num = #{orderNum} and settlement_state = 1 and checkin > curdate()")
     public int getCheckReserveDelete(String orderNum);
 
+    @Select("select * from board_notice where board_notice_id = #{boardNoticeId}")
+    public NoticeDto getNoticeUpdate(int boardNoticeId);
+
+    @Delete("delete from board_notice where board_notice_id = #{boardNoticeId}")
+    public int getNoticeDelete(int boardNoticeId);
 }

@@ -134,19 +134,13 @@ table {
 table tr td:nth-child(1){
     width: 7%;
 }
-table tr td:nth-child(3){
+table tr td:nth-child(3),
+table tr td:nth-child(4){
     width: 10%;
 }
-table tr td:nth-child(4){
-    width: 7%;
-}
-table tr td:nth-child(5){
-    width: 15%;
-}
+
+table tr td:nth-child(5),
 table tr td:nth-child(6){
-    width: 7%;
-}
-table tr td:nth-child(7){
     width: 15%;
 }
 main {
