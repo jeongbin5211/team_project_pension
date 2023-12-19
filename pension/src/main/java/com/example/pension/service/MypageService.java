@@ -14,6 +14,38 @@ public class MypageService {
     @Autowired
     MypageMapper mypageMapper;
 
+    public String checkpw(int id, String userpw) {
+        String msg = "";
+        String orgUserpw = mypageMapper.checkPw(id);
+        if(orgUserpw.equals(userpw)) {
+            msg = "success";
+        }else {
+            msg = "failure";
+        }
+        return msg;
+    }
+
+    public String checkUserid(String userid) {
+        String msg = "";
+        List<String> useridList = mypageMapper.checkUserid();
+        if(!useridList.isEmpty()) {
+            int cnt = 0;
+            for(int i=0; i<useridList.size(); i++) {
+                if(useridList.get(i).equals(userid)) {
+                    cnt += 1;
+                }
+            }
+            if(cnt > 0) {
+                msg = "failure";
+            }else {
+                msg = "success";
+            }
+        }else {
+            msg = "success";
+        }
+        return msg;
+    }
+
     public List<ReserveListDto> getReserveList(int id) {
         return mypageMapper.getReserveList(id);
     }
@@ -45,6 +77,18 @@ public class MypageService {
             msg = "success";
         }else {
             msg = "failure";
+        }
+        return msg;
+    }
+
+    public String checkReserve(int id) {
+        String msg = "";
+        int cnt = mypageMapper.checkReserve(id);
+
+        if(cnt > 0) {
+            msg = "failure";
+        }else {
+            msg = "success";
         }
         return msg;
     }

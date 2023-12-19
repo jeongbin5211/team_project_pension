@@ -279,7 +279,7 @@ input {
 }
 
 .change_passwd_box input {
-    width: 200px;
+    width: 220px;
     height: 28px;
 }
 
@@ -288,7 +288,7 @@ input {
 }
 
 .username {
-    width: 150px;
+    width: 180px;
     height: 28px;
 }
 
@@ -306,7 +306,7 @@ input {
 }
 
 .usertell {
-    width: 200px;
+    width: 250px;
     height: 28px;
 }
 
@@ -324,7 +324,7 @@ input {
 }
 
 .useremail {
-    width: 200px;
+    width: 250px;
     height: 28px;
 }
 
@@ -342,7 +342,7 @@ input {
 }
 
 .useraddr {
-    width: 200px;
+    width: 400px;
     height: 28px;
 }
 

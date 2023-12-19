@@ -58,23 +58,24 @@
             </ul>
             <div class="myinfo-content">
                 <h3>회원정보 확인</h3>
-                <form action="" class="checkpw">
-                    <p>xxx님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.</p>
+                <form class="checkpw" onsubmit="return checkpw()">
+                    <p>[[${member.name}]]님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.</p>
                     <table>
                         <tr>
                             <th>아이디</th>
-                            <td>xxx</td>
+                            <td>[[${member.userid}]]</td>
                         </tr>
                         <tr>
                             <th>비밀번호</th>
                             <td>
-                                <input type="password" class="passwd" id="passwd" />
+                                <input type="password" name="userpw" class="passwd" id="passwd" minlength="8" maxlength="20" onpaste="return false;" oncopy="return false"/>
                             </td>
                         </tr>
                     </table>
                     <div class="btn_box">
+                        <input type="hidden" name="id" th:value="${member.id}"/>
                         <button class="btn_check" id="btn_check">확인</button>
-                        <button class="btn_cancel" ondblclick="location.href='/mypage/myinfo/checkpw'">취소</button>
+                        <button type="button" class="btn_cancel" onclick="moveMain()">취소</button>
                     </div>
                 </form>
             </div>
@@ -95,17 +96,38 @@
 
     <script>
         let passwd = document.querySelector("#passwd");
-        let btn_check = document.querySelector("#btn_check");
+        let id = document.querySelector("input[name=id]");
 
-        btn_check.addEventListener('click', function(e) {
-            e.preventDefault();
-
+        function checkpw(){
             if(passwd.value == "") {
                 alert("비밀번호를 입력해 주세요.");
                 passwd.focus();
                 return false;
             }
-        });
+
+            $.ajax({
+                type: "post",
+                url: "/mypage/myinfo/checkpw",
+                dataType: "json",
+                data: {
+                    id: id.value,
+                    userpw: passwd.value
+                },
+                success: function(result) {
+                    if(result.msg == "success") {
+                        location.href = "/mypage/myinfo/update";
+                    }else if(result.msg == "failure") {
+                        alert("비밀번호가 틀립니다.\n다시 입력해 주세요.");
+                        passwd.value = "";
+                        location.reload();
+                    }
+                }
+            });
+        }
+
+        function moveMain() {
+            location.href = "/";
+        }
     </script>
 
     <script src="../../../../static/js/header_nav.js"></script>
