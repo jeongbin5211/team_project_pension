@@ -1,11 +1,10 @@
 package com.example.pension.controller;
 
-import com.example.pension.dto.MemberDto;
-import com.example.pension.dto.ReserveListDto;
-import com.example.pension.dto.RoomImageDto;
-import com.example.pension.dto.RoomListDto;
+import com.example.pension.dto.*;
 import com.example.pension.mappers.AdminMapper;
+import com.example.pension.mappers.NoticeMapper;
 import com.example.pension.service.AdminService;
+import com.example.pension.service.NoticeService;
 import com.example.pension.service.RoomSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +25,12 @@ import java.util.UUID;
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
+    NoticeService noticeService;
+
+    @Autowired
+    NoticeMapper noticeMapper;
+
+    @Autowired
     AdminMapper adminMapper;
 
     @Autowired
@@ -43,9 +48,67 @@ public class AdminController {
     }
 
     @GetMapping("/notice")
-    public String getNotice(){
+    public String getNotice(Model model, @RequestParam(defaultValue = "1")int page, @RequestParam(value = "searchType",defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
+        Map<String, Object> map = new HashMap<>();
+
+        String searchQuery = "";
+        if(searchType.equals("boardNoticeSubject")){
+            searchQuery = "where " + searchType + " like '%"+words+"%'";
+        }else if(searchType.equals("boardNoticeContent")){
+            searchQuery = "where " + searchType + " like '%"+words+"%'";
+        }else {
+            searchQuery = "";
+        }
+        PageDto pageDto = new PageDto();
+
+        int startNum = (page - 1) * pageDto.getPageCount();
+
+        map.put("searchQuery", searchQuery);
+        map.put("startNum", startNum);
+        map.put("offset", pageDto.getPageCount());
+
+        model.addAttribute("cnt", noticeMapper.getListCount(searchQuery));
+        model.addAttribute("notice", noticeService.getNotice(page, searchType, words));
+
         return "admin/admin_sub/admin_sub_notice/admin_sub_notice";
     }
+    @GetMapping("/noticeWrite")
+    public String getNoticeWrite(){
+        return "admin/admin_sub/admin_sub_notice/admin_sub_noticeWrite";
+    }
+    @PostMapping("/noticeWrite")
+    public String setWriteNotice(@ModelAttribute NoticeDto noticeDto) {
+        // System.out.println(noticeDto.toString());
+        noticeMapper.setWriteNotice(noticeDto);
+        return "redirect:/admin/notice";
+    }
+
+    @GetMapping("/noticeUpdate")
+    public String getNoticeUpdate(@RequestParam int boardNoticeId, Model model) {
+        model.addAttribute("notice", adminMapper.getNoticeUpdate(boardNoticeId));
+        return "admin/admin_sub/admin_sub_notice/admin_sub_noticeUpdate";
+    }
+    @PostMapping("/noticeModify")
+    public String getNoticeModify(@ModelAttribute NoticeDto noticeDto){
+        noticeMapper.setUpdate(noticeDto);
+        return "redirect:/admin/notice";
+    }
+    @GetMapping("/noticeDelete")
+    @ResponseBody
+    public Map<String, Object> getNoticeDelete(@RequestParam int boardNoticeId){
+        Map<String, Object> map = new HashMap<>();
+        int cnt = adminMapper.getNoticeDelete(boardNoticeId);
+        if(boardNoticeId > 0){
+            if( cnt > 0){
+                map.put("mes", "success");
+            }else{
+                adminMapper.getNoticeDelete(boardNoticeId);
+                map.put("mes", "failure");
+            }
+        }
+        return map;
+    }
+
 
     @GetMapping("/qna")
     public String getQna(){
@@ -80,10 +143,10 @@ public class AdminController {
         int cnt = adminMapper.getCheckReserveDelete(orderNum);
         if(orderNum != null){
             if( cnt > 0){
-                map.put("mes", "failure");
+                map.put("mes", "success");
             }else{
                 adminMapper.getReserveDelete(orderNum);
-                map.put("mes", "success");
+                map.put("mes", "failure");
             }
         }
         return map;

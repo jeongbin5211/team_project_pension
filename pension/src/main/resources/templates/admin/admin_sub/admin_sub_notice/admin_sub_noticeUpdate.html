@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 정보 수정 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/css/admin/reset.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_sub/admin_sub_notice/sub_noticeUpdate_style.css">
+</head>
+
+<body>
+
+<div id="wrap">
+
+    <div th:insert="~{admin/fragment/side.html::side_f}"></div>
+    <div class="main-wrap">
+        <div th:insert="~{admin/fragment/header.html::header_f}"></div>
+        <main>
+            <h4>게시판 > 공지사항 수정</h4>
+            <form method="post" action="/admin/noticeModify" onsubmit="return frmCheck()">
+                <table class="memUpdate-wrap">
+                    <tr>
+                        <th>제목 :</th>
+                        <td>
+                           <input type="text" name="boardNoticeSubject" th:value="${notice.boardNoticeSubject}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>내용 :</th>
+                        <td>
+                            <textarea name="boardNoticeContent">[[${notice.boardNoticeContent}]]</textarea>
+                        </td>
+                    </tr>
+
+                </table>
+                <div class="bottom-area">
+                    <div class="bottom-left">
+                        <p>작성일 : <span>[[${notice.boardNoticeRegdate}]]</span></p>
+                    </div>
+                    <div class="bottom-right">
+                        <input type="submit" class="btn2 yellow" value="수정하기">
+                        <button type="button" class="btn2 red" th:onclick="deleteNotice([[${notice.boardNoticeId}]])">삭제</button>
+                    </div>
+                </div>
+                <input type="hidden" name="boardNoticeId" th:value="${notice.boardNoticeId}">
+            </form>
+        </main>
+    </div>
+</div>
+    <script>
+        function deleteNotice(id){
+            if(confirm("게시물을 삭제 하면 복구할 수 없습니다.\n 삭제하시겠습니까?")){
+                $.ajax({
+                    type: "get",
+                    url: "/admin/noticeDelete",
+                    dataType: "json",
+                    data:{boardNoticeId: id},
+                    success: function (res){
+                        if(res.mes == "success"){
+                            alert("게시물이 삭제 됩니다.");
+                            location.href = "/admin/notice";
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

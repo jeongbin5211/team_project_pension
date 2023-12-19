@@ -1,5 +1,3 @@
-@charset 'utf-8';
-
 /*사이드네비바 시작*/
 .content-wrap{
     position: fixed;
@@ -131,18 +129,7 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
-table tr td:nth-child(1){
-    width: 7%;
-}
-table tr td:nth-child(3),
-table tr td:nth-child(4){
-    width: 10%;
-}
 
-table tr td:nth-child(5),
-table tr td:nth-child(6){
-    width: 15%;
-}
 main {
     box-shadow: 0 0 5px 0.25rem #eee;
     border: 1px solid #ccc;
@@ -155,21 +142,42 @@ main {
 form {
     text-align: right;
     margin-bottom: 5px;
-    display: flex;
-
+    /*display: flex;*/
+    width: 100%;
 }
-.top-search {
+.memUpdate-wrap {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.memUpdate-wrap th{
+    width: 10%;
+    padding: 10px 15px;
+}
+.memUpdate-wrap td{
+    text-align: left;
+}
+
+.memUpdate-wrap td input,
+.memUpdate-wrap td textarea{
+    font-family: 'Noto Sans KR', sans-serif;
+    width: 100%;
+    padding: 10px 30px;
+    outline: none;
+    border: 1px solid #ccc;
+}
+.memUpdate-wrap td textarea {
+    height: 300px;
+}
+.memUpdate-wrap td input:focus {
+    box-shadow: 0 0 1px 1px #406fd6;
+}
+.bottom-area {
     display: flex;
     justify-content: space-between;
+    margin-top: 30px;
 }
-.searchType, .words{
-    padding: 0.5rem 0.75rem;
-    font-size: 14px;
-    color: #212529;
-    background-color: #fff;
-    border: 1px solid #ced4da;
 
-}
 .btn {
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #c7e0f5;
@@ -180,25 +188,8 @@ form {
     color: #2185D0;
     cursor: pointer;
     vertical-align: middle;
-
 }
 
-th, td {
-    border: 1px solid #eee;
-}
-tr {
-    height: 45px;
-}
-tr:first-child {
-    background-color: #f7f7f7;
-}
-td {
-    text-align: center;
-}
-td:nth-child(2){
-    text-align: left;
-    padding-left: 8px;
-}
 .btn2 {
     padding: 5px 12px;
     color: #000;
@@ -231,7 +222,7 @@ td:nth-child(2){
 }
 .bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 10px;
 }
 .bottom-center a {
