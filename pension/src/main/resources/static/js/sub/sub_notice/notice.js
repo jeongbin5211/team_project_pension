@@ -4,7 +4,6 @@ function move() {
 
 function formCheck() {
   let boardNoticeSubject = document.querySelector(".board_notice_subject");
-  let boardNoticeWriter = document.querySelector(".board_notice_writer");
   let boardNoticeContent = document.querySelector(".board_notice_content");
 
   if (boardNoticeSubject.value == "") {

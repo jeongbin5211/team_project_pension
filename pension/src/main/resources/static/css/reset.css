@@ -39,8 +39,12 @@ a {
     background-color: #0d6efd;
 }
 
+.gray {
+    background-color: #eee;
+}
+
 .btn {
-    display: inline-block;
+    display: block;
     margin: 0;
     border: 0;
     padding: 8px 12px;
