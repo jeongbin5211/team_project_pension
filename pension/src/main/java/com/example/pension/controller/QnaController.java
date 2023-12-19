@@ -1,7 +1,9 @@
 package com.example.pension.controller;
 
+import com.example.pension.dto.NoticeDto;
 import com.example.pension.dto.QnaDto;
 import com.example.pension.mappers.QnaMapper;
+import com.example.pension.service.QnaService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +16,18 @@ public class QnaController {
 
     @Autowired
     QnaMapper qnaMapper;
+
+    @Autowired
+    QnaService qnaService;
+
     @GetMapping("/qna")
     public String getQna(Model model, @RequestParam(value="page", defaultValue = "1") int page, @RequestParam(value="searchType", defaultValue = "") String searchType, @RequestParam(value = "words", defaultValue = "") String words) {
 
+        String searchQuery = qnaService.getSearch(searchType, words);
 
+        model.addAttribute("cnt", qnaMapper.getListCount(searchQuery));
+        model.addAttribute("list", qnaService.getQna(page, searchType, words));
+        model.addAttribute("page", qnaService.PageCal(page, searchType, words));
 
         return "sub_pages/sub_board/sub_qna/qna.html";
     }
@@ -37,9 +47,31 @@ public class QnaController {
         qnaDto.setBoardQnaGrp(maxGrp);
         qnaDto.setBoardQnaSeq(seq);
         qnaDto.setBoardQnaDepth(depth);
-        System.out.println(qnaDto);
+        // System.out.println(qnaDto);
 
         qnaMapper.setWriteQna(qnaDto);
+        return "redirect:/board/qna";
+    }
+
+    @GetMapping("/qna/view")
+    public String getView(@RequestParam int id, @ModelAttribute QnaDto qnaDto, Model model) {
+
+        // System.out.println(id);
+        qnaMapper.updateVisit(id);
+        QnaDto q = qnaMapper.getView(id, qnaDto);
+        model.addAttribute("id", q.getBoardQnaId());
+        model.addAttribute("subject", q.getBoardQnaSubject());
+        model.addAttribute("writer", q.getBoardQnaWriter());
+        model.addAttribute("visit", q.getBoardQnaVisit());
+        model.addAttribute("regdate", q.getBoardQnaRegdate());
+        model.addAttribute("content", q.getBoardQnaContent());
+        return "sub_pages/sub_board/sub_qna_view/qna_view.html";
+    }
+
+    @GetMapping("/qna/delete")
+    public String getDelete(@RequestParam int id) {
+        // System.out.println(id);
+        qnaMapper.getDelete(id);
         return "redirect:/board/qna";
     }
 }
