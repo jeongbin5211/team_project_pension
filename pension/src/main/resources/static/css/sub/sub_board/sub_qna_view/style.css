@@ -150,7 +150,7 @@ nav {
 
 /* section 시작 */
 
-.notice-content-wrap {
+.qna-content-wrap {
     max-width: 1200px;
     margin: 0 auto;
     padding: 150px 0;
@@ -177,14 +177,14 @@ nav {
 
 /* 게시판 시작 */
 
-.notice-content {
+.qna-content {
     width: 85%;
     margin: 0 auto;
     margin-left: 80px;
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-.notice-content-top {
+.qna-content-top {
     width: 100%;
     padding: 30px;
     border-top: 1px solid #000;
@@ -193,7 +193,7 @@ nav {
     font-weight: bold;
 }
 
-.notice-info-box {
+.qna-info-box {
     display: flex;
     justify-content: space-between;
     padding: 20px 30px;
@@ -201,26 +201,26 @@ nav {
     border-bottom: 1px solid #e3e3e3;
 }
 
-.notice-info-box i {
+.qna-info-box i {
     margin-right: 10px;
     margin-left: 20px;
 }
 
-.notice-content-middle {
+.qna-content-middle {
     width: 100%;
     min-height: 400px;
     padding: 30px;
     border-bottom: 1px solid #e3e3e3;
 }
 
-.notice-content-bottom {
+.qna-content-bottom {
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
 }
 
-.notice-update-box {
-    width: 120px;
+.qna-update-box {
+    width: 160px;
     display: flex;
     justify-content: space-between;
 }

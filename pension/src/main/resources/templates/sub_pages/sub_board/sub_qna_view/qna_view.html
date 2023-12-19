@@ -10,7 +10,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../static/css/reset.css">
-    <link rel="stylesheet" href="../../../../static/css/sub/sub_board/sub_qna_write/style.css">
+    <link rel="stylesheet" href="../../../../static/css/sub/sub_board/sub_qna_view/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
@@ -44,39 +44,42 @@
         </li>
     </ul>
     <div class="qna-content">
-        <form action="/board/qna/write" method="post" enctype="multipart/form-data">
-            <table>
-                <tr>
-                    <th>제목</th>
-                    <td>
-                        <input type="text" class="board_qna_subject" name="boardQnaSubject">
-                    </td>
-                </tr>
-                <tr>
-                    <th>작성자</th>
-                    <td>
-                        <input type="text" class="board_qna_writer" name="boardQnaWriter" th:value="${session.userid}" readonly>
-                    </td>
-                </tr>
-                <tr>
-                    <th>내용</th>
-                    <td>
-                        <textarea class="board_qna_content" name="boardQnaContent"></textarea>
-                    </td>
-                </tr>
-                <!--<tr>
-                    <th>첨부파일</th>
-                    <td>
-                        <input type="file" name="boardQnaFiles" class="board_qna_files" multiple>
-                    </td>
-                </tr>-->
-            </table>
-            <div class="qna-content-bottom">
-                <input type="reset" class="qna_list_btn btn blue" value="QnA 목록보기" onclick="move()">
-                <input type="reset" class="btn red">
-                <input type="submit" class="btn green" value="문의하기" onclick="return formCheck()">
+        <div class="qna-content-top">
+            [[${subject}]]
+        </div>
+        <div class="qna-info-box">
+            <div>
+                작성자 : [[${writer}]]
             </div>
-        </form>
+            <div>
+                <i class="fa-solid fa-eye"></i><span class="visit">[[${visit}]]</span><i class="fa-solid fa-clock"></i><span class="regdate">[[${regdate}]]</span>
+            </div>
+        </div>
+        <div class="qna-content-middle">
+            [[${content}]]
+        </div>
+        <div class="qna-content-bottom">
+            <div>
+                <a href="/board/qna" class="btn blue">
+                    질문 목록보기
+                </a>
+            </div>
+            <div class="qna-update-box">
+                <th:block th:if="${session.containsKey('userid') and writer eq session.userid}">
+                    <a th:href="@{/board/qna/update?(id=${id})}" class="btn green">수정하기</a>
+                    <button class="btn red" name="delete_btn" th:onclick="remove([[${id}]])">삭제</button>
+                </th:block>
+                <th:block th:unless="${session.containsKey('userid') and writer eq session.userid}">
+                    <th:block th:if="${#strings.isEmpty(session.admin)}">
+
+                    </th:block>
+                    <th:block th:unless="${#strings.isEmpty(session.admin)}">
+                        <a th:href="@{/board/qna/reply?(id=${id})}" class="btn green">답변하기</a>
+                        <button class="btn red" name="delete_btn" th:onclick="remove([[${id}]])">삭제</button>
+                    </th:block>
+                </th:block>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -91,6 +94,6 @@
 </a>
 
 <script src="/static/js/header_nav.js"></script>
-<script src="/static/js/sub/sub_qna/write.js"></script>
+<script src="/static/js/sub/sub_qna/view.js"></script>
 </body>
 </html>
