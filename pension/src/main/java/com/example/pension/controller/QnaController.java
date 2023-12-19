@@ -34,7 +34,7 @@ public class QnaController {
 
     @GetMapping("/qna/write")
     public String getWriteQna() {
-        return "sub_pages/sub_board/sub_qna_write/qna_write.html";
+        return "sub_pages/sub_board/sub_qna_write/qnaWrite.html";
     }
 
     @PostMapping("/qna/write")
@@ -65,13 +65,30 @@ public class QnaController {
         model.addAttribute("visit", q.getBoardQnaVisit());
         model.addAttribute("regdate", q.getBoardQnaRegdate());
         model.addAttribute("content", q.getBoardQnaContent());
-        return "sub_pages/sub_board/sub_qna_view/qna_view.html";
+        return "sub_pages/sub_board/sub_qna_view/qnaView.html";
     }
 
     @GetMapping("/qna/delete")
     public String getDelete(@RequestParam int id) {
         // System.out.println(id);
         qnaMapper.getDelete(id);
+        return "redirect:/board/qna";
+    }
+
+    @GetMapping("/qna/update")
+    public String getUpdate(@RequestParam int id, Model model, @ModelAttribute QnaDto qnaDto) {
+        // System.out.println(id);
+        QnaDto q = qnaMapper.getView(id, qnaDto);
+        // System.out.println(q);
+        model.addAttribute("modify", q);
+
+        return "sub_pages/sub_board/sub_qna_update/qnaUpdate.html";
+    }
+
+    @PostMapping("/qna/update")
+    public String setUpdate(@ModelAttribute QnaDto qnaDto) {
+
+        qnaMapper.setUpdate(qnaDto);
         return "redirect:/board/qna";
     }
 }

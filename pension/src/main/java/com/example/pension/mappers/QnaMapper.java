@@ -27,6 +27,9 @@ public interface QnaMapper {
     @Select("select * from board_qna where board_qna_id = ${id}")
     QnaDto getView(int id, QnaDto qnaDto);
 
+    @Update("update board_qna set board_qna_subject = #{boardQnaSubject}, board_qna_content = #{boardQnaContent} where board_qna_id = #{boardQnaId}")
+    void setUpdate(QnaDto qnaDto);
+
     @Delete("delete from board_qna where board_qna_id = ${id}")
     void getDelete(int id);
 }

@@ -85,7 +85,9 @@
             </tr>
         </table>
         <div class="content_bottom">
-            <div class="bottom-left"></div>
+            <div class="bottom-left">
+                <a href="/board/qna" class="btn gray" style="color: #555; font-weight: bold">전체목록</a>
+            </div>
             <div class="page_number">
                 <a href="#" th:if="${page.page <= 1}"></a>
                 <a th:href="@{/board/notice?(page=${page.page - 1})}" th:unless="${page.page <= 1}">
@@ -123,7 +125,7 @@
                     </th:block>
                 </th:block>
                 <th:block th:unless="${#strings.isEmpty(session.admin)}">
-                    <a href="/admin/qna">관리자 페이지</a>
+                    <a href="/admin/qna" class="btn blue">관리자 페이지</a>
                 </th:block>
 
             </div>
@@ -142,17 +144,6 @@
 </a>
 
 <script src="../../../../static/js/header_nav.js"></script>
-<script>
-    let userid = document.querySelector('input[type=hidden]');
-
-    if (userid.value == "") {
-        function sessionRequest() {
-            if (confirm("문의 하시려면 로그인이 필요합니다.\n로그인 하시겠습니까?")) {
-                location.href = "/login";
-            }
-        }
-    }
-
-</script>
+<script src="/static/js/sub/sub_qna/list.js"></script>
 </body>
 </html>
