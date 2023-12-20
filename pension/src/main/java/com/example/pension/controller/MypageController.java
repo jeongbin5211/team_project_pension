@@ -144,8 +144,9 @@ public class MypageController {
         Map<String, Object> map = new HashMap<>();
         String alert = mypageService.checkReserve(id);
         if(alert.equals("success")) {
-            mypageMapper.setSeceMember(id);
             hs.invalidate();
+            mypageMapper.deleteReserveMember(id);
+            mypageMapper.setSeceMember(id);
             map.put("msg", "success");
         }else if(alert.equals("failure")) {
             map.put("msg", "failure");

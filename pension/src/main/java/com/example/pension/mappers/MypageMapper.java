@@ -56,4 +56,7 @@ public interface MypageMapper {
 
     @Delete("delete from member where id = #{id}")
     public void setSeceMember(int id);
+
+    @Delete("delete from reserve_list where id = #{id}")
+    public void deleteReserveMember(int id);
 }

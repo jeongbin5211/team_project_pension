@@ -89,7 +89,7 @@
                                 <input type="text" class="userid" th:value="${member.userid}" readonly />
                             </li>
                             <li>
-                                <label for="passwd">비밀번호 :</label>
+                                <label for="userpasswd">비밀번호 :</label>
                                 <input type="password" id="userpasswd" class="userpasswd" minlength="8" maxlength="20" onpaste="return false;" oncopy="return false" />
                             </li>
                             <li>
@@ -144,12 +144,13 @@
                         id: id.value
                     },
                     success: function(result) {
+                        console.log(result.msg);
                         if(result.msg == "success") {
-                            alert("회원탈퇴가 완료되었습니다.");
                             location.href = "/";
+                            alert("회원탈퇴가 완료되었습니다.");
                         }else if(result.msg == "failure") {
-                            alert("체크인하지 않은 결제내역이 있습니다.\n취소 후 회원탈퇴 하세요.");
                             location.href = "/mypage/reserveList";
+                            alert("체크인하지 않은 결제내역이 있습니다.\n취소 후 회원탈퇴 하세요.");
                         }
                     }
                 });

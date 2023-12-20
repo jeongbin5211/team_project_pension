@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PensionController {
 
-    @GetMapping("")
+    @GetMapping("/")
     public String getMain() {
         return "index.html";
     }
