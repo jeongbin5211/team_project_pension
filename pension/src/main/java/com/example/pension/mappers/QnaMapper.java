@@ -1,5 +1,6 @@
 package com.example.pension.mappers;
 
+import com.example.pension.dto.AnswerDto;
 import com.example.pension.dto.NoticeDto;
 import com.example.pension.dto.QnaDto;
 import org.apache.ibatis.annotations.*;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 @Mapper
 public interface QnaMapper {
-    @Insert("insert into board_qna values(null, #{boardQnaSubject}, #{boardQnaWriter}, #{boardQnaContent}, now(), 0, #{boardQnaGrp}, #{boardQnaSeq}, #{boardQnaDepth})")
+    @Insert("insert into board_qna values(null, #{boardQnaSubject}, #{boardQnaWriter}, #{boardQnaContent}, now(), 0, #{boardQnaGrp}, #{boardQnaSeq}, #{boardQnaDepth}, 0)")
     void setWriteQna(QnaDto qnaDto);
 
     @Select("select ifnull(max(board_qna_grp) + 1, 1) as maxGrp from board_qna")
@@ -32,4 +33,7 @@ public interface QnaMapper {
 
     @Delete("delete from board_qna where board_qna_id = ${id}")
     void getDelete(int id);
+
+    @Update("update board_qna set board_answer_check = '1' where board_qna_id = #{fkBoardQnaId}")
+    void setAnswerCheck(AnswerDto answerDto);
 }
