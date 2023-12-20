@@ -44,6 +44,8 @@
         </li>
     </ul>
     <div class="qna-content">
+        <input type="hidden" name="qnaId" th:value="${id}">
+        <input type="hidden" name="answerCheck" th:value="${answerCheck}">
         <div class="qna-content-top">
             [[${subject}]]
         </div>
@@ -56,30 +58,106 @@
             </div>
         </div>
         <div class="qna-content-middle">
-            [[${content}]]
-        </div>
-        <div class="qna-content-bottom">
-            <div>
-                <a href="/board/qna" class="btn blue">
-                    질문 목록보기
-                </a>
+            <div class="board_qna_content">[[${content}]]
             </div>
-            <div class="qna-update-box">
-                <th:block th:if="${session.containsKey('userid') and writer eq session.userid}">
-                    <a th:href="@{/board/qna/update?(id=${id})}" class="btn green">수정하기</a>
-                    <button class="btn red" name="delete_btn" th:onclick="remove([[${id}]])">삭제</button>
-                </th:block>
-                <th:block th:unless="${session.containsKey('userid') and writer eq session.userid}">
-                    <th:block th:if="${#strings.isEmpty(session.admin)}">
+        </div>
+        <th:block th:if="${#strings.isEmpty(session.admin)}">
+            <th:block th:if="${answerCheck eq 1}">
+                <div class="board_qna_answer">
+                    <div class="ans-content-top">
+                        답변
+                    </div>
+                    <div class="ans-content-middle">
+                        [[${answerWriter}]]
+                        [[${answerContent}]]
+                        [[${answerRegdate}]]
+                    </div>
+                </div>
+            </th:block>
+            <th:block th:unless="${answerCheck eq 1}">
+                <div class="ans-content-top">
+                    답변 예정
+                </div>
+            </th:block>
+            <div class="qna-content-bottom">
+                <div>
+                    <a href="/board/qna" class="btn blue">
+                        질문 목록보기
+                    </a>
+                </div>
+                <div class="qna-update-box">
+                    <th:block th:if="${session.containsKey('userid') and writer eq session.userid}">
+                        <th:block th:if="${answerCheck eq 1}">
+                            <a th:href="@{/board/qna/write?(userid=${session.userid})}" class="btn blue">다시 문의하기</a>
+                        </th:block>
+                        <th:block th:unless="${answerCheck eq 1}">
+                            <a th:href="@{/board/qna/update?(id=${id})}" class="btn green">수정하기</a>
+                            <button class="btn red" name="delete_btn" th:onclick="remove([[${id}]])">삭제</button>
+                        </th:block>
+                    </th:block>
+                    <th:block th:unless="${session.containsKey('userid') and writer eq session.userid}">
 
                     </th:block>
-                    <th:block th:unless="${#strings.isEmpty(session.admin)}">
-                        <a th:href="@{/board/qna/reply?(id=${id})}" class="btn green">답변하기</a>
-                        <button class="btn red" name="delete_btn" th:onclick="remove([[${id}]])">삭제</button>
-                    </th:block>
-                </th:block>
+                </div>
             </div>
-        </div>
+        </th:block>
+        <th:block th:unless="${#strings.isEmpty(session.admin)}">
+            <th:block th:if="${answerCheck eq 1}">
+                <div class="board_qna_answer">
+                    <div class="ans-content-top">
+                        답변
+                    </div>
+                    <div class="ans-content-middle">
+                        [[${answerWriter}]]
+                    </div>
+                    <div class="qna-content-bottom">
+                        <div>
+                            <a href="/board/qna" class="btn blue">
+                                질문 목록보기
+                            </a>
+                        </div>
+                        <div class="qna-update-box">
+                            <a th:href="@{/board/qna/answer?(id=${id})}" class="btn green">답변수정</a>
+                            <button class="btn red" name="delete_btn" th:onclick="remove([[${id}]])">삭제</button>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+            <th:block th:unless="${answerCheck eq 1}">
+                [[${answerCheck}]]
+                <div class="ans-content-top">
+                    답변 작성란
+                </div>
+                <form action="/board/qna/answer" class="ans-content-middle" method="post">
+                    <input type="hidden" name="fkBoardQnaId" th:value="${id}">
+                    <table>
+                        <tr>
+                            <th>작성자</th>
+                            <td>
+                                <input type="text" class="board_answer_writer" name="boardAnswerWriter" th:value="${session.userid}" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>내용</th>
+                            <td>
+                                <textarea class="board_answer_content" name="boardAnswerContent"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="qna-content-bottom">
+                        <div>
+                            <a href="/board/qna" class="btn blue">
+                                질문 목록보기
+                            </a>
+                        </div>
+                        <div class="qna-update-box">
+                            <input type="submit" class="btn green" value="답변하기">
+                            <button class="btn red" name="delete_btn" th:onclick="remove([[${id}]])">삭제</button>
+                        </div>
+                    </div>
+                </form>
+            </th:block>
+        </th:block>
     </div>
 </section>
 

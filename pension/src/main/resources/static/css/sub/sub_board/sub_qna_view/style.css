@@ -213,6 +213,14 @@ nav {
     border-bottom: 1px solid #e3e3e3;
 }
 
+.board_qna_content {
+    width: 100%;
+    min-height: 400px;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+}
+
 .qna-content-bottom {
     display: flex;
     justify-content: space-between;
@@ -223,6 +231,67 @@ nav {
     width: 160px;
     display: flex;
     justify-content: space-between;
+}
+
+.ans-content-top {
+    width: 100%;
+    padding: 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+tr {
+    height: 50px;
+}
+
+tr:first-child {
+    border-top: 2px solid #555;
+}
+
+th {
+    width: 20%;
+    background-color: #eee;
+}
+
+td {
+    border-right: 1px solid #ccc;
+}
+
+td,
+th {
+    border-bottom: 1px solid #ccc;
+
+}
+
+input {
+    margin-left: 10px;
+    font-size: 16px;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+}
+
+input:focus {
+    border: 0;
+    outline: 1px solid #88c6d6;
+}
+
+.board_ans_subject {
+    width: 50%;
+}
+
+.board_ans_content {
+    width: 100%;
+    height: 400px;
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
 }
 
 /* 게시판 끝 */

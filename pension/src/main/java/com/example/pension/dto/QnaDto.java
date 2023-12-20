@@ -10,6 +10,7 @@ public class QnaDto {
     private int boardQnaGrp;
     private int boardQnaSeq;
     private int boardQnaDepth;
+    private int boardAnswerCheck;
 
     public int getBoardQnaId() {
         return boardQnaId;
@@ -83,6 +84,14 @@ public class QnaDto {
         this.boardQnaDepth = boardQnaDepth;
     }
 
+    public int getBoardAnswerCheck() {
+        return boardAnswerCheck;
+    }
+
+    public void setBoardAnswerCheck(int boardAnswerCheck) {
+        this.boardAnswerCheck = boardAnswerCheck;
+    }
+
     @Override
     public String toString() {
         return "QnaDto{" +
@@ -95,6 +104,7 @@ public class QnaDto {
                 ", boardQnaGrp=" + boardQnaGrp +
                 ", boardQnaSeq=" + boardQnaSeq +
                 ", boardQnaDepth=" + boardQnaDepth +
+                ", boardAnswerCheck=" + boardAnswerCheck +
                 '}';
     }
 }
