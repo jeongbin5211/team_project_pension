@@ -1,5 +1,3 @@
-@charset 'utf-8';
-
 /*사이드네비바 시작*/
 .content-wrap{
     position: fixed;
@@ -234,6 +232,10 @@ td:nth-child(2){
     justify-content: space-between;
     margin-top: 10px;
 }
+.bottom-center {
+    margin: 0 auto;
+}
+
 .bottom-center a {
     width: 30px;
     height: 30px;

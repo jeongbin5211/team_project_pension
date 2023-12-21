@@ -3,6 +3,7 @@ package com.example.pension.controller;
 import com.example.pension.dto.*;
 import com.example.pension.mappers.AdminMapper;
 import com.example.pension.mappers.NoticeMapper;
+import com.example.pension.mappers.QnaMapper;
 import com.example.pension.service.AdminService;
 import com.example.pension.service.NoticeService;
 import com.example.pension.service.RoomSettingService;
@@ -24,6 +25,9 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    @Autowired
+    QnaMapper qnaMapper;
+
     @Autowired
     NoticeService noticeService;
 
@@ -48,19 +52,25 @@ public class AdminController {
         PageDto reservePageDto = adminService.pageCal(page, "reserve_list");
         PageDto noticePageDto = adminService.pageCal(page, "board_notice");
         PageDto memberPageDto = adminService.pageCal(page, "member");
+        PageDto qnaPageDto = adminService.pageCal(page, "board_qna");
 
         List<ReserveListDto> list = adminMapper.getReserves((reservePageDto.getPage()-1)*reservePageDto.getPageCount(), reservePageDto.getPageCount());
         List<NoticeDto> noticeList = adminMapper.getNotices((noticePageDto.getPage()-1)*noticePageDto.getPageCount(), noticePageDto.getPageCount());
         List<MemberDto> memberList = adminMapper.getMembersList((memberPageDto.getPage()-1)*memberPageDto.getPageCount(), memberPageDto.getPageCount());
+        List<QnaDto> qnaList = adminMapper.getQna((qnaPageDto.getPage()-1)*qnaPageDto.getPageCount(), qnaPageDto.getPageCount());
+
         model.addAttribute("reserveList", list);
         model.addAttribute("reserveCnt", adminMapper.getCnt("reserve_list"));
         model.addAttribute("notice", noticeList);
         model.addAttribute("noticeCnt", adminMapper.getCnt("board_notice"));
         model.addAttribute("mem", memberList);
         model.addAttribute("memberCnt", adminMapper.getCnt("member"));
+        model.addAttribute("qna", qnaList);
+        model.addAttribute("qnaCnt", adminMapper.getCnt("board_qna"));
         model.addAttribute("reservePage", reservePageDto);
         model.addAttribute("noticePage", noticePageDto);
         model.addAttribute("memberPage", memberPageDto);
+        model.addAttribute("qnaPage", qnaPageDto);
 
         return "admin/admin_page";
     }
@@ -153,9 +163,49 @@ public class AdminController {
 
 
     @GetMapping("/qna")
-    public String getQna(){
+    public String getQna(Model model, @RequestParam(defaultValue = "1")int page, @RequestParam(value = "searchType",defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
+        Map<String, Object> map = new HashMap<>();
+
+        String searchQuery = "";
+        if(searchType.equals("board_qna_subject")){
+            searchQuery = "where " + searchType + " like '%"+words+"%'";
+        }else if(searchType.equals("board_qna_writer")){
+            searchQuery = "where " + searchType + " '"+ words +"'";
+        }else {
+            searchQuery = "";
+        }
+
+        PageDto pageDto = new PageDto();
+
+        int totalCount = qnaMapper.getListCount(searchQuery);
+
+        int startNum = (page - 1) * pageDto.getPageCount();
+        int totalPage = (int)Math.ceil((double) totalCount / pageDto.getPageCount());
+        int startPage = ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
+        int endPage = startPage + pageDto.getBlockCount() - 1;
+
+        if( endPage > totalPage ) {
+            endPage = totalPage;
+        }
+
+        pageDto.setPage(page);
+        pageDto.setStartPage(startPage);
+        pageDto.setEndPage(endPage);
+        pageDto.setTotalPage(totalPage);
+
+        map.put("searchQuery", searchQuery);
+        map.put("startNum", startNum);
+        map.put("offset", pageDto.getPageCount());
+
+        model.addAttribute("cnt",totalCount);
+        model.addAttribute("qna", qnaMapper.getQna(map));
+        model.addAttribute("qnaPage", pageDto);
+
         return "admin/admin_sub/admin_sub_qna/admin_sub_qna";
     }
+
+
+
 
     @GetMapping("/review")
     public String getReview(){

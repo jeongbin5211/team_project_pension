@@ -179,7 +179,7 @@
                         <div class="section-box">
                             <form class="top-search">
                                     <span class="cnt-wrap">
-                                        전체 질문 수 : 개
+                                        전체 질문 수 : [[${qnaCnt}]]개
                                     </span>
                             </form>
                             <table class="admin-table">
@@ -191,15 +191,20 @@
                                     <th>등록일</th>
                                     <th>답변<br />여부</th>
                                 </tr>
-                                <tr>
-                                    <td>번호</td>
-                                    <td>제목</td>
-                                    <td>작성자</td>
-                                    <td>조회수</td>
-                                    <td>날짜</td>
+                                <tr th:each="qna, l: ${qna}">
+                                    <td>
+                                        [[${qnaCnt - ((memberPage.page -1) * memberPage.pageCount) - l.index}]]
+                                    </td>
+                                    <td>[[${qna.boardQnaSubject}]]</td>
+                                    <td>[[${qna.boardQnaWriter}]]</td>
+                                    <td>[[${qna.boardQnaVisit}]]</td>
+                                    <td>[[${qna.boardQnaRegdate}]]</td>
                                     <td>0</td>
                                 </tr>
                             </table>
+                            <div class="preview">
+                                <a href="/admin/qna">더보기</a>
+                            </div>
                         </div>
                     </div>
                     <div class="section-container">
