@@ -27,6 +27,10 @@ a {
     color: #555;
 }
 
+textarea {
+    resize: none;
+}
+
 .red {
     background-color: #dc3545;
 }
@@ -52,4 +56,8 @@ a {
     font-family: 'Noto Sans KR', sans-serif;
     color: #fff;
     cursor: pointer;
+}
+
+.check-page {
+    color: tomato;
 }
