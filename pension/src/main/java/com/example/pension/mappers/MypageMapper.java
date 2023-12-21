@@ -51,7 +51,7 @@ public interface MypageMapper {
     @Update("update member set addr = #{addr} where id = #{id}")
     public void setUpdateAddr(String addr, int id);
 
-    @Select("select count(*) from reserve_list where id = #{id} and checkin > curdate() and settlement_state = 1")
+    @Select("select count(*) from reserve_list where id = #{id} and checkout > curdate() and settlement_state = 1")
     public int checkReserve(int id);
 
     @Delete("delete from member where id = #{id}")
