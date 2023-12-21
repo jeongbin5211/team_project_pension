@@ -131,20 +131,11 @@ ul li {
 }
 table {
     border-collapse: collapse;
-    width: 100%;
-}
-table tr td:nth-child(1){
-    width: 7%;
-}
-table tr td:nth-child(3),
-table tr td:nth-child(4){
-    width: 10%;
+    width: 60%;
+    margin: 30px auto;
 }
 
-table tr td:nth-child(5),
-table tr td:nth-child(6){
-    width: 15%;
-}
+
 main {
     box-shadow: 0 0 5px 0.25rem #eee;
     border: 1px solid #ccc;
@@ -186,21 +177,27 @@ form {
 
 }
 
-th, td {
-    border: 1px solid #eee;
+th {
+    padding: 5px 10px;
+    text-align: right;
 }
+th:after{
+    margin-left: 10px;
+    content: ':';
+}
+
+tr th:first-child {
+    width: 15%;
+}
+
 tr {
     height: 45px;
 }
-tr:first-child {
-    background-color: #f7f7f7;
-}
+
 td {
-    text-align: center;
-}
-td:nth-child(2){
+    padding: 5px 10px;
     text-align: left;
-    padding-left: 8px;
+    width: 30%;
 }
 .btn2 {
     padding: 5px 12px;
@@ -234,13 +231,10 @@ td:nth-child(2){
 }
 .bottom {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+    justify-content: right;
+    margin-bottom: 10px;
+    width: 95%;
 }
-.bottom-center {
-    margin: 0 auto;
-}
-
 .bottom-center a {
     width: 30px;
     height: 30px;

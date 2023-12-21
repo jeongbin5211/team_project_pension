@@ -1,3 +1,7 @@
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 /*사이드네비바 시작*/
 .content-wrap{
     position: fixed;
@@ -175,6 +179,7 @@ form {
 
 }
 .btn {
+    display: inline-block;
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #c7e0f5;
     padding: 6px 15px;

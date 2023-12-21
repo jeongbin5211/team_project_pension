@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지</title>
+    <title>예약내역 페이지</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../static/css/admin/reset.css">
+    <link rel="stylesheet" href="../../static/css/reset.css">
     <link rel="stylesheet" href="../../../../static/css/admin/admin_sub/admin_sub_reserveList/sub_style.css">
 </head>
 
@@ -29,8 +29,7 @@
                 <div>
                     <select name="searchType" class="searchType">
                         <option value="">전체</option>
-                        <option value="room_A">A동</option>
-                        <option value="room_B">B동</option>
+                        <option th:each="roomName: ${roomName}" th:value="${roomName}">[[${roomName}]]동</option>
                     </select>
                     <input type="submit" class="btn" value="search">
                 </div>
@@ -50,7 +49,7 @@
                     <td>
                         [[${cnt - ((reservePage.page -1) * reservePage.pageCount) - i.index}]]
                     </td>
-                    <td>[[${rl.roomName}]]</td>
+                    <td>[[${rl.roomName}]]동</td>
                     <td>[[${rl.reserveName}]]</td>
                     <td>[[${rl.checkin}]]</td>
                     <td>[[${rl.checkout}]]</td>
@@ -64,7 +63,7 @@
                         </th:block>
                     </td>
                     <td>
-                        <a href="#" class="btn2 yellow">예약정보</a>
+                        <a th:href="@{/admin/reserveListView?(orderNum=${rl.orderNum})}" class="btn2 yellow">예약상세정보</a>
                     </td>
                 </tr>
             </table>
