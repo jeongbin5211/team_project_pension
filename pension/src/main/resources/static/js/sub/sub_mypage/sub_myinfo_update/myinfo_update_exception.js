@@ -25,12 +25,12 @@ function changeUserid() {
         },
         success: function(result) {
             if(result.msg == "success") {
+                location.href = "/mypage/myinfo/checkpw";
                 alert("아이디가 변경되었습니다.\n로그인을 다시 하여 확인하세요.");
-                location.reload();
             }else if(result.msg == "failure") {
+                location.reload();
                 alert("이미 사용중인 아이디입니다.\n다른 아이디로 입력하세요.");
                 userid.value = "";
-                location.reload();
             }
         }
     });
@@ -72,14 +72,14 @@ function changeUserpw() {
         },
         success: function(result) {
             if(result.msg == "success") {
+                location.href = "/mypage/myinfo/checkpw";
                 alert("비밀번호가 변경되었습니다.\n로그인을 다시 하여 확인하세요.");
-                location.reload();
             }else if(result.msg == "failure") {
+                location.reload();
                 alert("현재 비빌번호가 틀립니다.\n다시 입력하세요.");
                 userpw.value = "";
                 new_userpasswd.value = "";
                 renew_userpasswd.value = "";
-                location.reload();
             }
         }
     });
@@ -102,11 +102,11 @@ function changeName() {
         },
         success: function(result) {
             if(result.msg == "success") {
+                location.href = "/mypage/myinfo/update";
                 alert("이름이 변경되었습니다.");
-                location.href = "/mypage/myinfo/update";
             }else{
-                alert("이름 변경에 문제가 발생하였습니다.\n관리자에게 문의바랍니다.");
                 location.href = "/mypage/myinfo/update";
+                alert("이름 변경에 문제가 발생하였습니다.\n관리자에게 문의바랍니다.");
             }
         }
     });
@@ -129,11 +129,11 @@ function changePhone() {
         },
         success: function(result) {
             if(result.msg == "success") {
+                location.href = "/mypage/myinfo/update";
                 alert("휴대폰 번호가 변경되었습니다.");
-                location.href = "/mypage/myinfo/update";
             }else{
-                alert("휴대폰 번호 변경에 문제가 발생하였습니다.\n관리자에게 문의바랍니다.");
                 location.href = "/mypage/myinfo/update";
+                alert("휴대폰 번호 변경에 문제가 발생하였습니다.\n관리자에게 문의바랍니다.");
             }
         }
     });
@@ -156,11 +156,11 @@ function changeEmail() {
         },
         success: function(result) {
             if(result.msg == "success") {
+                location.href = "/mypage/myinfo/update";
                 alert("이메일이 변경되었습니다.");
-                location.href = "/mypage/myinfo/update";
             }else{
-                alert("이메일 변경에 문제가 발생하였습니다.\n관리자에게 문의바랍니다.");
                 location.href = "/mypage/myinfo/update";
+                alert("이메일 변경에 문제가 발생하였습니다.\n관리자에게 문의바랍니다.");
             }
         }
     });
@@ -183,11 +183,11 @@ function changeAddr() {
         },
         success: function(result) {
             if(result.msg == "success") {
+                location.href = "/mypage/myinfo/update";
                 alert("주소가 변경되었습니다.");
-                location.href = "/mypage/myinfo/update";
             }else{
-                alert("주소 변경에 문제가 발생하였습니다.\n관리자에게 문의바랍니다.");
                 location.href = "/mypage/myinfo/update";
+                alert("주소 변경에 문제가 발생하였습니다.\n관리자에게 문의바랍니다.");
             }
         }
     });

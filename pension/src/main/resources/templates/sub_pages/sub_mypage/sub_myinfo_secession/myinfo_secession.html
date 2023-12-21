@@ -150,7 +150,7 @@
                             alert("회원탈퇴가 완료되었습니다.");
                         }else if(result.msg == "failure") {
                             location.href = "/mypage/reserveList";
-                            alert("체크인하지 않은 결제내역이 있습니다.\n취소 후 회원탈퇴 하세요.");
+                            alert("체크인 전 이거나,\n체크인아웃이 완료되지 않은 결제내역이 있습니다.\n체크인 전이라면 결제취소 후,\n체크인 했다면 체크아웃 후 회원탈퇴 하세요.");
                         }
                     }
                 });
