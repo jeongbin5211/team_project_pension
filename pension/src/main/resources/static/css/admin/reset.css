@@ -1,5 +1,4 @@
-@charset 'utf-8';
-
+/*지우기*/
 * {
     margin: 0;
     padding: 0;
@@ -35,3 +34,5 @@ textarea {
     width: 100%;
     text-decoration: underline;
 }
+
+/*지우기*/

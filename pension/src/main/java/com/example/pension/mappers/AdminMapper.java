@@ -2,6 +2,7 @@ package com.example.pension.mappers;
 
 import com.example.pension.dto.MemberDto;
 import com.example.pension.dto.NoticeDto;
+import com.example.pension.dto.QnaDto;
 import com.example.pension.dto.ReserveListDto;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
@@ -63,4 +64,7 @@ public interface AdminMapper {
 
     @Delete("delete from board_notice where board_notice_id = #{boardNoticeId}")
     public int getNoticeDelete(int boardNoticeId);
+
+    @Select("select * from board_qna order by board_qna_id desc limit ${startNum}, ${offset}")
+    public List<QnaDto> getQna(int startNum, int offset);
 }
