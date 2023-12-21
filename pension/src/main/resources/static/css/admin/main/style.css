@@ -199,6 +199,23 @@ table {
     width: 15%;
 }
 
+.reserve-table tr th:nth-child(1){
+    width: 5%;
+}
+.reserve-table tr th:nth-child(2){
+    width: 10%;
+}
+.reserve-table tr th:nth-child(4),
+.reserve-table tr th:nth-child(5){
+    width: 15%;
+}
+.reserve-table tr th:nth-child(6){
+    width: 15%;
+}
+.reserve-table tr td {
+    text-align: center;
+}
+
 .member-table tr th:nth-child(1){
     width: 2%;
 }

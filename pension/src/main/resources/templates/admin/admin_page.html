@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,10 +40,50 @@
                     </div>
                     <div class="section-container">
                         <div class="section-title">
-                            <h4>결제</h4>
+                            <h4>
+                                <a href="/admin/reserveList">예약 관리</a>
+                            </h4>
                         </div>
-                        <div class="section-content">
-                            결제 내역 리스트
+                        <div class="section-box">
+                            <form class="top-search">
+                                    <span class="cnt-wrap">
+                                        전체 예약 수 : [[${reserveCnt}]]개
+                                    </span>
+                            </form>
+                            <table class="admin-table reserve-table">
+                                <thead>
+                                    <tr>
+                                        <th>번호</th>
+                                        <th>객실</th>
+                                        <th>예약자</th>
+                                        <th>체크인</th>
+                                        <th>체크아웃</th>
+                                        <th>결제상태</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="rl, i:${reserveList}">
+                                        <td>
+                                            [[${reserveCnt - ((reservePage.page -1) * reservePage.pageCount) - i.index}]]
+                                        </td>
+                                        <td>[[${rl.roomName}]]동</td>
+                                        <td>[[${rl.reserveName}]]</td>
+                                        <td>[[${rl.checkin}]]</td>
+                                        <td>[[${rl.checkout}]]</td>
+                                        <td>
+                                            <th:block th:if="${rl.settlementState eq 1}">
+                                                결제 완료
+                                            </th:block>
+                                            <th:block th:unless="${rl.settlementState eq 1}">
+                                                결제 취소
+                                            </th:block>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="preview">
+                                <a href="/admin/reserveList">더보기</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,27 +99,36 @@
                         <div class="section-box">
                             <form class="top-search">
                                     <span class="cnt-wrap">
-                                        전체 공지 수 : 개
+                                        전체 공지 수 : [[${noticeCnt}]]개
                                     </span>
                             </form>
                             <table class="admin-table">
-                                <tr>
-                                    <th>번호</th>
-                                    <th>제목</th>
-                                    <th>작성자</th>
-                                    <th>조회수</th>
-                                    <th>등록일</th>
-                                    <th>첨부<br />파일</th>
-                                </tr>
-                                <tr>
-                                    <td>번호</td>
-                                    <td>제목</td>
-                                    <td>작성자</td>
-                                    <td>조회수</td>
-                                    <td>날짜</td>
-                                    <td>0</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>번호</th>
+                                        <th>제목</th>
+                                        <th>작성자</th>
+                                        <th>조회수</th>
+                                        <th>등록일</th>
+                                        <th>첨부<br />파일</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="notice, j:${notice}">
+                                        <td>
+                                            [[${noticeCnt - ((noticePage.page -1) * noticePage.pageCount) - j.index}]]
+                                        </td>
+                                        <td>[[${notice.boardNoticeSubject}]]</td>
+                                        <td>[[${notice.boardNoticeWriter}]]</td>
+                                        <td>[[${notice.boardNoticeVisit}]]</td>
+                                        <td>[[${notice.boardNoticeRegdate}]]</td>
+                                        <td>0</td>
+                                    </tr>
+                                </tbody>
                             </table>
+                            <div class="preview">
+                                <a href="/admin/notice">더보기</a>
+                            </div>
                         </div>
                     </div>
                     <div class="section-container">
@@ -91,7 +140,7 @@
                         <div class="section-box">
                             <form class="top-search">
                                     <span class="cnt-wrap">
-                                        전체 회원 수 : 명
+                                        전체 회원 수 : [[${memberCnt}]]명
                                     </span>
                             </form>
                             <table class="admin-table member-table">
@@ -102,14 +151,19 @@
                                     <th>전화번호</th>
                                     <th>이메일</th>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>5</td>
+                                <tr th:each="m, k: ${mem}">
+                                    <td>
+                                        [[${memberCnt - ((memberPage.page -1) * memberPage.pageCount) - k.index}]]
+                                    </td>
+                                    <td>[[${m.userid}]]</td>
+                                    <td>[[${m.name}]]</td>
+                                    <td>[[${m.phone}]]</td>
+                                    <td>[[${m.email}]]</td>
                                 </tr>
                             </table>
+                            <div class="preview">
+                                <a href="/admin/members">더보기</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,7 +189,7 @@
                                     <th>작성자</th>
                                     <th>조회수</th>
                                     <th>등록일</th>
-                                    <th>첨부<br />파일</th>
+                                    <th>답변<br />여부</th>
                                 </tr>
                                 <tr>
                                     <td>번호</td>
@@ -167,7 +221,7 @@
                                     <th>작성자</th>
                                     <th>조회수</th>
                                     <th>등록일</th>
-                                    <th>첨부<br />파일</th>
+                                    <th>답변<br />여부</th>
                                 </tr>
                                 <tr>
                                     <td>번호</td>
@@ -202,12 +256,6 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
-
-
-
-
-
-
         $.ajax({
             type: "get",
             url: "/admin/cldList",
@@ -247,6 +295,24 @@
             }
         });
     });
+
+    //예약내역
+    // $(function (){
+    //    $.ajax({
+    //        type: "get",
+    //        url: "/admin/getReserves",
+    //        dataType: "json",
+    //        success: function (result){
+    //            let output= "";
+    //            result.reserve.forEach( (rl) => {
+    //                output += ``;
+    //            });
+    //
+    //        }
+    //
+    //    });
+    // });
+
 </script>
 </body>
 
