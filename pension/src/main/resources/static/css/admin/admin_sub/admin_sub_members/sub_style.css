@@ -1,3 +1,7 @@
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 /*사이드네비바 시작*/
 .content-wrap{
     position: fixed;
@@ -130,21 +134,29 @@ table {
     width: 100%;
 }
 table th:nth-child(1){
-    width: 8%;
+    width: 4%;
 }
 
 table th:nth-child(2) {
-    width: 10%;
+    width: 8%;
 }
 table th:nth-child(3),
 table th:nth-child(4){
-    width: 15%;
+    width: 8%;
 }
 table th:nth-child(5),
 table th:nth-child(7){
-    width: 15%;
+    width: 14%;
 }
 
+table th:nth-child(8){
+    width: 10%;
+}
+
+table td:nth-child(6){
+    padding: 0 5px;
+    text-align: left;
+}
 main {
     box-shadow: 0 0 5px 0.25rem #eee;
     border: 1px solid #ccc;
@@ -173,6 +185,7 @@ form {
 
 }
 .btn {
+    display: inline-block;
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #c7e0f5;
     padding: 6px 15px;
@@ -195,6 +208,7 @@ tr:first-child {
     background-color: #f7f7f7;
 }
 td {
+    height: 45px;
     text-align: center;
 }
 .btn2 {

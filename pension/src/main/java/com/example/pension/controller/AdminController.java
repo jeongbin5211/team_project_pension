@@ -67,6 +67,7 @@ public class AdminController {
         model.addAttribute("memberCnt", adminMapper.getCnt("member"));
         model.addAttribute("qna", qnaList);
         model.addAttribute("qnaCnt", adminMapper.getCnt("board_qna"));
+
         model.addAttribute("reservePage", reservePageDto);
         model.addAttribute("noticePage", noticePageDto);
         model.addAttribute("memberPage", memberPageDto);
@@ -163,14 +164,14 @@ public class AdminController {
 
 
     @GetMapping("/qna")
-    public String getQna(Model model, @RequestParam(defaultValue = "1")int page, @RequestParam(value = "searchType",defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
+    public String getQnaList(Model model, @RequestParam(defaultValue = "1")int page, @RequestParam(value = "searchType",defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
         Map<String, Object> map = new HashMap<>();
 
         String searchQuery = "";
         if(searchType.equals("board_qna_subject")){
             searchQuery = "where " + searchType + " like '%"+words+"%'";
         }else if(searchType.equals("board_qna_writer")){
-            searchQuery = "where " + searchType + " '"+ words +"'";
+            searchQuery = "where " + searchType + " = '"+ words +"'";
         }else {
             searchQuery = "";
         }
@@ -198,13 +199,27 @@ public class AdminController {
         map.put("offset", pageDto.getPageCount());
 
         model.addAttribute("cnt",totalCount);
-        model.addAttribute("qna", qnaMapper.getQna(map));
+        model.addAttribute("qna", adminMapper.getQnaList(map));
         model.addAttribute("qnaPage", pageDto);
 
         return "admin/admin_sub/admin_sub_qna/admin_sub_qna";
     }
 
-
+    @GetMapping("/qnaDelete")
+    @ResponseBody
+    public Map<String, Object> getQnaDelete(@RequestParam int id){
+        Map<String, Object> map = new HashMap<>();
+        int cnt = adminMapper.getQnaDelete(id);
+        if(id > 0){
+            if( cnt > 0){
+                map.put("mes", "success");
+            }else{
+                adminMapper.getQnaDelete(id);
+                map.put("mes", "failure");
+            }
+        }
+        return map;
+    }
 
 
     @GetMapping("/review")
@@ -217,10 +232,8 @@ public class AdminController {
         Map<String, Object> map = new HashMap<>();
 
         String queryString = "";
-        if(searchType.equals("room_A")){
-            queryString = "WHERE roomName = '" +words+ "'";
-        }else if(searchType.equals("room_B")){
-            queryString = "WHERE roomName = '"+words+"'";
+        if(!searchType.isEmpty()){
+            queryString = "WHERE room_name = '" +searchType+ "'";
         }else{
             queryString = "";
         }
@@ -250,7 +263,15 @@ public class AdminController {
         model.addAttribute("cnt", totalCount);
         model.addAttribute("reserveList", adminMapper.getReserveList(map));
         model.addAttribute("reservePage", pageDto);
+        model.addAttribute("roomName", adminMapper.getRoomNameList());
         return "admin/admin_sub/admin_sub_reserveList/admin_sub_reserveList";
+    }
+
+    @GetMapping("reserveListView")
+    public String getReserveListView(@RequestParam String orderNum, @ModelAttribute ReserveListDto reserveListDto, Model model){
+        ReserveListDto rd = adminMapper.getReserveListView(orderNum);
+        model.addAttribute("reserveList", rd);
+        return "admin/admin_sub/admin_sub_reserveList/admin_sub_reserveListView";
     }
 
     @GetMapping("/reserveListDelete")

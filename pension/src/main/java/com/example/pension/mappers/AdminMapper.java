@@ -21,6 +21,7 @@ public interface AdminMapper {
     @Select("select count(*) from ${boardName}")
     public int getCnt(String boardName);
 
+
     @Select("select * from member ${queryString} order by id desc limit ${startNum}, ${offset}")
     public List<MemberDto> getMembers(Map<String, Object> map);
 
@@ -39,6 +40,10 @@ public interface AdminMapper {
     @Delete("delete from member where id = #{id}")
     public void getMembersDelete(int id);
 
+
+    @Select("select * from reserve_list where order_num = ${orderNum}")
+    public ReserveListDto getReserveListView(String orderNum);
+
     @Select("select count(*) from reserve_list where id = #{id} and settlement_state = 1 and checkin > curdate()")
     public int getCheckDelete(int id);
 
@@ -54,10 +59,10 @@ public interface AdminMapper {
     @Select("select count(*) from reserve_list where order_num = #{orderNum} and settlement_state = 1 and checkin > curdate()")
     public int getCheckReserveDelete(String orderNum);
 
+
+
     @Select("select * from board_notice order by board_notice_id desc limit ${startNum}, ${offset}")
     public List<NoticeDto> getNotices(int startNum, int offset);
-    @Select("select count(*) from board_notice")
-    public int getNoticeCnt();
 
     @Select("select * from board_notice where board_notice_id = #{boardNoticeId}")
     public NoticeDto getNoticeUpdate(int boardNoticeId);
@@ -65,6 +70,15 @@ public interface AdminMapper {
     @Delete("delete from board_notice where board_notice_id = #{boardNoticeId}")
     public int getNoticeDelete(int boardNoticeId);
 
+
+
     @Select("select * from board_qna order by board_qna_id desc limit ${startNum}, ${offset}")
     public List<QnaDto> getQna(int startNum, int offset);
+    @Select("select * from board_qna ${searchQuery} limit ${startNum}, ${offset}")
+    public List<QnaDto> getQnaList(Map<String, Object> map);
+    @Delete("delete from board_qna where board_qna_id = #{boardQnaId}")
+    public int getQnaDelete(int boardQnaId);
+
+    @Select("select room_name from room_list")
+    public List<String> getRoomNameList();
 }

@@ -27,10 +27,6 @@ a {
     color: #555;
 }
 
-textarea {
-    resize: none;
-}
-
 .red {
     background-color: #dc3545;
 }
@@ -57,7 +53,19 @@ textarea {
     color: #fff;
     cursor: pointer;
 }
-
+table {
+    border-collapse: collapse;
+}
+textarea {
+    resize: none;
+}
+.preview{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-decoration: underline;
+}
 .check-page {
     color: tomato;
 }
