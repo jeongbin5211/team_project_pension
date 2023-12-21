@@ -31,5 +31,5 @@ board_answer_regdate date,
 primary key(board_answer_id),
 foreign key(fk_board_qna_id) references board_qna(board_qna_id)
 on update cascade
-on delete restrict
+on delete cascade
 );

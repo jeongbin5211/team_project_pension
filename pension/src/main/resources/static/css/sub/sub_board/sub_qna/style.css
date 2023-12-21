@@ -301,6 +301,15 @@ td:nth-child(2) {
     margin-top: 30px;
 }
 
+.complete-answer {
+    color: red;
+    margin-right: 5px;
+}
+
+.mr-10 {
+    margin-right: 5px;
+}
+
 /* section 끝 */
 
 /* footer 시작 */

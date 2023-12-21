@@ -287,11 +287,60 @@ input:focus {
 
 .board_ans_content {
     width: 100%;
-    height: 400px;
+    min-height: 400px;
     padding: 10px;
     border: 0;
     outline: 0;
     font-size: 16px;
+}
+
+.ans-content-middle {
+    width: 100%;
+}
+
+.ans-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.ans-regdate {
+    margin-left: 10px;
+}
+
+.ans-content {
+    padding: 30px;
+    min-height: 200px;
+}
+
+.ans-modify-content {
+    width: 100%;
+    min-height: 200px;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+}
+
+.ans-modify-content {
+    width: 100%;
+}
+
+.ans-modify-box {
+    padding: 30px;
+    min-height: 200px;
+    border: 1px solid #ccc
+}
+
+.hide {
+    display: none;
+}
+
+.ans-update-box {
+    width: 180px;
+    display: flex;
+    justify-content: space-between;
 }
 
 /* 게시판 끝 */

@@ -230,7 +230,7 @@ input:focus {
 
 .board_qna_content {
     width: 100%;
-    height: 400px;
+    min-height: 400px;
     padding: 10px;
     border: 0;
     outline: 0;
