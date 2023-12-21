@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 글쓰기 페이지</title>
+    <title>공지사항 상세페이지</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../static/css/admin/reset.css">
@@ -19,37 +19,33 @@
     <div class="main-wrap">
         <div th:insert="~{admin/fragment/header.html::header_f}"></div>
         <main>
-            <h4>게시판 > 공지사항 글쓰기</h4>
-            <form method="post" action="/admin/noticeWrite" onsubmit="return frmCheck()">
+            <h4>게시판 > 공지사항 상세보기</h4>
+            <form>
                 <table class="memUpdate-wrap">
                     <tr>
                         <th>제목 :</th>
-                        <td>
-                           <input type="text" name="boardNoticeSubject">
-                        </td>
+                        <td>[[${notice.boardNoticeSubject}]]</td>
                     </tr>
                     <tr>
                         <th>작성자 :</th>
-                        <td>
-                            <input type="text" name="boardNoticeWriter">
-                        </td>
+                        <td>[[${notice.boardNoticeWriter}]]</td>
                     </tr>
                     <tr>
                         <th>내용 :</th>
-                        <td>
-                            <textarea name="boardNoticeContent"></textarea>
-                        </td>
+                        <td>[[${notice.boardNoticeContent}]]</td>
                     </tr>
 
                 </table>
                 <div class="bottom-area">
                     <div class="bottom-left">
-                        <a href="/admin/notice" class="btn2 yellow">목록</a>
+                        <p>작성일 : <span>[[${notice.boardNoticeRegdate}]]</span></p>
                     </div>
                     <div class="bottom-right">
-                        <input type="submit" class="btn2 blue" value="글쓰기">
+                        <a th:href="@{/admin/noticeUpdate?(boardNoticeId=${notice.boardNoticeId})}" class="btn2 yellow">수정</a>
+                        <button type="button" class="btn2 red" th:onclick="deleteNotice([[${notice.boardNoticeId}]])">삭제</button>
                     </div>
                 </div>
+                <input type="hidden" name="boardNoticeId" th:value="${notice.boardNoticeId}">
             </form>
         </main>
     </div>

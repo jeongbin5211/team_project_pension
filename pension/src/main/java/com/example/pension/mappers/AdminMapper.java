@@ -9,14 +9,22 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface AdminMapper {
     @Select("select * from reserve_list where settlement_state = 1")
     public List<ReserveListDto> cldList();
+    @Select("select * from reserve_list order by id desc limit ${startNum}, ${offset}")
+    public List<ReserveListDto> getReserves(int startNum, int offset);
+    @Select("select count(*) from ${boardName}")
+    public int getCnt(String boardName);
 
-    @Select("select * from member ${queryString} order by id desc")
-    public List<MemberDto> getMembers(String queryString);
+    @Select("select * from member ${queryString} order by id desc limit ${startNum}, ${offset}")
+    public List<MemberDto> getMembers(Map<String, Object> map);
+
+    @Select("select * from member order by id desc limit ${startNum}, ${offset}")
+    public List<MemberDto> getMembersList(int startNum, int offset);
 
     @Select("select count(*) from member ${queryString}")
     public int getMemberCount(String queryString);
@@ -33,8 +41,8 @@ public interface AdminMapper {
     @Select("select count(*) from reserve_list where id = #{id} and settlement_state = 1 and checkin > curdate()")
     public int getCheckDelete(int id);
 
-    @Select("select * from reserve_list ${queryString}")
-    public List<ReserveListDto> getReserveList(String queryString);
+    @Select("select * from reserve_list ${queryString} limit ${startNum}, ${offset}")
+    public List<ReserveListDto> getReserveList(Map<String, Object> map);
 
     @Select("select count(*) from reserve_list ${queryString}")
     public int getReserveCount(String queryString);
@@ -44,6 +52,11 @@ public interface AdminMapper {
 
     @Select("select count(*) from reserve_list where order_num = #{orderNum} and settlement_state = 1 and checkin > curdate()")
     public int getCheckReserveDelete(String orderNum);
+
+    @Select("select * from board_notice order by board_notice_id desc limit ${startNum}, ${offset}")
+    public List<NoticeDto> getNotices(int startNum, int offset);
+    @Select("select count(*) from board_notice")
+    public int getNoticeCnt();
 
     @Select("select * from board_notice where board_notice_id = #{boardNoticeId}")
     public NoticeDto getNoticeUpdate(int boardNoticeId);

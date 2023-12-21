@@ -25,3 +25,13 @@ a {
 table {
     border-collapse: collapse;
 }
+textarea {
+    resize: none;
+}
+.preview{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-decoration: underline;
+}

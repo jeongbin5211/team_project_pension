@@ -43,32 +43,67 @@ public class AdminController {
     String roomImgFileDir;
 
     @GetMapping("")
-    public String getAdmin(){
+    public String getAdmin(Model model, @RequestParam(defaultValue = "1")int page){
+
+        PageDto reservePageDto = adminService.pageCal(page, "reserve_list");
+        PageDto noticePageDto = adminService.pageCal(page, "board_notice");
+        PageDto memberPageDto = adminService.pageCal(page, "member");
+
+        List<ReserveListDto> list = adminMapper.getReserves((reservePageDto.getPage()-1)*reservePageDto.getPageCount(), reservePageDto.getPageCount());
+        List<NoticeDto> noticeList = adminMapper.getNotices((noticePageDto.getPage()-1)*noticePageDto.getPageCount(), noticePageDto.getPageCount());
+        List<MemberDto> memberList = adminMapper.getMembersList((memberPageDto.getPage()-1)*memberPageDto.getPageCount(), memberPageDto.getPageCount());
+        model.addAttribute("reserveList", list);
+        model.addAttribute("reserveCnt", adminMapper.getCnt("reserve_list"));
+        model.addAttribute("notice", noticeList);
+        model.addAttribute("noticeCnt", adminMapper.getCnt("board_notice"));
+        model.addAttribute("mem", memberList);
+        model.addAttribute("memberCnt", adminMapper.getCnt("member"));
+        model.addAttribute("reservePage", reservePageDto);
+        model.addAttribute("noticePage", noticePageDto);
+        model.addAttribute("memberPage", memberPageDto);
+
         return "admin/admin_page";
     }
+
 
     @GetMapping("/notice")
     public String getNotice(Model model, @RequestParam(defaultValue = "1")int page, @RequestParam(value = "searchType",defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
         Map<String, Object> map = new HashMap<>();
 
         String searchQuery = "";
-        if(searchType.equals("boardNoticeSubject")){
+        if(searchType.equals("board_notice_subject")){
             searchQuery = "where " + searchType + " like '%"+words+"%'";
-        }else if(searchType.equals("boardNoticeContent")){
+        }else if(searchType.equals("board_notice_content")){
             searchQuery = "where " + searchType + " like '%"+words+"%'";
         }else {
             searchQuery = "";
         }
+
         PageDto pageDto = new PageDto();
 
+        int totalCount = noticeMapper.getListCount(searchQuery);
+
         int startNum = (page - 1) * pageDto.getPageCount();
+        int totalPage = (int)Math.ceil((double) totalCount / pageDto.getPageCount());
+        int startPage = ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
+        int endPage = startPage + pageDto.getBlockCount() - 1;
+
+        if( endPage > totalPage ) {
+            endPage = totalPage;
+        }
+
+        pageDto.setPage(page);
+        pageDto.setStartPage(startPage);
+        pageDto.setEndPage(endPage);
+        pageDto.setTotalPage(totalPage);
 
         map.put("searchQuery", searchQuery);
         map.put("startNum", startNum);
         map.put("offset", pageDto.getPageCount());
 
-        model.addAttribute("cnt", noticeMapper.getListCount(searchQuery));
-        model.addAttribute("notice", noticeService.getNotice(page, searchType, words));
+        model.addAttribute("cnt",totalCount);
+        model.addAttribute("notice", noticeMapper.getNotice(map));
+        model.addAttribute("noticePage", pageDto);
 
         return "admin/admin_sub/admin_sub_notice/admin_sub_notice";
     }
@@ -81,6 +116,13 @@ public class AdminController {
         // System.out.println(noticeDto.toString());
         noticeMapper.setWriteNotice(noticeDto);
         return "redirect:/admin/notice";
+    }
+
+    @GetMapping("/noticeView")
+    public String getNoticeView(@RequestParam int boardNoticeId, @ModelAttribute NoticeDto noticeDto, Model model){
+        NoticeDto nd = adminMapper.getNoticeUpdate(boardNoticeId);
+        model.addAttribute("notice", nd);
+        return "admin/admin_sub/admin_sub_notice/admin_sub_noticeView";
     }
 
     @GetMapping("/noticeUpdate")
@@ -121,7 +163,9 @@ public class AdminController {
     }
 
     @GetMapping("/reserveList")
-    public String getReserveList(Model model, @RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words) {
+    public String getReserveList(Model model,@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words) {
+        Map<String, Object> map = new HashMap<>();
+
         String queryString = "";
         if(searchType.equals("room_A")){
             queryString = "WHERE roomName = '" +words+ "'";
@@ -130,8 +174,32 @@ public class AdminController {
         }else{
             queryString = "";
         }
-        model.addAttribute("cnt", adminMapper.getReserveCount(queryString));
-        model.addAttribute("reserveList", adminMapper.getReserveList(queryString));
+
+        PageDto pageDto = new PageDto();
+
+        int totalCount = adminMapper.getReserveCount(queryString);
+
+        int startNum = (page - 1) * pageDto.getPageCount();
+        int totalPage = (int)Math.ceil((double) totalCount / pageDto.getPageCount());
+        int startPage = ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
+        int endPage = startPage + pageDto.getBlockCount() - 1;
+
+        if( endPage > totalPage ) {
+            endPage = totalPage;
+        }
+
+        pageDto.setPage(page);
+        pageDto.setStartPage(startPage);
+        pageDto.setEndPage(endPage);
+        pageDto.setTotalPage(totalPage);
+
+        map.put("queryString", queryString);
+        map.put("startNum", startNum);
+        map.put("offset", pageDto.getPageCount());
+
+        model.addAttribute("cnt", totalCount);
+        model.addAttribute("reserveList", adminMapper.getReserveList(map));
+        model.addAttribute("reservePage", pageDto);
         return "admin/admin_sub/admin_sub_reserveList/admin_sub_reserveList";
     }
 
@@ -162,7 +230,9 @@ public class AdminController {
     }
 
     @GetMapping("/members")
-    public String getMembers(Model model, @RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
+    public String getMembers(Model model, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
+        Map<String, Object> map = new HashMap<>();
+
         String queryString = "";
         if(searchType.equals("userid")){
             queryString = "WHERE userid = '"+words+"'" + " and position = 1";
@@ -173,8 +243,32 @@ public class AdminController {
         }else{
             queryString = "WHERE position = 1";
         }
-        model.addAttribute("cnt", adminMapper.getMemberCount(queryString));
-        model.addAttribute("mem", adminMapper.getMembers(queryString));
+
+        PageDto pageDto = new PageDto();
+
+        int totalCount = adminMapper.getMemberCount(queryString);
+
+        int startNum = (page - 1) * pageDto.getPageCount();
+        int totalPage = (int)Math.ceil((double) totalCount / pageDto.getPageCount());
+        int startPage = ((int) (Math.ceil((double) page / pageDto.getBlockCount())) - 1) * pageDto.getBlockCount() + 1;
+        int endPage = startPage + pageDto.getBlockCount() - 1;
+
+        if( endPage > totalPage ) {
+            endPage = totalPage;
+        }
+
+        pageDto.setPage(page);
+        pageDto.setStartPage(startPage);
+        pageDto.setEndPage(endPage);
+        pageDto.setTotalPage(totalPage);
+
+        map.put("queryString", queryString);
+        map.put("startNum", startNum);
+        map.put("offset", pageDto.getPageCount());
+
+        model.addAttribute("cnt",totalCount);
+        model.addAttribute("mem",adminMapper.getMembers(map));
+        model.addAttribute("memberPage", pageDto);
         return "admin/admin_sub/admin_sub_members/admin_sub_members";
     }
     @GetMapping("/memberUpdate")
