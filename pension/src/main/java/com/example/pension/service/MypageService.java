@@ -50,20 +50,20 @@ public class MypageService {
         return mypageMapper.getReserveList(id);
     }
 
-    public String deleteReserveList(String orderNum) {
+    public String hiddenReserveList(String orderNum) {
         String msg = "";
         LocalDate checkin = mypageMapper.getCheckin(orderNum);
         LocalDate now = LocalDate.now();
         int state = mypageMapper.getSettlementState(orderNum);
 
         if(checkin.isBefore(now)) {
-            mypageMapper.deleteReserveList(orderNum);
+            mypageMapper.hiddenReserveList(orderNum);
             msg = "success";
         }else {
             if(state == 1) {
                 msg = "failure";
             }else {
-                mypageMapper.deleteReserveList(orderNum);
+                mypageMapper.hiddenReserveList(orderNum);
                 msg = "success";
             }
         }

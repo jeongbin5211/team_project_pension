@@ -118,6 +118,9 @@
                     </li>
                   </ul>
                 </div>
+                <div class="alert-empty">
+                  
+                </div>
                 <ul class="room-list">
                   
                 </ul>
@@ -244,10 +247,13 @@
                             </form>
                           </li>`;
               });
+              document.querySelector(".alert-empty").innerHTML = "";
+              document.querySelector(".room-list").innerHTML = output;
             }else {
               output += `<h1>예약가능한 객실이 없습니다.</h1>`
+              document.querySelector(".room-list").innerHTML = "";
+              document.querySelector(".alert-empty").innerHTML = output;
             }
-            document.querySelector(".room-list").innerHTML = output;
           }
         });
       });
