@@ -1,5 +1,6 @@
 package com.example.pension.mappers;
 
+import com.example.pension.dto.FileDto;
 import com.example.pension.dto.NoticeDto;
 import org.apache.ibatis.annotations.*;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 public interface NoticeMapper {
 
     @Insert("insert into board_notice values(null, #{boardNoticeSubject}, #{boardNoticeWriter}, #{boardNoticeContent}, now(), 0)")
+    @Options(useGeneratedKeys = true, keyProperty = "boardNoticeId")
     void setWriteNotice(NoticeDto noticeDto);
 
     @Select("select * from board_notice ${searchQuery} order by board_notice_id desc limit ${startNum}, ${offset}")
@@ -31,5 +33,14 @@ public interface NoticeMapper {
     void setUpdate(NoticeDto noticeDto);
 
     @Delete("delete from board_notice where board_notice_id = ${id}")
-    void getDelete(int id);
+    void getNoticeDelete(int id);
+
+    @Insert("insert into files values(#{id}, #{originalName}, #{savedFileName}, #{savedPathName}, #{folderName}, #{ext})")
+    void setFiles(FileDto fileDto);
+
+    @Select("select * from files where id = #{id}")
+    List<FileDto> getFiles(int id);
+
+    @Delete("DELETE FROM files WHERE id = #{id}")
+    public void setFilesDelete(int id);
 }

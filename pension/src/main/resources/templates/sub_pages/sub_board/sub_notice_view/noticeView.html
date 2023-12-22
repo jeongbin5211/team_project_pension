@@ -56,6 +56,15 @@
                 </div>
         </div>
         <div class="notice-content-middle">
+            <div class="files_area">
+                <th:block th:if="${ !files.isEmpty() }">
+                    <th:block th:each="file : ${files}">
+                        <div class="img-box">
+                            <img th:src="@{|/${file.folderName}/${file.savedFileName}|}" alt="">
+                        </div>
+                    </th:block>
+                </th:block>
+            </div>
             <div class="board_notice_content">[[${content}]]
             </div>
         </div>
