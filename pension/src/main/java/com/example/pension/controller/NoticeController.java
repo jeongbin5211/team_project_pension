@@ -1,18 +1,30 @@
 package com.example.pension.controller;
 
+import com.example.pension.dto.FileDto;
 import com.example.pension.dto.NoticeDto;
 import com.example.pension.dto.QnaDto;
 import com.example.pension.mappers.NoticeMapper;
 import com.example.pension.service.NoticeService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/board")
 public class NoticeController {
+
+    @Value("${noticeFileDir}")
+    String noticeFileDir;
 
     @Autowired
     NoticeService noticeService;
@@ -42,9 +54,48 @@ public class NoticeController {
     }
 
     @PostMapping("/notice/write")
-    public String setWriteNotice(@ModelAttribute NoticeDto noticeDto) {
+    public String setWriteNotice(@ModelAttribute NoticeDto noticeDto, @RequestParam List<MultipartFile> boardNoticeFiles) throws IOException {
         // System.out.println(noticeDto.toString());
-        noticeMapper.setWriteNotice(noticeDto);
+
+        if(!boardNoticeFiles.get(0).isEmpty()) {
+
+            noticeService.setWriteNotice(noticeDto);
+            int fileId = noticeDto.getBoardNoticeId();
+            // System.out.println(fileId);
+
+            String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
+
+            File makeFolder = new File(noticeFileDir + folderName);
+            if (!makeFolder.exists()) {
+                makeFolder.mkdir();
+            }
+
+            FileDto fileDto = new FileDto();
+            for(MultipartFile mf : boardNoticeFiles) {
+                String savedPathName = noticeFileDir + folderName;
+
+                String originalName = mf.getOriginalFilename();
+                String ext = originalName.substring(originalName.lastIndexOf("."));
+                String uuid = UUID.randomUUID().toString();
+                String savedFileName = uuid + ext;
+
+                mf.transferTo(new File(savedPathName + "/" + savedFileName));
+
+                fileDto.setId(fileId);
+                fileDto.setOriginalName(originalName);
+                fileDto.setSavedFileName(savedFileName);
+                fileDto.setSavedPathName(savedPathName);
+                fileDto.setFolderName(folderName);
+                fileDto.setExt(ext);
+
+                noticeMapper.setFiles(fileDto);
+            }
+
+
+        }else {
+            noticeService.setWriteNotice(noticeDto);
+        }
+
         return "redirect:/board/notice";
     }
 
@@ -59,6 +110,8 @@ public class NoticeController {
         model.addAttribute("visit", n.getBoardNoticeVisit());
         model.addAttribute("regdate", n.getBoardNoticeRegdate());
         model.addAttribute("content", n.getBoardNoticeContent());
+        model.addAttribute("files", noticeMapper.getFiles(id));
+
         return "sub_pages/sub_board/sub_notice_view/noticeView.html";
     }
 
@@ -86,9 +139,13 @@ public class NoticeController {
     @GetMapping("/notice/delete")
     public String getDelete(@RequestParam int id) {
         // System.out.println(id);
-        noticeMapper.getDelete(id);
+        noticeMapper.getNoticeDelete(id);
+        List<FileDto> files = noticeMapper.getFiles(id);
+        for(FileDto fd: files) {
+            File file = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
+            file.delete();
+        }
+        noticeMapper.setFilesDelete(id);
         return "redirect:/board/notice";
     }
-
-
 }

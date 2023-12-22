@@ -215,7 +215,6 @@ nav {
 
 .board_notice_content {
     width: 100%;
-    min-height: 400px;
     border: 0;
     outline: 0;
     font-size: 16px;
@@ -231,6 +230,10 @@ nav {
     width: 120px;
     display: flex;
     justify-content: space-between;
+}
+
+.img-box img {
+    width: 100%;
 }
 
 /* 게시판 끝 */

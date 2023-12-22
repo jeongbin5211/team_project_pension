@@ -43,6 +43,10 @@ public class NoticeService {
         return noticeMapper.getNotice(map);
     }
 
+    public void setWriteNotice(NoticeDto noticeDto) {
+        noticeMapper.setWriteNotice(noticeDto);
+    }
+
     public String getSearch(String searchType, String words) {
 
         Map<String, Object> map = new HashMap<>();

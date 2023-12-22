@@ -33,3 +33,12 @@ foreign key(fk_board_qna_id) references board_qna(board_qna_id)
 on update cascade
 on delete cascade
 );
+
+create table files(
+id int not null,
+originalName varchar(255),
+savedFileName varchar(255),
+savedPathName varchar(255),
+folderName varchar(10),
+ext varchar(20)
+);

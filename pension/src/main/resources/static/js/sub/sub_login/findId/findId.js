@@ -44,7 +44,7 @@ btn.addEventListener("click", (e) => {
           findedUserid.classList.remove("hidden");
           findedUserid.classList.add("show");
           userName.innerHTML = `${result.name} 회원님의 아이디입니다.`;
-          userUserid.innerHTML = `<strong>아이디 : <span class="green">${result.userid}</span></strong>`;
+          userUserid.innerHTML = `<strong>아이디 : <span class="font-green">${result.userid}</span></strong>`;
         } else {
           alert("회원정보가 잘못되었습니다.\n다시 입력해주세요.");
           name.value = "";
