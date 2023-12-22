@@ -32,13 +32,19 @@
                     <tr>
                         <th>작성자 :</th>
                         <td>
-                            <input type="text" name="boardNoticeWriter">
+                            <input type="text" name="boardNoticeWriter" value="관리자" readonly>
                         </td>
                     </tr>
                     <tr>
                         <th>내용 :</th>
                         <td>
                             <textarea name="boardNoticeContent"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>첨부파일 :</th>
+                        <td>
+                            <input type="file" name="files" multiple>
                         </td>
                     </tr>
 

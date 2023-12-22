@@ -42,6 +42,7 @@
                     <th>작성자</th>
                     <th>조회수</th>
                     <th>등록일</th>
+<!--                    <th>첨부<br />파일</th>-->
                     <th>비고</th>
                 </tr>
                 <tr th:each="notice, j:${notice}">
@@ -56,6 +57,11 @@
                     <td>[[${notice.boardNoticeWriter}]]</td>
                     <td>[[${notice.boardNoticeVisit}]]</td>
                     <td>[[${notice.boardNoticeRegdate}]]</td>
+<!--                    <td>-->
+<!--                        <th:block th:if="${notice.isFiles eq 'Y'}">-->
+<!--                            <span>Y</span>-->
+<!--                        </th:block>-->
+<!--                    </td>-->
                     <td>
                         <a th:href="@{/admin/noticeUpdate?(boardNoticeId=${notice.boardNoticeId})}" class="btn2 yellow">수정 / 삭제</a>
                     </td>
@@ -94,7 +100,7 @@
 
                 </div>
                 <div class="bottom-right">
-                    <a href="/admin/noticeWrite" class="btn2 blue">글쓰기</a>
+                    <a th:href="@{/board/notice/write?(${session.name})}" class="btn2 blue">글쓰기</a>
                 </div>
             </div>
         </main>

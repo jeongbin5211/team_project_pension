@@ -310,6 +310,13 @@ tbody li input {
     text-align: center;
     margin-top: 30px;
 }
+
+.insert_img_wrap {
+    padding: 10px;
+    display: flex;
+    justify-content: right;
+}
+
 .insert_img p {
     width: 20%;
     padding: 5px 10px;

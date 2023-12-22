@@ -49,15 +49,23 @@
                         [[${cnt - ((qnaPage.page -1) * qnaPage.pageCount) - l.index}]]
                     </td>
                     <td>
-                        <a th:href="@{/board/qna/view?(id=${qna.boardQnaId})}">
-                            [[${qna.boardQnaSubject}]]
-                        </a>
+                        <th:block th:if="${qna.boardAnswerCheck eq 1}">
+                            <a th:href="@{/board/qna/view?(id=${qna.boardQnaId})}">
+                                <span class="complete-answer">[답변완료]</span>
+                                [[${qna.boardQnaSubject}]]
+                            </a>
+                        </th:block>
+                        <th:block th:unless="${qna.boardAnswerCheck eq 1}">
+                            <a th:href="@{/board/qna/view?(id=${qna.boardQnaId})}">
+                                <span class="pre-answer">[답변예정]</span>
+                                [[${qna.boardQnaSubject}]]
+                            </a>
+                        </th:block>
                     </td>
                     <td>[[${qna.boardQnaWriter}]]</td>
                     <td>[[${qna.boardQnaVisit}]]</td>
                     <td>[[${qna.boardQnaRegdate}]]</td>
                     <td>
-                        <a href="#" class="btn2 yellow">답변확인</a>
                         <a href="" class="btn2 red" th:onclick="deleteQna([[${qna.boardQnaId}]])">삭제</a>
                     </td>
 

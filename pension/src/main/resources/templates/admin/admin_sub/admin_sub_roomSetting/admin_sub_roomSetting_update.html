@@ -91,7 +91,7 @@
                             <ul class="view_imgs">
                                 <th:block th:unless="${#lists.isEmpty(roomImgList)}">
                                     <li th:each="imgList: ${roomImgList}">
-                                        <img th:onclick="frmCheck([[${imgList.savedFileName}]], [[${imgList.orgName}]])" th:src="@{|/${imgList.folderName}/${imgList.savedFileName}|}" alt="">
+                                        <img th:onclick="frmCheck([[${imgList.savedFileName}]], [[${imgList.orgName}]])" th:src="@{|/${imgList.folderName}/${imgList.savedFileName}|}" alt="객실사진">
                                     </li>
                                 </th:block>
                             </ul>
@@ -106,7 +106,12 @@
                             <div class="insert_img_wrap">
                                 <input type="hidden" name="savedFileName" />
                                 <input type="hidden" name="roomNum" th:value="${roomList.roomNum}" />
-                                <input type="text" name="orgName" readonly />
+                                <th:block th:if="${#lists.isEmpty(roomNum)}">
+                                    <input type="text" name="orgName" value="선택된 파일 없음" readonly/>
+                                </th:block>
+                                <th:block th:unless="${#lists.isEmpty(roomNum)}">
+                                    <input type="text" name="orgName" readonly/>
+                                </th:block>
                                 <button class="btn red">객실 이미지 삭제하기</button>
                             </div>
                         </form>
