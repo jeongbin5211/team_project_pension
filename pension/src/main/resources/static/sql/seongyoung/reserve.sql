@@ -12,6 +12,7 @@ create table reserve_list(
 	settlement_time datetime not null,
 	settlement_state int not null,
 	day_night int not null,
+	hidden_reserve int(1) not null,
 	foreign key(id) references member(id) ON UPDATE cascade ON DELETE restrict
 );
 

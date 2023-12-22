@@ -12,14 +12,14 @@ import java.util.List;
 @Mapper
 public interface MypageMapper {
 
-    @Select("select * from reserve_list where id = #{id}")
+    @Select("select * from reserve_list where id = #{id} and hidden_reserve = 0")
     public List<ReserveListDto> getReserveList(int id);
 
     @Select("select settlement_state from reserve_list where order_num = #{orderNum}")
     public int getSettlementState(String orderNum);
 
-    @Delete("delete from reserve_list where order_num = #{orderNum}")
-    public void deleteReserveList(String orderNum);
+    @Update("update reserve_list set hidden_reserve = 1 where order_num = #{orderNum}")
+    public void hiddenReserveList(String orderNum);
 
     @Update("update reserve_list set settlement_state = 0 where order_num = #{orderNum}")
     public void cancelReserve(String orderNum);

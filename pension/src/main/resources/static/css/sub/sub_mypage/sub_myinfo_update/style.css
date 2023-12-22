@@ -224,10 +224,6 @@ button {
     border-radius: 3px;
 }
 
-.userid_change_btn {
-    margin-left: 20px;
-}
-
 form {
     padding: 10px 10px;
     border: 1px solid #ccc;
@@ -238,25 +234,11 @@ input {
     padding: 2px 6px;
 }
 
-.userid {
-    width: 250px;
-    height: 28px;
-}
-
 .btn_change {
     margin-left: 15px;
     border: 1px solid #555;
     background-color: rgb(92, 132, 241);
     color: #fff;
-}
-
-.userid_change {
-    margin-top: 15px;
-    display: none;
-}
-
-.userid_box {
-    display: block;
 }
 
 .userpasswd_change {

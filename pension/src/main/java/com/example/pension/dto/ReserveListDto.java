@@ -17,6 +17,7 @@ public class ReserveListDto {
     private LocalDateTime settlementTime;
     private int settlementState;
     private int dayNight;
+    private int hiddenReserve;
 
     public int getId() {
         return id;
@@ -120,6 +121,14 @@ public class ReserveListDto {
 
     public void setDayNight(int dayNight) {
         this.dayNight = dayNight;
+    }
+
+    public int getHiddenReserve() {
+        return hiddenReserve;
+    }
+
+    public void setHiddenReserve(int hiddenReserve) {
+        this.hiddenReserve = hiddenReserve;
     }
 
     @Override

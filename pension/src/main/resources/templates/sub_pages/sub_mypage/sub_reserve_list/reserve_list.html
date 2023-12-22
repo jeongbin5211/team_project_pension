@@ -117,14 +117,14 @@
                                     <th:block th:if="${rl.settlementState eq 1}">
                                         <th:block th:if="${rl.checkin >= nowDate}">
                                             <button type="button" class="btn cancel-btn" th:onclick="cancelReserve([[${rl.orderNum}]])">결제취소</button>
-                                            <button type="button" class="btn delete-btn" th:onclick="deleteList([[${rl.orderNum}]])">예약내역 삭제</button>
+                                            <button type="button" class="btn delete-btn" th:onclick="hiddenList([[${rl.orderNum}]])">예약내역 삭제</button>
                                         </th:block>
                                         <th:block th:unless="${rl.checkin >= nowDate}">
-                                            <button type="button" class="btn delete-btn" th:onclick="deleteList([[${rl.orderNum}]])">예약내역 삭제</button>
+                                            <button type="button" class="btn delete-btn" th:onclick="hiddenList([[${rl.orderNum}]])">예약내역 삭제</button>
                                         </th:block>
                                     </th:block>
                                     <th:block th:unless="${rl.settlementState eq 1}">
-                                        <button type="button" class="btn delete-btn" th:onclick="deleteList([[${rl.orderNum}]])">예약내역 삭제</button>
+                                        <button type="button" class="btn delete-btn" th:onclick="hiddenList([[${rl.orderNum}]])">예약내역 삭제</button>
                                     </th:block>
                                 </td>
                             </tr>
@@ -148,11 +148,11 @@
     </div>
 
     <script>
-        function deleteList(orderNum) {
+        function hiddenList(orderNum) {
             if(confirm("예약내역을 삭제하면 복구하실 수 없습니다.\n삭제하시겠습니까?")) {
                 $.ajax({
                     type: "post",
-                    url: "/mypage/deleteReserveList",
+                    url: "/mypage/hiddenReserveList",
                     dataType: "json",
                     data: {orderNum: orderNum},
                     success: function(result) {

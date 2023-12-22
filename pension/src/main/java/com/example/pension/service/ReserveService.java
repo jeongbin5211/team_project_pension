@@ -39,6 +39,7 @@ public class ReserveService {
 
     public void setReserveList(ReserveListDto reserveListDto) {
         reserveListDto.setSettlementState(1);
+        reserveListDto.setHiddenReserve(0);
 
         reserveMapper.setReserveList(reserveListDto);
     }

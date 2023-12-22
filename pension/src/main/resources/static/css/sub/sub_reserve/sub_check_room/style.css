@@ -337,6 +337,15 @@ button {
     display: block;
 }
 
+.alert-empty {
+    width: 100%;
+}
+
+.alert-empty h1 {
+    margin-top: 80px;
+    text-align: center;
+}
+
 .room-list {
     margin-bottom: 0;
     margin-top: 80px;
@@ -346,10 +355,6 @@ button {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 10%;
     row-gap: 20px
-}
-
-.room-list h1 {
-    margin: 0 auto;
 }
 
 .room-list img {

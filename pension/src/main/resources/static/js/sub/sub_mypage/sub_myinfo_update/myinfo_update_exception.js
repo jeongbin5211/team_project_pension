@@ -1,5 +1,3 @@
-let id = document.querySelector("input[name=id]");
-let userid = document.querySelector(".userid");
 let name = document.querySelector(".username");
 let phone = document.querySelector(".usertell");
 let email = document.querySelector(".useremail");
@@ -8,38 +6,10 @@ let userpw = document.querySelector("#userpasswd");
 let new_userpasswd = document.querySelector("#new_userpasswd");
 let renew_userpasswd = document.querySelector("#renew_userpasswd");
 
-function changeUserid() {
-    if(userid.value == "") {
-        alert("변경하실 아이디를 입력하세요.");
-        userid.focus();
-        return false;
-    }
-
-    $.ajax({
-        type: "post",
-        url: "/mypage/changeUserid",
-        dataType: "json",
-        data:{
-            id: id.value,
-            userid: userid.value
-        },
-        success: function(result) {
-            if(result.msg == "success") {
-                location.href = "/mypage/myinfo/checkpw";
-                alert("아이디가 변경되었습니다.\n로그인을 다시 하여 확인하세요.");
-            }else if(result.msg == "failure") {
-                location.reload();
-                alert("이미 사용중인 아이디입니다.\n다른 아이디로 입력하세요.");
-                userid.value = "";
-            }
-        }
-    });
-}
-
 function changeUserpw() {
-    if(userpasswd.value == "") {
+    if(userpw.value == "") {
         alert("현재 비밀번호를 입력하세요.");
-        userpasswd.focus();
+        userpw.focus();
         return false;
     }
     if(new_userpasswd.value == "") {
@@ -58,6 +28,15 @@ function changeUserpw() {
         new_userpasswd.value = "";
         renew_userpasswd.value = "";
         new_userpasswd.focus();
+        return false;
+    }
+    
+    if(new_userpasswd.value == userpw.value) {
+        alert("현재 사용중인 비밀번호입니다.\n새로운 비밀번호로 입력하세요.");
+        userpw.value = "";
+        new_userpasswd.value = "";
+        renew_userpasswd.value = "";
+        userpw.focus();
         return false;
     }
 

@@ -169,11 +169,11 @@ public class MypageController {
         return "sub_pages/sub_mypage/sub_reserve_list/reserve_list.html";
     }
 
-    @PostMapping("/deleteReserveList")
+    @PostMapping("/hiddenReserveList")
     @ResponseBody
     public Map<String, Object> deleteReserveList(@RequestParam String orderNum) {
         Map<String, Object> map = new HashMap<>();
-        String check = mypageService.deleteReserveList(orderNum);
+        String check = mypageService.hiddenReserveList(orderNum);
         if(check.equals("failure")) {
             map.put("msg", "failure");
         }else if(check.equals("success")) {

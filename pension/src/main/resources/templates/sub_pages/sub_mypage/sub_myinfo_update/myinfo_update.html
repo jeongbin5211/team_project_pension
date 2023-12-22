@@ -63,14 +63,8 @@
                         <th>아이디</th>
                         <td>
                             <p class="change_el">
-                                [[${member.userid}]]<button class="userid_change_btn">아이디 변경</button>
+                                [[${member.userid}]]
                             </p>
-                            <form class="userid_change" onsubmit="return changeUserid()">
-                                <p>
-                                    <input type="text" name="userid" class="userid" th:value="${member.userid}" minlength="8" maxlength="20" placeholder="아이디는 8 ~ 20자리로 입력하세요."/>
-                                    <button class="btn_change" id="btn_change_userid">변경하기</button>
-                                </p>
-                            </form>
                         </td>
                     </tr>
                     <tr>
@@ -81,7 +75,7 @@
                                     <tr>
                                         <td class="change_passwd_title">현재 비밀번호</td>
                                         <td>
-                                            <input type="password" class="userpasswd" id="userpasswd" minlength="8" maxlength="20" onpaste="return false;" oncopy="return false" placeholder="현재 비밀번호를 입력하세요."/>
+                                            <input type="password" class="userpasswd" id="userpasswd" onpaste="return false;" oncopy="return false" placeholder="현재 비밀번호를 입력하세요."/>
                                         </td>
                                     </tr>
                                     <tr>
