@@ -45,6 +45,7 @@
     </ul>
     <div class="notice-content">
         <form action="/board/notice/update" method="post" enctype="multipart/form-data" onsubmit="return formCheck()">
+            <input type="hidden" name="id" th:value="${id}">
             <input type="hidden" name="boardNoticeId" th:value="${modify.boardNoticeId}">
             <input type="hidden" name="boardNoticeRegdate" th:value="${modify.boardNoticeRegdate}">
             <input type="hidden" name="boardNoticeVisit" th:value="${modify.boardNoticeVisit}">
@@ -67,12 +68,32 @@
                         <textarea class="board_notice_content" name="boardNoticeContent">[[${modify.boardNoticeContent}]]</textarea>
                     </td>
                 </tr>
-                <!--<tr>
+                <th:block th:if="${files}">
+                    <tr>
+                        <th>수정 전 파일</th>
+                        <td class="img_preview">
+                            <th:block th:each="file : ${files}">
+                                <span class="img-box">
+                                    <img th:src="@{|/${file.folderName}/${file.savedFileName}|}" alt="">
+                                </span>
+                            </th:block>
+                        </td>
+                    </tr>
+                </th:block>
+                <th:block th:unless="${files}">
+                    <tr>
+                        <th>수정 전 파일</th>
+                        <td class="img_preview">
+                            없음
+                        </td>
+                    </tr>
+                </th:block>
+                <tr>
                     <th>첨부파일</th>
                     <td>
                         <input type="file" name="boardNoticeFiles" class="board_notice_files" multiple>
                     </td>
-                </tr>-->
+                </tr>
             </table>
             <div class="notice-content-bottom">
                 <input type="reset" class="notice_list_btn btn blue" value="공지사항 목록보기" onclick="move()">
