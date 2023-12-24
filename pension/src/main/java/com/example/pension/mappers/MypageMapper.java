@@ -1,5 +1,6 @@
 package com.example.pension.mappers;
 
+import com.example.pension.dto.QnaDto;
 import com.example.pension.dto.ReserveListDto;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
@@ -8,6 +9,7 @@ import org.apache.ibatis.annotations.Update;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface MypageMapper {
@@ -59,4 +61,10 @@ public interface MypageMapper {
 
     @Delete("delete from reserve_list where id = #{id}")
     public void deleteReserveMember(int id);
+
+    @Select("select count(*) from board_qna where board_qna_writer = #{userid}")
+    public int getMyQnACnt(String userid);
+
+    @Select("select * from board_qna where board_qna_writer = #{userid} order by board_qna_id asc limit #{startNum}, #{offset}")
+    public List<QnaDto> getMyQnAList(Map<String, Object> map);
 }
