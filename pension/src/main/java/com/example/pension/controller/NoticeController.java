@@ -120,20 +120,79 @@ public class NoticeController {
         // System.out.println(id);
         // noticeDto.setBoardNoticeId(id);
         NoticeDto n = noticeMapper.getView(id, noticeDto);
-        System.out.println(n);
+        // System.out.println(n);
+
+        List<FileDto> files = noticeMapper.getFiles(id);
+        System.out.println(files);
+
+        if (files.isEmpty()) {
+            System.out.println("null");
+        } else {
+            System.out.println("file_exist");
+            model.addAttribute("files", files);
+        }
+
 
         model.addAttribute("modify", n);
+        model.addAttribute("id", id);
 
         return "sub_pages/sub_board/sub_notice_update/noticeUpdate.html";
     }
 
     @PostMapping("/notice/update")
-    public String setUpdate(@ModelAttribute NoticeDto noticeDto) {
+    public String setUpdate(@RequestParam int id, @ModelAttribute NoticeDto noticeDto, @RequestParam List<MultipartFile> boardNoticeFiles) throws IOException {
 
         // System.out.println(noticeDto);
-        noticeMapper.setUpdate(noticeDto);
+        System.out.println(id);
 
-        return "redirect:/board/notice";
+
+        List<FileDto> files = noticeMapper.getFiles(id);
+        System.out.println(files);
+
+        if (boardNoticeFiles.get(0).isEmpty()) {
+            System.out.println("null");
+            noticeMapper.setUpdate(noticeDto);
+        } else {
+            System.out.println("file_exist");
+            for(FileDto fd: files) {
+                File file = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
+                file.delete();
+            }
+            noticeMapper.setFilesDelete(id);
+
+            int fileId = noticeDto.getBoardNoticeId();
+            // System.out.println(fileId);
+
+            String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
+
+            File makeFolder = new File(noticeFileDir + folderName);
+            if (!makeFolder.exists()) {
+                makeFolder.mkdir();
+            }
+
+            FileDto fileDto = new FileDto();
+            for(MultipartFile mf : boardNoticeFiles) {
+                String savedPathName = noticeFileDir + folderName;
+
+                String originalName = mf.getOriginalFilename();
+                String ext = originalName.substring(originalName.lastIndexOf("."));
+                String uuid = UUID.randomUUID().toString();
+                String savedFileName = uuid + ext;
+
+                mf.transferTo(new File(savedPathName + "/" + savedFileName));
+
+                fileDto.setId(fileId);
+                fileDto.setOriginalName(originalName);
+                fileDto.setSavedFileName(savedFileName);
+                fileDto.setSavedPathName(savedPathName);
+                fileDto.setFolderName(folderName);
+                fileDto.setExt(ext);
+
+                noticeMapper.setFiles(fileDto);
+            }
+        }
+
+        return "redirect:/board/notice/view?id="+id;
     }
 
     @GetMapping("/notice/delete")

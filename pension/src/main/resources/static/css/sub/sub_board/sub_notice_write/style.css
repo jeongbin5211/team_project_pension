@@ -255,6 +255,18 @@ input:focus {
     cursor: pointer;
 }
 
+.img-box {
+    width: 100%;
+}
+
+.img-box img {
+    width: 50%;
+}
+
+.img_preview {
+    padding: 10px;
+}
+
 /* 게시판 끝 */
 
 /* section 끝 */
