@@ -32,6 +32,22 @@
                         <td>[[${notice.boardNoticeWriter}]]</td>
                     </tr>
                     <tr>
+                        <th>첨부파일 :</th>
+                        <td>
+                            <th:block th:if="${file.isEmpty()}">
+                                첨부파일이 없습니다.
+                            </th:block>
+                            <th:block th:unless="${file.isEmpty()}">
+                                <th:block th:each="file:${file}">
+                                    <div>
+                                        <img th:src="@{|/${file.folderName}/${file.savedFileName}|}">
+                                        <span>[[${file.originalName}]]</span>
+                                    </div>
+                                </th:block>
+                            </th:block>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>내용 :</th>
                         <td>[[${notice.boardNoticeContent}]]</td>
                     </tr>

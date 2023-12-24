@@ -265,3 +265,9 @@ a.active:hover {
     text-decoration: underline;
     font-weight: bold;
 }
+.complete-answer {
+    color: #406fd6;
+}
+.pre-answer {
+    color: #f00;
+}

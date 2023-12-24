@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,9 @@ public class AdminController {
 
     @Value("${roomImgFileDir}")
     String roomImgFileDir;
+
+    @Value("${noticeFileDir}")
+    String noticeFileDir;
 
     @GetMapping("")
     public String getAdmin(Model model, @RequestParam(defaultValue = "1")int page){
@@ -76,7 +80,7 @@ public class AdminController {
         return "admin/admin_page";
     }
 
-
+//    공지사항
     @GetMapping("/notice")
     public String getNotice(Model model, @RequestParam(defaultValue = "1")int page, @RequestParam(value = "searchType",defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
         Map<String, Object> map = new HashMap<>();
@@ -118,21 +122,59 @@ public class AdminController {
 
         return "admin/admin_sub/admin_sub_notice/admin_sub_notice";
     }
-    @GetMapping("/noticeWrite")
-    public String getNoticeWrite(){
-        return "admin/admin_sub/admin_sub_notice/admin_sub_noticeWrite";
-    }
-    @PostMapping("/noticeWrite")
-    public String setWriteNotice(@ModelAttribute NoticeDto noticeDto) {
-        // System.out.println(noticeDto.toString());
-        noticeMapper.setWriteNotice(noticeDto);
-        return "redirect:/admin/notice";
-    }
+
+//    @GetMapping("/noticeWrite")
+//    public String getNoticeWrite(){
+//        return "admin/admin_sub/admin_sub_notice/admin_sub_noticeWrite";
+//    }
+//    @PostMapping("/noticeWrite")
+//    public String setWriteNotice(@RequestParam("files") List<MultipartFile> files, Model model, @ModelAttribute NoticeDto noticeDto) {
+//        // System.out.println(noticeDto.toString());
+//        noticeMapper.setWriteNotice(noticeDto);
+//        FileDto fileDto = new FileDto();
+//
+//        if( !files.get(0).isEmpty() ){
+//            adminMapper.setFiles(fileDto);
+//            int fileID = noticeDto.getBoardNoticeId();
+//
+//            String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
+//            File makeFolder = new File(noticeFileDir + folderName);
+//            if( !makeFolder.exists() ){
+//                makeFolder.mkdir();
+//            }
+//
+//            FileDto fileDto = new FileDto();
+//            for(MultipartFile mf : files) {
+//                String savedPathName = noticeFileDir + folderName;
+//                String orgName = mf.getOriginalFilename();
+//                String ext = orgName.substring(orgName.lastIndexOf("."));
+//                String uuid = UUID.randomUUID().toString();
+//                String savedFileName = uuid + ext;
+//
+//                mf.transferTo(new File(savedPathName + "/" + savedFileName));
+//
+//                fileDto.setConfigCode(boardDto.getConfigCode());
+//                fileDto.setId(fileID);
+//                fileDto.setOrgName(orgName);
+//                fileDto.setSavedFileName(savedFileName);
+//                fileDto.setSavedPathName(savedPathName);
+//                fileDto.setFolderName(folderName);
+//                fileDto.setExt(ext);
+//
+//                boardService.setFiles(fileDto);
+//            }
+//        }else{
+//            boardService.setBoard(boardDto);
+//        }
+//
+//        return "redirect:/admin/notice";
+//    }
 
     @GetMapping("/noticeView")
     public String getNoticeView(@RequestParam int boardNoticeId, @ModelAttribute NoticeDto noticeDto, Model model){
         NoticeDto nd = adminMapper.getNoticeUpdate(boardNoticeId);
         model.addAttribute("notice", nd);
+        model.addAttribute("file", adminMapper.getFiles());
         return "admin/admin_sub/admin_sub_notice/admin_sub_noticeView";
     }
 
@@ -142,10 +184,49 @@ public class AdminController {
         return "admin/admin_sub/admin_sub_notice/admin_sub_noticeUpdate";
     }
     @PostMapping("/noticeModify")
-    public String getNoticeModify(@ModelAttribute NoticeDto noticeDto){
+    public String getNoticeModify(@RequestParam("files") List<MultipartFile> files, @ModelAttribute NoticeDto noticeDto) throws IOException {
         noticeMapper.setUpdate(noticeDto);
+
+        noticeMapper.setWriteNotice(noticeDto);
+        FileDto fileDto = new FileDto();
+
+        if( !files.get(0).isEmpty() ){
+            adminMapper.setNoticeUpdate(noticeDto);
+            int fileID = noticeDto.getBoardNoticeId();
+
+            String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
+            File makeFolder = new File(noticeFileDir + folderName);
+            if( !makeFolder.exists() ){
+                makeFolder.mkdir();
+            }
+
+            for(MultipartFile mf : files) {
+                String savedPathName = noticeFileDir + folderName;
+                String orgName = mf.getOriginalFilename();
+                String ext = orgName.substring(orgName.lastIndexOf("."));
+                String uuid = UUID.randomUUID().toString();
+                String savedFileName = uuid + ext;
+
+                mf.transferTo(new File(savedPathName + "/" + savedFileName));
+
+
+                fileDto.setId(fileID);
+                fileDto.setOriginalName(orgName);
+                fileDto.setSavedFileName(savedFileName);
+                fileDto.setSavedPathName(savedPathName);
+                fileDto.setFolderName(folderName);
+                fileDto.setExt(ext);
+
+                adminMapper.setFiles(fileDto);
+            }
+        }else{
+            adminMapper.setNoticeUpdate(noticeDto);
+        }
+
         return "redirect:/admin/notice";
     }
+
+
     @GetMapping("/noticeDelete")
     @ResponseBody
     public Map<String, Object> getNoticeDelete(@RequestParam int boardNoticeId){
@@ -163,6 +244,7 @@ public class AdminController {
     }
 
 
+//    qna
     @GetMapping("/qna")
     public String getQnaList(Model model, @RequestParam(defaultValue = "1")int page, @RequestParam(value = "searchType",defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
         Map<String, Object> map = new HashMap<>();
@@ -222,11 +304,14 @@ public class AdminController {
     }
 
 
+    //리뷰
     @GetMapping("/review")
     public String getReview(){
         return "admin/admin_sub/admin_sub_review/admin_sub_review";
     }
 
+
+    //예약상세정보
     @GetMapping("/reserveList")
     public String getReserveList(Model model,@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words) {
         Map<String, Object> map = new HashMap<>();
@@ -291,6 +376,8 @@ public class AdminController {
         return map;
     }
 
+
+    //달력
     @GetMapping("/cldList")
     @ResponseBody
     public Map<String, Object> cldList(){
@@ -300,6 +387,8 @@ public class AdminController {
         return map;
     }
 
+
+    //회원관리
     @GetMapping("/members")
     public String getMembers(Model model, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
         Map<String, Object> map = new HashMap<>();
@@ -369,6 +458,8 @@ public class AdminController {
         return map;
     }
 
+
+    //객실정보관리
     @GetMapping("/roomSetting")
     public String getRoomSetting(Model model){
         List<RoomListDto> roomList = roomSettingService.getRoomList();
