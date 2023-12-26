@@ -8,9 +8,15 @@ public class RoomListDto {
     private int minPerson;
     private String checkinTime;
     private String checkoutTime;
-//    private String savedFileName;
-//    private String folderName;
-//    private int thumbnailCheck;
+    private String roomInfo;
+
+    public String getRoomInfo() {
+        return roomInfo;
+    }
+
+    public void setRoomInfo(String roomInfo) {
+        this.roomInfo = roomInfo;
+    }
 
     public int getRoomNum() {
         return roomNum;
@@ -68,28 +74,17 @@ public class RoomListDto {
         this.checkoutTime = checkoutTime;
     }
 
-//    public String getSavedFileName() {
-//        return savedFileName;
-//    }
-//
-//    public void setSavedFileName(String savedFileName) {
-//        this.savedFileName = savedFileName;
-//    }
-//
-//    public String getFolderName() {
-//        return folderName;
-//    }
-//
-//    public void setFolderName(String folderName) {
-//        this.folderName = folderName;
-//    }
-//
-//    public int getThumbnailCheck() {
-//        return thumbnailCheck;
-//    }
-//
-//    public void setThumbnailCheck(int thumbnailCheck) {
-//        this.thumbnailCheck = thumbnailCheck;
-//    }
-
+    @Override
+    public String toString() {
+        return "RoomListDto{" +
+                "roomNum=" + roomNum +
+                ", roomName='" + roomName + '\'' +
+                ", roomPrice=" + roomPrice +
+                ", maxPerson=" + maxPerson +
+                ", minPerson=" + minPerson +
+                ", checkinTime='" + checkinTime + '\'' +
+                ", checkoutTime='" + checkoutTime + '\'' +
+                ", roomInfo='" + roomInfo + '\'' +
+                '}';
+    }
 }

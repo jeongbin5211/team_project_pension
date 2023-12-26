@@ -339,3 +339,9 @@ input[name=orgName] {
     background-color: #ef3d3d;
     color: #fff;
 }
+textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding: 10px;
+    width: 100%;
+    min-height: 200px;
+}

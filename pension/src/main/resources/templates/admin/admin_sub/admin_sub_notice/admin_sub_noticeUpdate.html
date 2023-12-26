@@ -21,7 +21,8 @@
         <div th:insert="~{admin/fragment/header.html::header_f}"></div>
         <main>
             <h4>게시판 > 공지사항 수정</h4>
-            <form method="post" action="/admin/noticeModify" onsubmit="return frmCheck()">
+            <form method="post" action="/admin/noticeModify" onsubmit="return frmCheck()" enctype="multipart/form-data">
+                <input type="hidden" name="boardNoticeWriter" th:value="${session.name}">
                 <table class="memUpdate-wrap">
                     <tr>
                         <th>제목 :</th>
@@ -35,13 +36,29 @@
                             <textarea name="boardNoticeContent">[[${notice.boardNoticeContent}]]</textarea>
                         </td>
                     </tr>
-                    <tr>
-                        <th>첨부파일 :</th>
-                        <td>
-                            <input type="file" name="files" multiple>
-                        </td>
-                    </tr>
-
+                        <tr>
+                            <th>첨부파일 :</th>
+                            <td>
+                                <th:block th:if="${file.isEmpty()}">
+                                    첨부파일이 없습니다.
+                                </th:block>
+                                <th:block th:unless="${file.isEmpty()}">
+                                    <th:block th:each="file:${file}">
+                                        <div>
+                                            <img th:src="@{|/${file.folderName}/${file.savedFileName}|}">
+                                            <span>[[${file.originalName}]]</span>
+                                        </div>
+                                    </th:block>
+                                </th:block>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>첨부파일 :</th>
+                            <td>
+                                <input type="file" name="files" multiple>
+                            </td>
+                        </tr>
+                        <input type="hidden" name="boardNoticeId" th:value="${notice.boardNoticeId}">
                 </table>
                 <div class="bottom-area">
                     <div class="bottom-left">

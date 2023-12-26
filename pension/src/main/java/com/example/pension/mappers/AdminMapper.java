@@ -58,6 +58,9 @@ public interface AdminMapper {
     @Select("select room_name from room_list")
     public List<String> getRoomNameList();
 
+    @Select("select count(*) from room_list")
+    public int getRoomCnt();
+
 
 
     @Select("select * from board_notice order by board_notice_id desc limit ${startNum}, ${offset}")
@@ -73,8 +76,8 @@ public interface AdminMapper {
     @Update("update board_notice set board_notice_subject = #{boardNoticeSubject}, board_notice_content = #{boardNoticeContent} where board_notice_id = #{boardNoticeId}")
     public void setNoticeUpdate(NoticeDto noticeDto);
 
-    @Select("select * from files")
-    public List<FileDto> getFiles();
+    @Select("select * from files where id = #{boardNoticeId} ")
+    public List<FileDto> getFiles(int boardNoticeId);
 
 
     @Select("select * from board_qna order by board_qna_id desc limit ${startNum}, ${offset}")

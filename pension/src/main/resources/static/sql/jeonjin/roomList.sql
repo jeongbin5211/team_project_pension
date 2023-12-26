@@ -6,6 +6,7 @@ create table room_list(
    min_person int not null,
    checkin_time varchar(10) not null,
    checkout_time varchar(10) not null,
+   room_info varchar(255) not null,
    primary key(room_num)
 );
 
