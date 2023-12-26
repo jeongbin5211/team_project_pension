@@ -119,7 +119,7 @@ nav {
 .main-bg {
     width: 100%;
     height: 800px;
-    background: url('../../images/팬션.jpg') 50% 50% no-repeat;
+    background: url('../../images/A_main.jpg') 50% 50% no-repeat;
     background-size: cover;
     z-index: 0;
 }

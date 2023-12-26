@@ -344,6 +344,7 @@ button {
 .alert-empty h1 {
     margin-top: 80px;
     text-align: center;
+    color: #333;
 }
 
 .room-list {
@@ -383,7 +384,7 @@ button {
 
 .room-list-txt {
     margin-bottom: 0;
-    padding: 25px 15px;
+    padding: 25px;
 }
 
 .room-price {

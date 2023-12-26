@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface RoomSettingMapper {
-    @Insert("insert into room_list values(null, #{roomName}, #{roomPrice}, #{maxPerson}, #{minPerson}, #{checkinTime}, #{checkoutTime})")
+    @Insert("insert into room_list values(null, #{roomName}, #{roomPrice}, #{maxPerson}, #{minPerson}, #{checkinTime}, #{checkoutTime}, #{roomInfo})")
     public void addRoom(RoomListDto roomListDto);
 
     @Select("select room_name from room_list")
@@ -26,7 +26,7 @@ public interface RoomSettingMapper {
     @Delete("delete from room_images where id = #{roomNum} and savedFileName = #{savedFileName}")
     public void deleteRoomInfoImg(int roomNum, String savedFileName);
 
-    @Update("update room_list set room_name = #{roomName}, room_price = #{roomPrice}, max_person = #{maxPerson}, min_person = #{minPerson}, checkin_time = #{checkinTime}, checkout_time = #{checkoutTime} where room_num = #{roomNum}")
+    @Update("update room_list set room_name = #{roomName}, room_price = #{roomPrice}, max_person = #{maxPerson}, min_person = #{minPerson}, checkin_time = #{checkinTime}, checkout_time = #{checkoutTime}, room_info = #{roomInfo} where room_num = #{roomNum}")
     public void setRoomUpdate(RoomListDto roomListDto);
 
     @Select("select room_name from room_list where room_num = #{roomNum}")
@@ -49,4 +49,7 @@ public interface RoomSettingMapper {
 
     @Select("select * from room_images where id = #{roomNum} and savedFileName = #{savedFileName}")
     public RoomImageDto getDeleteImg(int roomNum, String savedFileName);
+
+    @Select("select * from room_list where room_name = #{roomName}")
+    public RoomListDto getRoom(String roomName);
 }

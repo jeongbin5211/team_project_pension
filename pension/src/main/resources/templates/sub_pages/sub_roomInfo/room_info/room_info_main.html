@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개비리길 펜션</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../static/css/reset.css">
+    <link rel="stylesheet" href="../../../../static/css/sub/sub_roomInfo/room_info_A/styleMain.css">
+</head>
+
+<body>
+    <div id="wrap">
+
+        <header th:insert="~{fragment/header.html::header_f}"></header>
+        <!-- main 시작 -->
+        <main>
+            <section class="sub-title-wrap">
+                <div class="sub-title-bg">
+                    <div class="sub-title-area">
+                        <h3 class="sub-title">객실안내</h3>
+                        <div class="line"></div>
+                        <p class="sub-title-txt">객실을 선택하여 정보를 확인하세요.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!--  객실정보 -->
+
+        <section class="room-info-container">
+            <ul class="sub-navigate-nav">
+                <th:block th:if="${#lists.isEmpty(roomList)}">
+
+                </th:block>
+                <th:block th:unless="${#lists.isEmpty(roomList)}">
+                    <h4>Information</h4>
+                    <li th:each="rl :${roomList}">
+                        <a th:href="@{/room_info?(roomName=${rl.roomName})}">[[${rl.roomName}]]동</a>
+                    </li>
+                </th:block>
+            </ul>
+            <div class="main-wrapper">
+                <th:block th:if="${#lists.isEmpty(roomList)}">
+                    <div class="room_select_alert">
+                        등록된 객실이 없습니다.
+                    </div>
+                </th:block>
+                <th:block th:unless="${#lists.isEmpty(roomList)}">
+                    <div class="room_select_alert">
+                        <i class="fa-solid fa-arrow-pointer"></i>&nbsp;&nbsp;
+                        객실을 선택 후 객실정보를 확인하세요.
+                    </div>
+                    <div class="room-list-wrap">
+                        <div class="room-list-repeat" th:each="rl: ${roomList}">
+                            <a th:href="@{/room_info?(roomName=${rl.roomName})}">
+                                <div class="room-list">
+                                    <div class="img-area">
+                                        <img th:src="@{|/${rl.roomName}/${rl.roomName}_thumbnail.jpg|}" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
+                                    </div>
+                                    <div class="room-list-txt">
+                                        <h3>[[${rl.roomName}]]동</h3>
+                                        <p>[[${rl.minPerson}]]명 ~ [[${rl.maxPerson}]]명</p>
+                                        <p>[[${rl.roomPrice}]]원</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </section>
+
+        <footer th:insert="~{fragment/footer.html::footer_f}"></footer>
+    </div>
+    <script src="/static/js/sub/sub_roomInfo/slideshow.js"></script>
+    <script src="/static/js/header_nav.js"></script>
+</body>
+
+</html>
