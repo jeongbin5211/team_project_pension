@@ -35,9 +35,6 @@ public interface MypageMapper {
     @Select("select userid from member")
     public List<String> checkUserid();
 
-    @Update("update member set userid = #{userid} where id = #{id}")
-    public void setUpdateUserid(String userid, int id);
-
     @Update("update member set userpw = #{newUserpw} where id = #{id}")
     public void setUpdateUserpw(String newUserpw, int id);
 

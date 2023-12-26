@@ -23,9 +23,9 @@
             <section class="sub-title-wrap">
                 <div class="sub-title-bg">
                     <div class="sub-title-area">
-                        <h3 class="sub-title">유채 A</h3>
+                        <h3 class="sub-title">유채 [[${roomList.roomName}]]동</h3>
                         <div class="line"></div>
-                        <p class="sub-title-txt">유채 A 안내입니다</p>
+                        <p class="sub-title-txt"></p>
                     </div>
                 </div>
             </section>
@@ -35,20 +35,30 @@
 
         <section class="room-info-container">
             <ul class="sub-navigate-nav">
-                <h4>Information</h4>
-                <li>
-                    <a href="#">A동</a>
-                </li>
+                <th:block th:if="${#lists.isEmpty(roomNameList)}">
+
+                </th:block>
+                <th:block th:unless="${#lists.isEmpty(roomNameList)}">
+                    <h4>Information</h4>
+                    <li th:each="rl :${roomNameList}">
+                        <th:block th:if="${rl eq roomList.roomName}">
+                            <a th:href="@{/room_info?(roomName=${rl})}" class="check-page">[[${rl}]]동</a>
+                        </th:block>
+                        <th:block th:unless="${rl eq roomList.roomName}">
+                            <a th:href="@{/room_info?(roomName=${rl})}">[[${rl}]]동</a>
+                        </th:block>
+                    </li>
+                </th:block>
             </ul>
             <div class="main-wrapper">
                 <div class="main_left">
                     <div class="room-info">
                         <div class="room_service">
                             <p>
-                                인 원: 기준 6인 / 최대 12인
+                                인 원: 기준 [[${roomList.minPerson}]]인 / 최대 [[${roomList.maxPerson}]]인
                             </p>
                             <p>
-                                체크인 시간: 15:00 / 체크아웃 : 11:00
+                                체크인 시간: [[${roomList.checkinTime}]] / 체크아웃 : [[${roomList.checkoutTime}]]
                             </p>
                             <p>
                                 인원추가요금 : 성인 10,000원, 유아(24개월 미만) 무료
@@ -93,10 +103,7 @@
                                 객실 정보
                             </p>
                             <p>
-                                거실+방, 독채형, 복층형 / 150평
-                                구비시설<br />
-                                침대,에어컨, TV, 취사시설, 식탁, 냉장고,헤어드라이어기<br />
-                                객실5개 + 거실 + 화장실2개
+                               <textarea class="room_info_content" readonly>[[${roomList.roomInfo}]]</textarea>
                             </p>
                         </div>
                     </div>
@@ -104,7 +111,7 @@
                 <div class="main_right">
                     <div id="slideShow">
                         <ul class="slides">
-                            <li><img src="/static/images/팬션.jpg" alt=""></li>
+                            <li><img th:src="@{|/static/images/${roomList.roomName}_main.jpg|}" alt=""></li>
                             <li><img src="/static/images/a3.jpg" alt=""></li>
                             <li><img src="/static/images/a4.jpg" alt=""></li>
                             <li><img src="/static/images/a5.jpg" alt=""></li>

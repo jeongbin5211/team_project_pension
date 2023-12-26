@@ -1,4 +1,5 @@
-let name = document.querySelector(".username");
+let id = document.querySelector("input[name=id]")
+let username = document.querySelector(".username");
 let phone = document.querySelector(".usertell");
 let email = document.querySelector(".useremail");
 let addr = document.querySelector(".useraddr");
@@ -65,9 +66,9 @@ function changeUserpw() {
 }
 
 function changeName() {
-    if(name.value == "") {
+    if(username.value == "") {
         alert("변경하실 이름을 입력해 주세요.");
-        name.focus();
+        username.focus();
         return false;
     }
 
@@ -77,7 +78,7 @@ function changeName() {
         dataType: "json",
         data:{
             id: id.value,
-            name: name.value
+            name: username.value
         },
         success: function(result) {
             if(result.msg == "success") {
