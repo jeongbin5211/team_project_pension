@@ -105,14 +105,11 @@ nav {
   border-radius: 0 0 5px 5px;
 }
 
-/* main 시작 */
 .sub-title-wrap {
   width: 100%;
   height: 300px;
-  background-image: linear-gradient(
-      rgba(84, 84, 84, 0.5),
-      rgba(84, 84, 84, 0.5)
-    ),
+  background-image: linear-gradient(rgba(84, 84, 84, 0.5),
+      rgba(84, 84, 84, 0.5)),
     url("../../../../images/s12.jpeg");
   background-repeat: no-repeat;
   background-position: 50% 30%;
@@ -145,144 +142,126 @@ nav {
   background-color: #fff;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  height: 100vh;
-}
+/* main 시작 */
 
-.room_choice {
-  text-align: center;
-  justify-content: center;
-  font-size: 35px;
-  display: flex;
-  gap: 300px;
-  padding: 100px;
-  
-}
-.r1{
-border-bottom: 2px solid #333;
-
-
-}
-
-.r1:hover,
-.r2:hover {
-  cursor: pointer;
-  transform: scale(1.2);
-  color: #363535;
-  transition-duration: 0.5s;
-  
-}
-
-.room_service p ,
-.room_service2 p{
+.room_service p,
+.room_service2 p {
   padding-bottom: 10px;
   font-size: 16px;
 }
 
-.container {
-  width: 100%;
+.room-info-container {
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
+  padding: 150px 0;
   display: flex;
-  padding-bottom: 100px;
   justify-content: space-between;
 }
 
-
-.main_left {
-  
-  
-  max-width: 30%;
+.sub-navigate-nav {
+  width: 10%;
 }
 
+.sub-navigate-nav h4 {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.sub-navigate-nav li {
+  margin-bottom: 5px;
+}
+
+.sub-navigate-nav li a:hover {
+  color: tomato;
+}
+
+.main-wrapper {
+  display: flex;
+  width: 100%;
+  margin-left: 80px;
+}
+
+.main_left {
+  width: 39%;
+}
 
 .room_service {
-
   margin-bottom: 30px;
 }
 
-
-.roominfo_icons i{
+.roominfo_icons i {
   font-size: 25px;
- display: inline-block;
- margin-right: 15px;
- width: 25px;
-
+  display: inline-block;
+  margin-right: 15px;
+  width: 25px;
 }
-.roominfo_icons i:last-child{
+
+.roominfo_icons i:last-child {
   margin-right: 0;
 }
-
 
 .roominfo_icons i:hover {
   transform: scale(1.2);
 }
-
 
 .room_service2 {
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-
-
 /* ---------------------사진슬라이드 ------------------------- */
+
 .main_right {
-  /* background-color: red; */
-  width: 65%;
+  width: 61%;
   text-align: center;
- margin-top: 100px;
-  /* background-color: green;  오른쪽 배경 스타일 */
+  margin-top: 100px;
 }
 
-
-#slideShow{
+#slideShow {
   width: 100%;
   height: 70%;
   position: relative;
   margin: 0px auto;
-  overflow: hidden;   
-  display: flex; 
-  align-items: center; 
+  margin-left: 0px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
+#slideShow img {
+    width: 100%;
+}
 
-.slides{
+.slides {
   position: absolute;
   left: 0;
   top: 0;
-  /* width: 2500px;  */
-  transition: left 0.5s ease-out; 
-
+  transition: left 0.5s ease-out;
 }
 
-
-.slides li:first-child{
-  margin-left: 70px;
+.slides li:first-child {
+  margin-left: 65px;
 }
 
-
-.slides li:not(:last-child){
+.slides li:not(:last-child) {
   float: left;
-  margin-right: 100px;
+  margin-right: 240px;
 }
 
-.slides li{
+.slides li {
   float: left;
-  width:640px;
+  width: 500px;
   height: 420px;
   overflow: hidden;
 }
-  .slides li img{
-  width:100%;
-  }
 
-.controller span{
-  position:absolute;
+.slides li img {
+  width: 100%;
+}
+
+.controller span {
+  position: absolute;
   background-color: transparent;
   color: black;
   text-align: center;
@@ -293,121 +272,34 @@ border-bottom: 2px solid #333;
   cursor: pointer;
 }
 
-
-.controller span:hover{
+.controller span:hover {
   background-color: rgba(128, 128, 128, 0.11);
 }
 
-.prev{
+.prev {
   left: 10px;
 }
 
-
-.prev:hover{
-  transform: translateX(-10px);
+.next {
+  right: 0px;
 }
 
-.next{
-  right: 10px;
-}
-
-
-.next:hover{
-  transform: translateX(10px);
-}
-
-
-.slides_bar{
-  
-  display: inline-block;
-  margin: 0 auto;
-  width: 640px;
-
- 
-}
-
-
-.slides_bar img{
-  width: 20%;
-  height: 100px;
-
-
-
-}
 /* -----------------------예약버튼---------------------------- */
-.review_box{
-display: flex;
 
-margin-left: 0;
-margin-top: 30px;
-}
-.review{
-  background-color: red;
-  width: 570px;
-  height: 80px;
-
-}
-.reserve{
-  padding: 15px;
-
-  font-size: 20px;
-  background-color: green;
-  
-
+.reserve_box {
+  display: flex;
+  justify-content: right;
+  margin-left: 0;
+  margin-top: 100px;
 }
 
+.reserve {
+  margin-right: 60px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.reserve a {
+  color: #fff;
+}
 
 /* footer 시작 */
 
@@ -459,6 +351,7 @@ footer {
 .footer-sns a:hover {
   color: tomato;
 }
+
 /* footer 끝 */
 
 /* Anchor 시작 */
