@@ -106,6 +106,12 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th>객실정보</th>
+                                        <td>
+                                            <textarea name="roomInfo"></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td colspan="2">
                                             <button type="button" class="btn addRoom_btn">등록하기</button>
                                         </td>
@@ -126,6 +132,7 @@
         let checkinTime = document.querySelector("input[name=checkinTime]");
         let checkoutTime = document.querySelector("input[name=checkoutTime]");
         let addRoom_btn = document.querySelector(".addRoom_btn");
+        let roomInfo = document.querySelector("textarea[name=roomInfo]");
 
 
 
@@ -162,6 +169,11 @@
                 checkoutTime.focus();
                 return false;
             }
+            if( roomInfo.value == ""){
+                alert("객실정보를 입력하세요");
+                roomInfo.focus();
+                return false;
+            }
 
             $.ajax({
                 type: "post",
@@ -173,7 +185,8 @@
                     maxPerson: maxPerson.value,
                     minPerson: minPerson.value,
                     checkinTime: checkinTime.value,
-                    checkoutTime: checkoutTime.value
+                    checkoutTime: checkoutTime.value,
+                    roomInfo: roomInfo.value
                 },
                 success: function(res){
                     if(res.msg == "success"){

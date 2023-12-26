@@ -165,7 +165,7 @@ form {
 .memUpdate-wrap td input {
     font-family: 'Noto Sans KR', sans-serif;
     width: 40%;
-    padding: 10px 30px;
+    padding: 10px 15px;
     outline: none;
     border: 1px solid #ccc;
 }

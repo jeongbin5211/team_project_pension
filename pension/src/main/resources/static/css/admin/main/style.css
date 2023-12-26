@@ -282,4 +282,47 @@ a.active:hover {
     text-decoration: underline;
     font-weight: bold;
 }
+
+.room-list {
+    width: 100%;
+    border-collapse: collapse;
+}
+.room-list tr {
+    border-bottom: 1px solid #666;
+}
+
+.room-list th {
+    height: 50px;
+    text-align: center;
+    background-color: #2c3e50;
+    border-right: 1px solid #fff;
+}
+.room-list th:last-child {
+    border-right: none;
+}
+.room-list td {
+    height: 100px;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+.room-list th:nth-child(1){
+    width: 12%;
+}
+.room-list th:nth-child(2){
+    width: 10%;
+}
+
+.room-list th:nth-child(4){
+    width: 40%;
+}
+.room-list th:nth-child(5){
+    width: 5%
+}
+
+
+.room-list img{
+    width: 70%;
+    height: 70px;
+}
  

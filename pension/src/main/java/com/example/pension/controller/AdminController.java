@@ -4,6 +4,7 @@ import com.example.pension.dto.*;
 import com.example.pension.mappers.AdminMapper;
 import com.example.pension.mappers.NoticeMapper;
 import com.example.pension.mappers.QnaMapper;
+import com.example.pension.mappers.RoomSettingMapper;
 import com.example.pension.service.AdminService;
 import com.example.pension.service.NoticeService;
 import com.example.pension.service.RoomSettingService;
@@ -62,6 +63,7 @@ public class AdminController {
         List<NoticeDto> noticeList = adminMapper.getNotices((noticePageDto.getPage()-1)*noticePageDto.getPageCount(), noticePageDto.getPageCount());
         List<MemberDto> memberList = adminMapper.getMembersList((memberPageDto.getPage()-1)*memberPageDto.getPageCount(), memberPageDto.getPageCount());
         List<QnaDto> qnaList = adminMapper.getQna((qnaPageDto.getPage()-1)*qnaPageDto.getPageCount(), qnaPageDto.getPageCount());
+        List<RoomListDto> roomList = roomSettingService.getRoomList();
 
         model.addAttribute("reserveList", list);
         model.addAttribute("reserveCnt", adminMapper.getCnt("reserve_list"));
@@ -71,6 +73,8 @@ public class AdminController {
         model.addAttribute("memberCnt", adminMapper.getCnt("member"));
         model.addAttribute("qna", qnaList);
         model.addAttribute("qnaCnt", adminMapper.getCnt("board_qna"));
+        model.addAttribute("roomList", roomList);
+        model.addAttribute("roomListCnt", adminMapper.getRoomCnt());
 
         model.addAttribute("reservePage", reservePageDto);
         model.addAttribute("noticePage", noticePageDto);
@@ -123,76 +127,35 @@ public class AdminController {
         return "admin/admin_sub/admin_sub_notice/admin_sub_notice";
     }
 
-//    @GetMapping("/noticeWrite")
-//    public String getNoticeWrite(){
-//        return "admin/admin_sub/admin_sub_notice/admin_sub_noticeWrite";
-//    }
-//    @PostMapping("/noticeWrite")
-//    public String setWriteNotice(@RequestParam("files") List<MultipartFile> files, Model model, @ModelAttribute NoticeDto noticeDto) {
-//        // System.out.println(noticeDto.toString());
-//        noticeMapper.setWriteNotice(noticeDto);
-//        FileDto fileDto = new FileDto();
-//
-//        if( !files.get(0).isEmpty() ){
-//            adminMapper.setFiles(fileDto);
-//            int fileID = noticeDto.getBoardNoticeId();
-//
-//            String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
-//            File makeFolder = new File(noticeFileDir + folderName);
-//            if( !makeFolder.exists() ){
-//                makeFolder.mkdir();
-//            }
-//
-//            FileDto fileDto = new FileDto();
-//            for(MultipartFile mf : files) {
-//                String savedPathName = noticeFileDir + folderName;
-//                String orgName = mf.getOriginalFilename();
-//                String ext = orgName.substring(orgName.lastIndexOf("."));
-//                String uuid = UUID.randomUUID().toString();
-//                String savedFileName = uuid + ext;
-//
-//                mf.transferTo(new File(savedPathName + "/" + savedFileName));
-//
-//                fileDto.setConfigCode(boardDto.getConfigCode());
-//                fileDto.setId(fileID);
-//                fileDto.setOrgName(orgName);
-//                fileDto.setSavedFileName(savedFileName);
-//                fileDto.setSavedPathName(savedPathName);
-//                fileDto.setFolderName(folderName);
-//                fileDto.setExt(ext);
-//
-//                boardService.setFiles(fileDto);
-//            }
-//        }else{
-//            boardService.setBoard(boardDto);
-//        }
-//
-//        return "redirect:/admin/notice";
-//    }
-
     @GetMapping("/noticeView")
     public String getNoticeView(@RequestParam int boardNoticeId, @ModelAttribute NoticeDto noticeDto, Model model){
         NoticeDto nd = adminMapper.getNoticeUpdate(boardNoticeId);
         model.addAttribute("notice", nd);
-        model.addAttribute("file", adminMapper.getFiles());
+        model.addAttribute("file", adminMapper.getFiles(boardNoticeId));
         return "admin/admin_sub/admin_sub_notice/admin_sub_noticeView";
     }
 
     @GetMapping("/noticeUpdate")
     public String getNoticeUpdate(@RequestParam int boardNoticeId, Model model) {
         model.addAttribute("notice", adminMapper.getNoticeUpdate(boardNoticeId));
+        model.addAttribute("file", adminMapper.getFiles(boardNoticeId));
         return "admin/admin_sub/admin_sub_notice/admin_sub_noticeUpdate";
     }
     @PostMapping("/noticeModify")
     public String getNoticeModify(@RequestParam("files") List<MultipartFile> files, @ModelAttribute NoticeDto noticeDto) throws IOException {
         noticeMapper.setUpdate(noticeDto);
 
-        noticeMapper.setWriteNotice(noticeDto);
         FileDto fileDto = new FileDto();
 
         if( !files.get(0).isEmpty() ){
             adminMapper.setNoticeUpdate(noticeDto);
             int fileID = noticeDto.getBoardNoticeId();
+            List<FileDto> orgFiles = noticeMapper.getFiles(fileID);
+            for(FileDto fd: orgFiles) {
+                File file = new File(fd.getSavedPathName() + "/" + fd.getSavedFileName());
+                file.delete();
+            }
+            noticeMapper.setFilesDelete(fileID);
 
             String folderName = new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis());
             File makeFolder = new File(noticeFileDir + folderName);
@@ -200,7 +163,9 @@ public class AdminController {
                 makeFolder.mkdir();
             }
 
+
             for(MultipartFile mf : files) {
+
                 String savedPathName = noticeFileDir + folderName;
                 String orgName = mf.getOriginalFilename();
                 String ext = orgName.substring(orgName.lastIndexOf("."));
@@ -223,7 +188,7 @@ public class AdminController {
             adminMapper.setNoticeUpdate(noticeDto);
         }
 
-        return "redirect:/admin/notice";
+        return "redirect:/admin/noticeView?boardNoticeId="+noticeDto.getBoardNoticeId();
     }
 
 
@@ -496,8 +461,7 @@ public class AdminController {
 
     @GetMapping("/roomSettingUpdate")
     public String getRoomSettingWrite(@RequestParam int roomNum, Model model){
-        RoomListDto roomListDto = new RoomListDto();
-        roomListDto = roomSettingService.getRoomUpdate(roomNum);
+        RoomListDto roomListDto = roomSettingService.getRoomUpdate(roomNum);
         model.addAttribute("roomList", roomListDto);
         model.addAttribute("roomImgList", roomSettingService.getRoomImg(roomNum));
         return "admin/admin_sub/admin_sub_roomSetting/admin_sub_roomSetting_update";
