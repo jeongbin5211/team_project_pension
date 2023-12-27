@@ -112,17 +112,9 @@
                     <div id="slideShow">
                         <ul class="slides">
                             <li><img th:src="@{|/static/images/${roomList.roomName}_main.jpg|}" alt=""></li>
-                            <li><img src="/static/images/a3.jpg" alt=""></li>
-                            <li><img src="/static/images/a4.jpg" alt=""></li>
-                            <li><img src="/static/images/a5.jpg" alt=""></li>
-                            <li><img src="/static/images/a8.jpg" alt=""></li>
-                            <li><img src="/static/images/a9.jpg" alt=""></li>
-                            <li><img src="/static/images/a13.jpg" alt=""></li>
-                            <li><img src="/static/images/a14.jpg" alt=""></li>
-                            <li><img src="/static/images/a16.jpg" alt=""></li>
-                            <li><img src="/static/images/a18.jpg" alt=""></li>
-                            <li><img src="/static/images/a19.jpg" alt=""></li>
-                            <li><img src="/static/images/7-1.jpg" alt=""></li>
+                            <li th:each="imgs:${images}">
+                                <img th:src="@{|/${imgs.folderName}/${imgs.savedFileName}|}" alt="">
+                            </li>
                         </ul>
                         <p class="controller">
                             <span class="prev">&lang;</span>
