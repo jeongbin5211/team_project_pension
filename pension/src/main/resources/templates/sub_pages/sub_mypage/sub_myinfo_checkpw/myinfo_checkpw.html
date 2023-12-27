@@ -55,7 +55,7 @@
             </ul>
             <div class="myinfo-content">
                 <h3>회원정보 확인</h3>
-                <form class="checkpw" onsubmit="return checkpw()">
+                <form class="checkpw">
                     <p>[[${member.name}]]님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.</p>
                     <table>
                         <tr>
@@ -90,12 +90,13 @@
             <i class="fa-solid fa-arrow-up"></i>
         </a>
     </div>
-
     <script>
-        let passwd = document.querySelector("#passwd");
+        let passwd = document.querySelector(".passwd");
         let id = document.querySelector("input[name=id]");
+        let btn = document.querySelector('.btn_check');
 
-        function checkpw(){
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
             if(passwd.value == "") {
                 alert("비밀번호를 입력해 주세요.");
                 passwd.focus();
@@ -112,6 +113,7 @@
                 },
                 success: function(result) {
                     if(result.msg == "success") {
+                        alert("ok")
                         location.href = "/mypage/myinfo/update";
                     }else if(result.msg == "failure") {
                         alert("비밀번호가 틀립니다.\n다시 입력해 주세요.");
@@ -120,7 +122,7 @@
                     }
                 }
             });
-        }
+        })
 
         function moveMain() {
             location.href = "/";
