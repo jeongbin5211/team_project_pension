@@ -46,7 +46,6 @@ public class MypageController {
         }else if(alert.equals("failure")) {
             map.put("msg", "failure");
         }
-        System.out.println(map);
         return map;
     }
 
@@ -56,21 +55,6 @@ public class MypageController {
         model.addAttribute("member", memberDto);
         return "sub_pages/sub_mypage/sub_myinfo_update/myinfo_update.html";
     }
-
-//    @PostMapping("/changeUserid")
-//    @ResponseBody
-//    public Map<String, Object> setUpdateUserid(@RequestParam int id, @RequestParam String userid, HttpSession hs) {
-//        Map<String, Object> map = new HashMap<>();
-//        String alert = mypageService.checkUserid(userid);
-//        if(alert.equals("success")) {
-//            mypageMapper.setUpdateUserid(userid, id);
-//            hs.invalidate();
-//            map.put("msg", "success");
-//        }else if(alert.equals("failure")) {
-//            map.put("msg", "failure");
-//        }
-//        return map;
-//    }
 
     @PostMapping("/changeUserpw")
     @ResponseBody

@@ -6,8 +6,15 @@ let addr = document.querySelector(".useraddr");
 let userpw = document.querySelector("#userpasswd");
 let new_userpasswd = document.querySelector("#new_userpasswd");
 let renew_userpasswd = document.querySelector("#renew_userpasswd");
+let passwd_change_btn = document.querySelector("#passwd_change_btn");
+let btn_change_username = document.querySelector("#btn_change_username");
+let btn_change_usertell = document.querySelector("#btn_change_usertell");
+let btn_change_useremail = document.querySelector("#btn_change_useremail");
+let btn_change_useraddr = document.querySelector("#btn_change_useraddr");
 
-function changeUserpw() {
+passwd_change_btn.addEventListener('click', function(e) {
+    e.preventDefault();
+
     if(userpw.value == "") {
         alert("현재 비밀번호를 입력하세요.");
         userpw.focus();
@@ -63,9 +70,11 @@ function changeUserpw() {
             }
         }
     });
-}
+});
 
-function changeName() {
+btn_change_username.addEventListener('click', function(e) {
+    e.preventDefault();
+
     if(username.value == "") {
         alert("변경하실 이름을 입력해 주세요.");
         username.focus();
@@ -90,9 +99,11 @@ function changeName() {
             }
         }
     });
-}
+});
 
-function changePhone() {
+btn_change_usertell.addEventListener('click', function(e) {
+    e.preventDefault();
+
     if(phone.value == "") {
         alert("변경하실 전화번호를 입력해 주세요.");
         phone.focus();
@@ -117,9 +128,11 @@ function changePhone() {
             }
         }
     });
-}
+});
 
-function changeEmail() {
+btn_change_useremail.addEventListener('click', function(e) {
+    e.preventDefault();
+
     if(email.value == "") {
         alert("변경하실 이메일을 입력해 주세요.");
         email.focus();
@@ -144,9 +157,11 @@ function changeEmail() {
             }
         }
     });
-}
+});
 
-function changeAddr() {
+btn_change_useraddr.addEventListener('click', function(e) {
+    e.preventDefault();
+
     if(addr.value == "") {
         alert("변경하실 주소를 입력해 주세요.");
         addr.focus();
@@ -171,4 +186,4 @@ function changeAddr() {
             }
         }
     });
-}
+});
