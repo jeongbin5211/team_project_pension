@@ -120,7 +120,7 @@ nav {
 .sub-title-wrap {
     width: 100%;
     height: 300px;
-    background-image: linear-gradient(rgba(84, 84, 84, 0.5), rgba(84, 84, 84, 0.5)), url('../../../../images/reservation_title_img.jpg');
+    background-image: linear-gradient(rgba(84, 84, 84, 0.5), rgba(84, 84, 84, 0.5)), url('/static/images/reservation_title_img.jpg');
     background-repeat: no-repeat;
     background-position: 50% 37%;
     background-size: cover;

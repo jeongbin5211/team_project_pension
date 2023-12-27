@@ -116,7 +116,7 @@ nav {
 .sub-title-wrap {
     width: 100%;
     height: 300px;
-    background-image: linear-gradient(rgba(84, 84, 84, 0.5), rgba(84, 84, 84, 0.5)), url('../../../../images/recom_sub_intro.jpg');
+    background-image: linear-gradient(rgba(84, 84, 84, 0.5), rgba(84, 84, 84, 0.5)), url('/static/images/recom_sub_intro.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -209,23 +209,23 @@ nav {
 }
 
 .picture_1 {
-    background-image: url(../../../../images/개비리길.png);
+    background-image: url(/static/images/개비리길.png);
 }
 
 .picture_2 {
-    background-image: url(../../../../images/유채꽃.png);
+    background-image: url(/static/images/유채꽃.png);
 }
 
 .picture_3 {
-    background-image: url(../../../../images/망우정.png);
+    background-image: url(/static/images/망우정.png);
 }
 
 .picture_4 {
-    background-image: url(../../../../images/남마뮤지엄.png);
+    background-image: url(/static/images/남마뮤지엄.png);
 }
 
 .picture_5 {
-    background-image: url(../../../../images/송진쇠나루공원.png);
+    background-image: url(/static/images/송진쇠나루공원.png);
     background-position: 50% 80%;
 }
 
@@ -251,7 +251,7 @@ nav {
 #map {
     width: 100%;
     height: 400px;
-    background: url(../../../../images/임시지도2.png) 50% 50% no-repeat;
+    background: url(/static/images/임시지도2.png) 50% 50% no-repeat;
     background-size: cover;
 }
 

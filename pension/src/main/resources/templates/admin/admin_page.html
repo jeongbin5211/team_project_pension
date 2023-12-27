@@ -231,7 +231,7 @@
                                 <tr th:each="roomList : ${roomList}">
                                     <td>[[${roomList.roomName}]]</td>
                                     <td>
-                                        <img th:src="@{|/${roomList.roomName}/${roomList.roomName}_thumbnail.jpg|}" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
+                                        <img th:src="@{|/${roomList.roomName}/${roomList.roomName}_thumbnail.jpg|}" onerror="this.src='/static/images/none1_img.jpg'" alt="">
                                     </td>
                                     <td>최소 : [[${roomList.minPerson}]], 최대 : [[${roomList.maxPerson}]] (기준 [[${roomList.minPerson}]]인)</td>
                                     <td>[[${roomList.roomPrice}]]원</td>

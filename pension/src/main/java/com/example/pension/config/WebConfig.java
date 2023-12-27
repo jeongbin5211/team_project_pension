@@ -1,5 +1,6 @@
 package com.example.pension.config;
 
+import com.example.pension.interceptor.AdminCheckInterceptor;
 import com.example.pension.interceptor.SessionCheckInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -15,13 +16,18 @@ public class WebConfig implements WebMvcConfigurer {
         // 모든 페이지 안보이게 함
         registry.addInterceptor(new SessionCheckInterceptor())
                 .order(1)
-                .addPathPatterns("/admin/**")
-                .addPathPatterns("/reserve/**")
+                .addPathPatterns("/reserve/reserveCheck")
+                .addPathPatterns("/reserve/requestRoom")
                 .addPathPatterns("/mypage/**")
                 .excludePathPatterns("/login") // 로그인창은 허용
-                .excludePathPatterns("/reserve/checkroom")
                 .excludePathPatterns("/");
+//
+        registry.addInterceptor(new AdminCheckInterceptor())
+                .order(1)
+                .addPathPatterns("/admin/**");
     }
+
+
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

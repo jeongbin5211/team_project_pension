@@ -10,8 +10,8 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../static/css/reset.css">
-    <link rel="stylesheet" href="../../../../static/css/sub/sub_roomInfo/room_info_A/styleMain.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/sub/sub_roomInfo/room_info_A/styleMain.css">
 </head>
 
 <body>
@@ -61,7 +61,7 @@
                             <a th:href="@{/room_info?(roomName=${rl.roomName})}">
                                 <div class="room-list">
                                     <div class="img-area">
-                                        <img th:src="@{|/${rl.roomName}/${rl.roomName}_thumbnail.jpg|}" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
+                                        <img th:src="@{|/${rl.roomName}/${rl.roomName}_thumbnail.jpg|}" onerror="this.src='/static/images/none1_img.jpg'" alt="">
                                     </div>
                                     <div class="room-list-txt">
                                         <h3>[[${rl.roomName}]]동</h3>
