@@ -133,8 +133,6 @@ main section:nth-child(odd) {
 }
 
 .section-wrap {
-    /* padding: 10px 0;
-    width: 100%; */
     display: flex;
     justify-content: space-between;
 
@@ -232,15 +230,6 @@ table {
     text-align: center;
 }
 
-/* .section-box {
-   box-shadow: 0 0 5px 0.25rem #eee;
-   border: 1px solid #ccc;
-   width: 100%;
-   max-width: 95%;
-   margin: 30px auto;
-   padding: 10px;
-   border-radius: 3px;
-} */
 form {
     text-align: right;
     margin-bottom: 5px;
