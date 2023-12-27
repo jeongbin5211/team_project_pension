@@ -40,7 +40,7 @@ body{
     margin-right: 8px;
     color: #fff;
 }
-/*수정*/
+
 ul {
     font-weight: bold;
 }
@@ -51,7 +51,6 @@ li a{
 li a:hover {
     color: #2185D0;
 }
-/*수정*/
 
 .banner-wrap {
     text-align: center;
@@ -259,8 +258,6 @@ tbody li input {
     text-align: center;
     margin: 20px 0 40px 0;
     width: 100%;
-    /*display: flex;*/
-    /*justify-content: center;*/
 }
 
 .view-img-wrap img {
