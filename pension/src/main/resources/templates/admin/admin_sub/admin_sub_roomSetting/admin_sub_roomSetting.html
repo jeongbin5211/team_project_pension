@@ -38,7 +38,7 @@
                             <tr th:each="rl: ${roomList}">
                                 <td>[[${rl.roomName}]]동</td>
                                 <td>
-                                    <img th:src="@{|/${rl.roomName}/${rl.roomName}_thumbnail.jpg|}" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
+                                    <img th:src="@{|/${rl.roomName}/${rl.roomName}_thumbnail.jpg|}" onerror="this.src='/static/images/none1_img.jpg'" alt="">
                                 </td>
                                 <td>
                                     최소 : [[${rl.minPerson}]], 최대 : [[${rl.maxPerson}]] (기준[[${rl.minPerson}]]인)

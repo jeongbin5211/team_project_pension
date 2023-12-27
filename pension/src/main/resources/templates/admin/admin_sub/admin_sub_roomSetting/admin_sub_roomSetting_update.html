@@ -27,7 +27,7 @@
                         <form method="post" action="/admin/roomSettingUpdate" enctype="multipart/form-data" onsubmit="return changeRoom()">
                             <div class="view-img-wrap">
                                 <p>사진을 클릭하여 객실 메인 이미지를 변경하세요.(jpg로 업로드 하십시오.)</p>
-                                <img th:src="@{|/${roomList.roomName}/${roomList.roomName}_thumbnail.jpg|}" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="" onclick="clickThumbnail()">
+                                <img th:src="@{|/${roomList.roomName}/${roomList.roomName}_thumbnail.jpg|}" onerror="this.src='/static/images/none1_img.jpg'" alt="" onclick="clickThumbnail()">
                                 <input type="file" name="main" class="thumbnail-btn" onchange="extCheck()" accept="image/*">
                             </div>
                             <table>

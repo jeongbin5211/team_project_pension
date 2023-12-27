@@ -116,7 +116,7 @@ nav {
 .sub-title-wrap {
     width: 100%;
     height: 300px;
-    background-image: linear-gradient(rgba(84, 84, 84, 0.5), rgba(84, 84, 84, 0.5)), url('../../../../images/navigate_intro.jpg');
+    background-image: linear-gradient(rgba(84, 84, 84, 0.5), rgba(84, 84, 84, 0.5)), url('/static/images/navigate_intro.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -188,7 +188,7 @@ nav {
     width: 50%;
     height: 400px;
     margin: 0 auto;
-    background: url(../../../../images/임시지도.png) 50% 50% no-repeat;
+    background: url(/static/images/임시지도.png) 50% 50% no-repeat;
     background-size: cover;
 }
 

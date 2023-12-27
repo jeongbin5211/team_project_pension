@@ -7,16 +7,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
-public class SessionCheckInterceptor implements HandlerInterceptor {
+public class AdminCheckInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-        String reqURI = request.getRequestURI();
         HttpSession hs = request.getSession();
+        String reqURI = request.getRequestURI();
 
-        if(hs.getAttribute("user") == null) {
+        if(hs.getAttribute("admin") == null) {
             System.out.println("You are not Incorrectly");
-            if(hs.getAttribute("admin") != null) {
+            if(hs.getAttribute("user") != null) {
                 response.sendRedirect("/");
                 return false;
             }else {

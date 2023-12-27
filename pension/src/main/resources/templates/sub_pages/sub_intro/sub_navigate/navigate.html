@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../static/css/reset.css">
-    <link rel="stylesheet" href="../../../../static/css/sub/sub_intro/sub_navigate/style.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/sub/sub_intro/sub_navigate/style.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=73b8d8d681e367182dec2f06efc5dee9"></script>
     <style>
         .marker {
@@ -96,7 +96,7 @@
         </a>
     </div>
 
-    <script src="../../../../static/js/header_nav.js"></script>
+    <script src="/static/js/header_nav.js"></script>
     <script>
         var container = document.getElementById('map');
         var options = {
@@ -107,7 +107,7 @@
         var map = new kakao.maps.Map(container, options);
 
         // 마커 생성
-        var imageSrc = '../../../../static/images/home.png',
+        var imageSrc = '/static/images/home.png',
         imageSize = new kakao.maps.Size(64, 69),
         imageOption = {offset: new kakao.maps.Point(27, 69)};
 

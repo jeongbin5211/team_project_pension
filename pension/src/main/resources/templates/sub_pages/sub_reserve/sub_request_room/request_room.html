@@ -12,8 +12,8 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../static/css/reset.css">
-    <link rel="stylesheet" href="../../../../static/css/sub/sub_reserve/sub_request_room/style.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/sub/sub_reserve/sub_request_room/style.css">
 </head>
 
 <body>
@@ -86,7 +86,7 @@
     
                     <div class="room-select">
                         <h5>개비리길 펜션</h5>
-                        <img th:src="@{|/${roomList.roomName}/${roomList.roomName}_thumbnail.jpg|}" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
+                        <img th:src="@{|/${roomList.roomName}/${roomList.roomName}_thumbnail.jpg|}" onerror="this.src='/static/images/none1_img.jpg'" alt="">
                         <table>
                             <tr>
                                 <th>객실</th>
@@ -229,7 +229,7 @@
         }
     </script>
 
-    <script src="../../../../static/js/header_nav.js"></script>
+    <script src="/static/js/header_nav.js"></script>
 </body>
 
 </html>

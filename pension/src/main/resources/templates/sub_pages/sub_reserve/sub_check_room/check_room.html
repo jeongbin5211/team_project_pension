@@ -11,8 +11,8 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../static/css/reset.css">
-    <link rel="stylesheet" href="../../../../static/css/sub/sub_reserve/sub_check_room/style.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/sub/sub_reserve/sub_check_room/style.css">
 </head>
 
 <body>
@@ -50,7 +50,7 @@
             </ul>
             <div class="check-room-content">
                 <h3>객실 조회</h3>
-                <div action="" class="check-room">
+                <div class="check-room">
                   <ul>
                     <li class="checkin_area">
                       <div class="checkin_set">
@@ -152,7 +152,7 @@
             result.roomList.forEach((r) => {
               output += `<li>
                           <form action="/reserve/requestRoom" onsubmit="return frmCheck()">
-                            <img src="../../../../static/roomImages/${r.roomName}/${r.roomName}_thumbnail.jpg" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
+                            <img src="/static/roomImages/${r.roomName}/${r.roomName}_thumbnail.jpg" onerror="this.src='/static/images/none1_img.jpg'" alt="">
                             <h5>${r.roomName}동</h5>
                             <div class="list-title-line"></div>
                             <p class="room-list-txt">
@@ -227,7 +227,7 @@
               result.checkRoomList.forEach((r) => {
                 output += `<li>
                             <form action="/reserve/requestRoom" method="post">
-                              <img src="../../../../static/roomImages/${r.roomName}/${r.roomName}_thumbnail.jpg" onerror="this.src='../../../../static/images/none1_img.jpg'" alt="">
+                              <img src="/static/roomImages/${r.roomName}/${r.roomName}_thumbnail.jpg" onerror="this.src='/static/images/none1_img.jpg'" alt="">
                               <h5>${r.roomName}동</h5>
                               <div class="list-title-line"></div>
                               <p class="room-list-txt">
@@ -262,8 +262,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     
-    <script src="../../../../static/js/header_nav.js"></script>
-    <script src="../../../../static/js/sub/sub_reserve/sub_check_room/calendar.js"></script>
+    <script src="/static/js/header_nav.js"></script>
+    <script src="/static/js/sub/sub_reserve/sub_check_room/calendar.js"></script>
 </body>
 
 </html>

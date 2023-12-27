@@ -110,7 +110,7 @@ nav {
   height: 300px;
   background-image: linear-gradient(rgba(84, 84, 84, 0.5),
       rgba(84, 84, 84, 0.5)),
-    url("../../../../images/s12.jpeg");
+    url("/static/images/s12.jpeg");
   background-repeat: no-repeat;
   background-position: 50% 30%;
   background-size: cover;
