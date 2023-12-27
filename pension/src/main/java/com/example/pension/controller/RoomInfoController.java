@@ -29,6 +29,7 @@ public class RoomInfoController {
         RoomListDto roomListDto = roomSettingMapper.getRoom(roomName);
         model.addAttribute("roomNameList", roomNameList);
         model.addAttribute("roomList", roomListDto);
+        model.addAttribute("images", roomSettingMapper.getRoomImages(roomName));
         return "sub_pages/sub_roomInfo/room_info/room_info.html";
     }
 }

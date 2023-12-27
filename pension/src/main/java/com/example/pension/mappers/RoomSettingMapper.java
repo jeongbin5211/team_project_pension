@@ -52,4 +52,7 @@ public interface RoomSettingMapper {
 
     @Select("select * from room_list where room_name = #{roomName}")
     public RoomListDto getRoom(String roomName);
+
+    @Select("select * from room_images where folderName = #{roomName}")
+    public List<RoomImageDto> getRoomImages(String roomName);
 }
