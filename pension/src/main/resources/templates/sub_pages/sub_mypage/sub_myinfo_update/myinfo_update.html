@@ -67,7 +67,7 @@
                     <tr>
                         <th>비밀번호 변경</th>
                         <td>                           
-                            <form class="userpasswd_change" onsubmit="return changeUserpw()">
+                            <form class="userpasswd_change">
                                 <table class="change_passwd_box">
                                     <tr>
                                         <td class="change_passwd_title">현재 비밀번호</td>
@@ -103,7 +103,7 @@
                             <p class="change_el">
                                 [[${member.name}]]<button class="username_change_btn">이름 변경</button>
                             </p>
-                            <form class="username_change" onsubmit="return changeName()">
+                            <form class="username_change">
                                 <p>
                                     <input type="text" class="username" th:value="${member.name}" placeholder="변경할 이름을 입력하세요."/>
                                     <button class="btn_change" id="btn_change_username">변경하기</button>
@@ -117,7 +117,7 @@
                             <p class="change_el">
                                 [[${member.phone}]]<button class="usertell_change_btn">전화번호 변경</button>
                             </p>
-                            <form class="usertell_change" onsubmit="return changePhone()">
+                            <form class="usertell_change">
                                 <p>
                                     <input type="text" class="usertell" th:value="${member.phone}" placeholder="휴대폰 번호 입력 ( '-' 제외 11자리 입력 )" minlength="11" maxlength="11"/>
                                     <button class="btn_change" id="btn_change_usertell">변경하기</button>
@@ -131,7 +131,7 @@
                             <p class="change_el">
                                 [[${member.email}]]<button class="useremail_change_btn">이메일 변경</button>
                             </p>
-                            <form class="useremail_change" onsubmit="return changeEmail()">
+                            <form class="useremail_change">
                                 <p>
                                     <input type="email" class="useremail" th:value="${member.email}" placeholder="email@email.com"/>
                                     <button class="btn_change" id="btn_change_useremail">변경하기</button>
@@ -145,7 +145,7 @@
                             <p class="change_el">
                                 [[${member.addr}]]<button class="useraddr_change_btn">주소 변경</button>
                             </p>
-                            <form class="useraddr_change" onsubmit="return changeAddr()">
+                            <form class="useraddr_change">
                                 <p>
                                     <input type="text" class="useraddr" th:value="${member.addr}" placeholder="변경할 주소를 입력하세요."/>
                                     <button class="btn_change" id="btn_change_useraddr">변경하기</button>
