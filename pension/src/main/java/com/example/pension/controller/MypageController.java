@@ -46,6 +46,7 @@ public class MypageController {
         }else if(alert.equals("failure")) {
             map.put("msg", "failure");
         }
+        System.out.println(map);
         return map;
     }
 
