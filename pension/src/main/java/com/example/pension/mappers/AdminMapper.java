@@ -27,7 +27,7 @@ public interface AdminMapper {
     @Select("select count(*) from member ${queryString}")
     public int getMemberCount(String queryString);
 
-    @Update("update member set userid = #{userid}, name = #{name}, phone = #{phone}, email = #{email}, addr = #{addr}, regdate = now() where id = #{id}")
+    @Update("update member set userpw = #{userpw}, phone = #{phone}, email = #{email}, addr = #{addr} where id = #{id}")
     public void setUpdate(MemberDto memberDto);
 
     @Select("select * from member where id = #{id}")
@@ -82,7 +82,7 @@ public interface AdminMapper {
 
     @Select("select * from board_qna order by board_qna_id desc limit ${startNum}, ${offset}")
     public List<QnaDto> getQna(int startNum, int offset);
-    @Select("select * from board_qna ${searchQuery} limit ${startNum}, ${offset}")
+    @Select("select * from board_qna ${searchQuery} order by board_qna_id desc limit ${startNum}, ${offset}")
     public List<QnaDto> getQnaList(Map<String, Object> map);
     @Delete("delete from board_qna where board_qna_id = #{boardQnaId}")
     public int getQnaDelete(int boardQnaId);

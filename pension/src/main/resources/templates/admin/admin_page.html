@@ -200,7 +200,18 @@
                                     <td>[[${qna.boardQnaWriter}]]</td>
                                     <td>[[${qna.boardQnaVisit}]]</td>
                                     <td>[[${qna.boardQnaRegdate}]]</td>
-                                    <td>0</td>
+                                    <td>
+                                        <th:block th:if="${qna.boardAnswerCheck eq 1}">
+                                            <a th:href="@{/board/qna/view?(id=${qna.boardQnaId})}">
+                                                <span class="complete-answer">O</span>
+                                            </a>
+                                        </th:block>
+                                        <th:block th:unless="${qna.boardAnswerCheck eq 1}">
+                                            <a th:href="@{/board/qna/view?(id=${qna.boardQnaId})}">
+                                                <span class="pre-answer">X</span>
+                                            </a>
+                                        </th:block>
+                                    </td>
                                 </tr>
                             </table>
                             <div class="preview">

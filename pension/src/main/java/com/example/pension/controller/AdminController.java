@@ -84,6 +84,19 @@ public class AdminController {
         return "admin/admin_page";
     }
 
+    @GetMapping("/mypage")
+    public String getMypage(){
+        return "admin/admin_sub/admin_sub_mypage/admin_sub_mypage";
+    }
+
+    @PostMapping("/mypage")
+    public String setUpdate(@ModelAttribute MemberDto memberDto, RedirectAttributes ra){
+        adminMapper.setUpdate(memberDto);
+        ra.addFlashAttribute("msg", "관리자 정보가 수정 되었습니다.");
+        return "redirect:/admin/mypage";
+    }
+
+
 //    공지사항
     @GetMapping("/notice")
     public String getNotice(Model model, @RequestParam(defaultValue = "1")int page, @RequestParam(value = "searchType",defaultValue = "") String searchType, @RequestParam(defaultValue = "") String words){
