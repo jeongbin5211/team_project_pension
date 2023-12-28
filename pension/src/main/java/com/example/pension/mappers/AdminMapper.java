@@ -82,7 +82,7 @@ public interface AdminMapper {
 
     @Select("select * from board_qna order by board_qna_id desc limit ${startNum}, ${offset}")
     public List<QnaDto> getQna(int startNum, int offset);
-    @Select("select * from board_qna ${searchQuery} limit ${startNum}, ${offset}")
+    @Select("select * from board_qna ${searchQuery} order by board_qna_id desc limit ${startNum}, ${offset}")
     public List<QnaDto> getQnaList(Map<String, Object> map);
     @Delete("delete from board_qna where board_qna_id = #{boardQnaId}")
     public int getQnaDelete(int boardQnaId);
