@@ -235,6 +235,7 @@ input:focus {
     border: 0;
     outline: 0;
     font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .board_qna_files {
