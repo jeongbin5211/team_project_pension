@@ -221,6 +221,15 @@ nav {
     font-size: 16px;
 }
 
+.board_qna_content textarea {
+    width: 100%;
+    min-height: 400px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .qna-content-bottom {
     display: flex;
     justify-content: space-between;
@@ -313,6 +322,15 @@ input:focus {
 .ans-content {
     padding: 30px;
     min-height: 200px;
+}
+
+.ans-content textarea {
+    width: 100%;
+    min-height: 200px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .ans-modify-content {

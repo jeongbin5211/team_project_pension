@@ -220,6 +220,14 @@ nav {
     font-size: 16px;
 }
 
+.board_notice_content textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .notice-content-bottom {
     display: flex;
     justify-content: space-between;

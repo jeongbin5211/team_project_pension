@@ -79,17 +79,17 @@
                     <a href="#" th:if="${qnaPage.page <= 1}">
                         <i class="fa-solid fa-angle-left"></i>
                     </a>
-                    <a th:href="@{/admin/qnaList?(id=${id}, page=${qnaPage.page -1})}" th:unless="${qnaPage.page <= 1}">
+                    <a th:href="@{/admin/qna?(page=${qnaPage.page -1})}" th:unless="${qnaPage.page <= 1}">
                         <i class="fa-solid fa-angle-left"></i>
                     </a>
                     <th:block th:each="i : ${#numbers.sequence(qnaPage.startPage, qnaPage.endPage, 1)}">
                         <th:block th:if="${qnaPage.page eq i}">
-                            <a class="active" th:href="@{/admin/qnaList?(id=${id}, page=${i})}">
+                            <a class="active" th:href="@{/admin/qna?(page=${i})}">
                                 [[${i}]]
                             </a>
                         </th:block>
                         <th:block th:unless="${qnaPage.page eq i}">
-                            <a th:href="@{/admin/qnaList?(id=${id}, page=${i})}">
+                            <a th:href="@{/admin/qna?(page=${i})}">
                                 [[${i}]]
                             </a>
                         </th:block>
@@ -98,7 +98,7 @@
                     <a href="#" th:if="${qnaPage.page >= qnaPage.totalPage}">
                         <i class="fa-solid fa-angle-right"></i>
                     </a>
-                    <a th:href="@{/admin/qnaList?(id=${id}, page=${qnaPage.page +1})}" th:unless="${qnaPage.page >= qnaPage.totalPage}">
+                    <a th:href="@{/admin/qna?(page=${qnaPage.page +1})}" th:unless="${qnaPage.page >= qnaPage.totalPage}">
                         <i class="fa-solid fa-angle-right"></i>
                     </a>
                 </div>
