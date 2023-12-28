@@ -105,7 +105,7 @@
                 <a th:href="@{/board/notice?(page=${page.page - 1})}" th:unless="${page.page <= 1}">
                     &nbsp;<i class="fa-solid fa-angle-left"></i>&nbsp;
                 </a>
-                <a th:href="@{/board/notice?(page=${i})}" th:each="i : ${ #numbers.sequence(page.startPage, page.endPage, 1) }">
+                <a th:href="@{/board/qna?(page=${i})}" th:each="i : ${ #numbers.sequence(page.startPage, page.endPage, 1) }">
                     <th:block th:if="${page.page eq i}">
                             <span style="color:#f00;">
                                 <strong>[[${i}]]</strong>
@@ -118,7 +118,7 @@
                     </th:block>
                 </a>
                 <a href="#" th:if="${page.page >= page.totalPage}"></a>
-                <a th:href="@{/board/notice?(page=${page.page + 1})}" th:unless="${page.page >= page.totalPage}">
+                <a th:href="@{/board/qna?(page=${page.page + 1})}" th:unless="${page.page >= page.totalPage}">
                     &nbsp;<i class="fa-solid fa-angle-right"></i>&nbsp;
                 </a>
             </div>
