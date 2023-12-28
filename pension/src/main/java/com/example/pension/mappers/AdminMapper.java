@@ -27,7 +27,7 @@ public interface AdminMapper {
     @Select("select count(*) from member ${queryString}")
     public int getMemberCount(String queryString);
 
-    @Update("update member set userid = #{userid}, name = #{name}, phone = #{phone}, email = #{email}, addr = #{addr}, regdate = now() where id = #{id}")
+    @Update("update member set userpw = #{userpw}, phone = #{phone}, email = #{email}, addr = #{addr} where id = #{id}")
     public void setUpdate(MemberDto memberDto);
 
     @Select("select * from member where id = #{id}")

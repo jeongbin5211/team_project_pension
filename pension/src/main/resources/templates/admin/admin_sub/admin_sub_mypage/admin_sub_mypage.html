@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 정보 수정 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/admin/admin_sub/admin_sub_members/sub_memberUpdate_style.css">
+</head>
+
+<body>
+
+<div id="wrap">
+
+    <div th:insert="~{admin/fragment/side.html::side_f}"></div>
+    <div class="main-wrap">
+        <div th:insert="~{admin/fragment/header.html::header_f}"></div>
+        <main>
+            <h4>마이페이지 > 관리자 정보 수정</h4>
+            <form method="post" action="/admin/mypage" onsubmit="return frmCheck()">
+                <table class="memUpdate-wrap">
+                    <tr>
+                        <th>이름 :</th>
+                        <td>
+                           <input type="text" name="name" th:value="${session.admin.name}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>아이디 :</th>
+                        <td>
+                            <input type="text" name="userid" th:value="${session.admin.userid}" readonly >
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>현재 비밀번호 :</th>
+                        <td>
+                            <input type="password" name="orgPasswd" placeholder="현재 비밀번호를 입력하세요.">
+                            <input type="hidden" class="orgPasswd" th:value="${session.admin.userpw}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>새 비밀번호 :</th>
+                        <td>
+                            <input type="password" name="userpw" placeholder="새 비밀번호를 입력하세요.">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>새 비밀번호 확인 :</th>
+                        <td>
+                            <input type="password" name="repasswd" placeholder="새 비밀번호를 확인 하세요.">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>전화번호 :</th>
+                        <td>
+                            <input type="text" name="phone" th:value="${session.admin.phone}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이메일 :</th>
+                        <td>
+                            <input type="text" name="email" th:value="${session.admin.email}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>주소 :</th>
+                        <td>
+                            <input type="text" name="addr" th:value="${session.admin.addr}">
+                        </td>
+                    </tr>
+                </table>
+                <div class="bottom-area">
+                    <input type="submit" class="btn2 yellow" value="수정">
+                </div>
+                <input type="hidden" name="id" th:value="${session.admin.id}">
+                <input type="hidden" class="alert-msg" th:value="${msg}">
+            </form>
+        </main>
+    </div>
+</div>
+<script>
+    let orgPasswd = document.querySelector(".orgPasswd");
+    let orgPasswdCheck = document.querySelector("input[name=orgPasswd]");
+    let passwd = document.querySelector("input[name=userpw]");
+    let repasswd = document.querySelector("input[name=repasswd]");
+    let phone = document.querySelector("input[name=phone]");
+    let email = document.querySelector("input[name=email]");
+    let addr = document.querySelector("input[name=addr]");
+
+    let msg = document.querySelector(".alert-msg").value;
+    if(msg != ""){
+        $(function (){
+            alert(msg);
+        });
+    }
+
+    function frmCheck() {
+        if( orgPasswdCheck.value == ""){
+            alert("비밀번호를 입력하세요.");
+            orgPasswdCheck.focus();
+            return false;
+        }
+        if( passwd.value == ""){
+            alert("새 비밀번호를 입력하세요.");
+            passwd.focus();
+            return false;
+        }
+        if( repasswd.value == ""){
+            alert("새 비밀번호를 확인하세요.");
+            repasswd.focus();
+            return false;
+        }
+        if( phone.value == ""){
+            alert("전화번호를 입력하세요.");
+            phone.focus();
+            return false;
+        }
+        if( email.value == ""){
+            alert("이메일을 입력하세요.");
+            email.focus();
+            return false;
+        }
+        if( addr.value == ""){
+            alert("주소를 입력하세요.");
+            addr.focus();
+            return false;
+        }
+
+        if( orgPasswd.value != orgPasswdCheck.value){
+            alert("비밀번호가 틀립니다.");
+            orgPasswdCheck.value = "";
+            passwd.value = "";
+            repasswd.value = "";
+            orgPasswdCheck.focus();
+            return false;
+        }
+        if( passwd.value != repasswd.value){
+            alert("새로 입력한 비밀번호가 틀립니다.");
+            orgPasswdCheck.value = "";
+            passwd.value = "";
+            repasswd.value = "";
+            orgPasswdCheck.focus();
+            return false;
+        }
+        if( orgPasswd.value == repasswd.value){
+            alert("현재 사용중인 비밀번호 입니다.");
+            orgPasswdCheck.value = "";
+            passwd.value = "";
+            repasswd.value = "";
+            orgPasswdCheck.focus();
+            return false;
+        }
+    }
+</script>
+
+</body>
+
+
+</html>
