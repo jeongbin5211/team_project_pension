@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>리뷰 보기</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/sub/sub_board/sub_free_view/sub_free_view.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+</head>
+
+<body>
+<header th:insert="~{fragment/header.html::header_f}"></header>
+<main>
+    <section class="sub-title-wrap">
+        <div class="sub-title-bg">
+            <div class="sub-title-area">
+                <h3 class="sub-title">자유게시판</h3>
+                <div class="line"></div>
+                <p class="sub-title-txt">
+                    개비리길펜션 자유 게시판 입니다.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+<div class="wrapAll">
+    <ul class="sub-navigate-nav">
+        <h4>Community</h4>
+        <li>
+            <a href="/board/notice">Notice</a>
+        </li>
+        <li>
+            <a href="/board/qna">QnA</a>
+        </li>
+        <li>
+            <a href="/board/free/list" class="check-page">자유게시판</a>
+        </li>
+    </ul>
+    <div class="wrap">
+        <h3>상세보기</h3>
+        <ul th:each="free: ${list}">
+            <li>
+                <input type="hidden" th:value="${free.boardFreePasswd}" class="org_passwd">
+                <input type="hidden" th:value="${free.boardFreeNum}" class="org_num">
+                <label>제목</label>
+                <div class="boardFreeSubject box width-100 noto">
+                    [[${free.boardFreeSubject}]]
+                </div>
+            </li>
+            <li class="flex">
+                <div class="width-50">
+                    <label>작성자</label>
+                    <div class="boardFreeWriter box noto width-50">
+                        [[${free.boardFreeWriter}]]
+                    </div>
+                </div>
+                <div class="width-50%">
+                    <label>등록일</label>
+                    <div class="boardFreeRegdate box noto">
+                        [[${free.boardFreeRegdate}]]
+                    </div>
+                </div>
+            </li>
+            <li>
+                <label>내용</label>
+                <div class="boardFreeContent box width-100 height-400 noto">
+                    [[${free.boardFreeContent}]]
+                </div>
+            </li>
+            <li class="check_passwd_area hide">
+                <input type='password' class='checkpasswd' placeholder='비밀번호 입력'>
+                <button class="check_confirm">삭제하기</button>
+            </li>
+            <li class="flex">
+                <div>
+                    <button class="delete_btn btn2 red">글삭제</button>
+                </div>
+                <div>
+                    <a href="/board/free/list" value="목록" class="btn2 blue" onclick="move()">목록으로</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!-- footer 시작-->
+
+<footer th:insert="~{fragment/footer.html::footer_f}"></footer>
+<script src="/static/js/header_nav.js"></script>
+
+<script>
+    function move() {
+        location.href = "/board/free/list";
+    }
+
+    let deleteBtn = document.querySelector(".delete_btn");
+    let updateBtn = document.querySelector(".update_btn");
+    let checkPasswdArea = document.querySelector(".check_passwd_area");
+    let checkConfirm = document.querySelector(".check_confirm");
+    let checkpasswd = document.querySelector(".checkpasswd");
+    let orgPasswd = document.querySelector(".org_passwd");
+    let orgNum = document.querySelector(".org_num");
+
+    deleteBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // alert("ok");
+        checkPasswdArea.classList.remove('hide');
+        checkPasswdArea.classList.add('show');
+    })
+
+    checkConfirm.addEventListener('click', () => {
+        if (orgPasswd.value == checkpasswd.value) {
+            if (confirm("해당 게시물을 삭제하시겠습니까?")) {
+                location.href="/board/free/delete?boardFreeNum="+orgNum.value;
+            }
+        }
+    })
+</script>
+</body>
+
+</html>

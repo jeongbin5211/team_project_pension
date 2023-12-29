@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>리뷰 목록</title>
+    <link rel="stylesheet" href="/static/css/sub/sub_board/sub_free_list/sub_free_list.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+<header th:insert="~{fragment/header.html::header_f}"></header>
+<main>
+    <section class="sub-title-wrap">
+        <div class="sub-title-bg">
+            <div class="sub-title-area">
+                <h3 class="sub-title">자유게시판</h3>
+                <div class="line"></div>
+                <p class="sub-title-txt">
+                    개비리길펜션 자유 게시판 입니다.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+<div class="wrapAll">
+    <ul class="sub-navigate-nav">
+        <h4>Community</h4>
+        <li>
+            <a href="/board/notice">Notice</a>
+        </li>
+        <li>
+            <a href="/board/qna">QnA</a>
+        </li>
+        <li>
+            <a href="/board/free/list" class="check-page">자유게시판</a>
+        </li>
+    </ul>
+    <div class="wrap">
+        <h3>자유게시판 목록</h3>
+        <div class="top">
+            <div class="top-left">
+        <span>
+            전체 게시물 수: <span class="cnt" th:text="${cnt}">0</span> 개
+        </span>
+            </div>
+            <div class="top-right">
+                <form action="/board/free/list" method="get">
+                    <div class="search_box">
+                        <select name="searchType" id="searchType">
+                            <option value="board_free_subject">제목</option>
+                            <option value="board_free_content">내용</option>
+                            <option value="board_free_writer">작성자</option>
+                        </select>
+                        <div class="search_words_box">
+                            <input type="text" class="words" name="words"/>
+
+                            <button type="submit" class="searchBtn">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <table>
+
+            <tr>
+                <th>번호</th>
+                <th>작성자</th>
+                <th>제목</th>
+                <th>등록일</th>
+            </tr>
+            <tr th:each="free, k: ${list}">
+                <td> [[${cnt - (((page.page-1)*page.pageCount)+ k.index )}]]</td>
+                <td>[[${free.boardFreeWriter}]]</td>
+                <td>
+                    <a th:href="@{/board/free/view?(boardFreeNum=${free.boardFreeNum})}" class="active"
+                    >[[${free.boardFreeSubject}]]</a>
+                </td>
+                <td>[[${free.boardFreeRegdate}]]</td>
+            </tr>
+        </table>
+
+        <!-- 페이징 부분 -->
+        <div class="bottom">
+            <div class="bottom-left">
+                <a href="/board/free/list" class="btn gray" style="color: #555; font-weight: bold">전체목록</a>
+            </div>
+
+
+            <!--        ------------------------------------------------->
+            <div class="bottom-center">
+
+                <a href="#" th:if="${page.page <= 1}">
+                    <i class="fa-solid fa-angle-left"></i>
+                </a>
+
+                <a th:href="@{/board/free/list?(boardFreeNum=${boardFreeNum}, page=${page.page -1})}"
+                   th:unless="${page.page <= 1}">
+                    <i class="fa-solid fa-angle-left"></i>
+                </a>
+
+                <th:block th:each="i : ${#numbers.sequence(page.startPage, page.endPage, 1)}">
+                    <th:block th:if="${page.page eq i}">
+                        <a class="active" th:href="@{/board/free/list?(boardFreeNum=${boardFreeNum}, page=${i})}">
+                            [[${i}]]
+                        </a>
+                    </th:block>
+                    <th:block th:unless="${page.page eq i}">
+                        <a class="active" th:href="@{/board/free/list?(boardFreeNum=${boardFreeNum}, page=${i})}">
+                            [[${i}]]
+                        </a>
+                    </th:block>
+                </th:block>
+
+
+                <a href="#" th:if="${page.page >= page.totalPage}">
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+                <a th:href="@{/board/free/list?(boardFreeNum=${boardFreeNum},page=${page.page+1})}"
+                   th:unless="${page.page >= page.totalPage}">
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+            </div>
+
+            <!--        -------------------------------------------------->
+            <div class="bottom-right">
+                <a href="/board/free/write" class="btn2 red">글쓰기</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- footer 시작-->
+
+<footer th:insert="~{fragment/footer.html::footer_f}"></footer>
+<script src="/static/js/header_nav.js"></script>
+</body>
+</html>
