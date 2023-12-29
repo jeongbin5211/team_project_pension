@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>리뷰 작성 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/css/sub/sub_board/sub_free_write/sub_free_write.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+
+<body>
+<header th:insert="~{fragment/header.html::header_f}"></header>
+<main>
+    <section class="sub-title-wrap">
+        <div class="sub-title-bg">
+            <div class="sub-title-area">
+                <h3 class="sub-title">자유게시판</h3>
+                <div class="line"></div>
+                <p class="sub-title-txt">
+                    개비리길펜션 자유 게시판 입니다.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+<div class="wrapAll">
+    <ul class="sub-navigate-nav">
+        <h4>Community</h4>
+        <li>
+            <a href="/board/notice">Notice</a>
+        </li>
+        <li>
+            <a href="/board/qna">QnA</a>
+        </li>
+        <li>
+            <a href="/board/free/list" class="check-page">자유게시판</a>
+        </li>
+    </ul>
+    <div class="wrap">
+        <h3>리뷰 작성 페이지</h3>
+        <form onsubmit="return frmCheck()" action="/board/free/write" method="post" enctype="multipart/form-data">
+            <ul>
+                <li>
+                    <label>제목</label>
+                    <input type="text" name="boardFreeSubject" class="input width-100 noto"/>
+                </li>
+                <li>
+                    <label>작성자</label>
+                    <input type="text" name="boardFreeWriter" class="input width-15 noto"/>
+                </li>
+
+                <li>
+                    <label>비밀번호</label>
+                    <input type="password" name="boardFreePasswd" class="input width-15 noto"/>
+                </li>
+                <li>
+                    <label>내용</label>
+                    <textarea name="boardFreeContent" class="input width-100 height-400 noto"></textarea>
+                </li>
+                <li>
+                    <input type="submit" value="글저장" class="btn2 red">
+                    <input type="reset" value="목록" class="btn2 blue" onclick="move()">
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+
+<!-- footer 시작-->
+
+<footer th:insert="~{fragment/footer.html::footer_f}"></footer>
+<script src="/static/js/header_nav.js"></script>
+
+    <script>
+        // ------------------------별 처리---------------------------------------
+
+
+
+
+        // --------------------------------------------------------------------------------------------
+        window.onload = function () {
+            document.querySelector("input[name=boardFreeSubject]").focus();
+        }
+
+        let subject = document.querySelector("input[name=boardFreeSubject]");
+        let writer = document.querySelector("input[name=boardFreeWriter]");
+        let content = document.querySelector("textarea[name=boardFreeContent]");
+        let passwd = document.querySelector("input[name=boardFreePasswd]");
+
+        function frmCheck() {
+            if (subject.value == "") {
+                alert("게시물 제목을 입력하세요");
+                subject.focus();
+                return false;
+            }
+
+            if (!writer.value) {
+                alert("게시물 작성자를 입력해 주세요");
+                writer.focus();
+                return false;
+            }
+
+            if (content.value == "") {
+                alert("게시물 내용을 입력하세요");
+                content.focus();
+                return false;
+            }
+            if (passwd.value == "") {
+                alert("비밀번호를 입력하세요");
+                passwd.focus();
+                return false;
+            }
+
+
+        }
+        function move() {
+        location.href = "/board/free/list";
+    }
+
+
+    </script>
+</body>
+
+</html>
