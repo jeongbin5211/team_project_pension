@@ -60,7 +60,7 @@
                 <th:block th:if="${ !files.isEmpty() }">
                     <th:block th:each="file : ${files}">
                         <div class="img-box">
-                            <img th:src="@{|/${file.folderName}/${file.savedFileName}|}" alt="">
+                            <img th:src="@{|/static/noticeImages/${file.folderName}/${file.savedFileName}|}" alt="">
                         </div>
                     </th:block>
                 </th:block>
