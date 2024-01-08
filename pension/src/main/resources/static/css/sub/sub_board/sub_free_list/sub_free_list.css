@@ -298,7 +298,9 @@ th:nth-child(4) {
     margin-top: 10px;
 }
 
-
+.noto {
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
 /* 
 .bottom-center a {

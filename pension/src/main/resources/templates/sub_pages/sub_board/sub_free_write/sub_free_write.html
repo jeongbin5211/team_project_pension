@@ -45,26 +45,26 @@
             <a href="/board/free/list" class="check-page">자유게시판</a>
         </li>
     </ul>
-    <div class="wrap">
-        <h3>리뷰 작성 페이지</h3>
+    <div class="wrap noto">
+        <h3>자유게시판 작성 페이지</h3>
         <form onsubmit="return frmCheck()" action="/board/free/write" method="post" enctype="multipart/form-data">
             <ul>
                 <li>
                     <label>제목</label>
-                    <input type="text" name="boardFreeSubject" class="input width-100 noto"/>
+                    <input type="text" name="boardFreeSubject" class="input width-100"/>
                 </li>
                 <li>
                     <label>작성자</label>
-                    <input type="text" name="boardFreeWriter" class="input width-15 noto"/>
+                    <input type="text" name="boardFreeWriter" class="input width-15"/>
                 </li>
 
                 <li>
                     <label>비밀번호</label>
-                    <input type="password" name="boardFreePasswd" class="input width-15 noto"/>
+                    <input type="password" name="boardFreePasswd" class="input width-15"/>
                 </li>
                 <li>
                     <label>내용</label>
-                    <textarea name="boardFreeContent" class="input width-100 height-400 noto"></textarea>
+                    <textarea name="boardFreeContent" class="input width-100 height-400"></textarea>
                 </li>
                 <li>
                     <input type="submit" value="글저장" class="btn2 red">
