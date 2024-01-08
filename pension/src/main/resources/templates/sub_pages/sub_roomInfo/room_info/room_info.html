@@ -113,7 +113,7 @@
                         <ul class="slides">
                             <li><img th:src="@{|/static/images/${roomList.roomName}_main.jpg|}" alt=""></li>
                             <li th:each="imgs:${images}">
-                                <img th:src="@{|/${imgs.folderName}/${imgs.savedFileName}|}" alt="">
+                                <img th:src="@{|/static/roomImages/${imgs.folderName}/${imgs.savedFileName}|}" alt="">
                             </li>
                         </ul>
                         <p class="controller">

@@ -61,7 +61,7 @@
                             <a th:href="@{/room_info?(roomName=${rl.roomName})}">
                                 <div class="room-list">
                                     <div class="img-area">
-                                        <img th:src="@{|/${rl.roomName}/${rl.roomName}_thumbnail.jpg|}" onerror="this.src='/static/images/none1_img.jpg'" alt="">
+                                        <img th:src="@{|/static/roomImages/${rl.roomName}/${rl.roomName}_thumbnail.jpg|}" onerror="this.src='/static/images/none1_img.jpg'" alt="">
                                     </div>
                                     <div class="room-list-txt">
                                         <h3>[[${rl.roomName}]]동</h3>
