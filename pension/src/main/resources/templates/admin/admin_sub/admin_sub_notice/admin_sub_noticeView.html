@@ -40,7 +40,7 @@
                             <th:block th:unless="${file.isEmpty()}">
                                 <th:block th:each="file:${file}">
                                     <div>
-                                        <img th:src="@{|/${file.folderName}/${file.savedFileName}|}">
+                                        <img th:src="@{|/static/noticeImages/${file.folderName}/${file.savedFileName}|}">
                                         <span>[[${file.originalName}]]</span>
                                     </div>
                                 </th:block>
