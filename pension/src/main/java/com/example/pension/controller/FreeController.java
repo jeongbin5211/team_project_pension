@@ -1,12 +1,16 @@
 package com.example.pension.controller;
 
 import com.example.pension.dto.BoardFreeDto;
+import com.example.pension.dto.FileDto;
 import com.example.pension.mappers.FreeMapper;
 import com.example.pension.service.FreeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.File;
+import java.util.List;
 
 @Controller
 @RequestMapping("/board")

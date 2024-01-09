@@ -78,9 +78,13 @@
                 <button class="check_confirm">삭제하기</button>
             </li>
             <li class="flex">
-                <div>
+                <th:block th:if="${#strings.isEmpty(session.admin)}">
                     <button class="delete_btn btn2 red">글삭제</button>
-                </div>
+                </th:block>
+                <th:block th:unless="${#strings.isEmpty(session.admin)}">
+                    <button class="btn red" name="delete_btn" th:onclick="remove()">삭제</button>
+                </th:block>
+
                 <div>
                     <a href="/board/free/list" value="목록" class="btn2 blue" onclick="move()">목록으로</a>
                 </div>
@@ -123,6 +127,14 @@
             }
         }
     })
+
+    function remove() {
+        // alert(id);
+        if (confirm("해당 게시글을 삭제하시겠습니까?")) {
+            location.href = "/board/free/delete?boardFreeNum=" + orgNum.value;
+            alert("게시글이 삭제되었습니다.");
+        }
+    }
 </script>
 </body>
 
