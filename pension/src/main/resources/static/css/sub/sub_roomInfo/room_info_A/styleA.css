@@ -292,6 +292,8 @@ nav {
   color: #555;
   border: none;
   font-family: 'Sunflower', sans-serif;
+  outline: none;
+  background: transparent;
 }
 
 /* -----------------------예약버튼---------------------------- */
