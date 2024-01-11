@@ -2,8 +2,6 @@ function request() {
   alert("* 로 표시된 항목은 필수사항 입니다.");
 }
 
-request();
-
 let userid = document.querySelector(".userid");
 let userpw = document.querySelector(".userpw");
 let userpwCheck = document.querySelector(".userpw_check");
@@ -21,7 +19,7 @@ idCheckBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
   if (userid.value == "") {
-    alert("아이디를 입력해주세요.");
+    alert("아이디를 입력해주세요.\n\n* 로 표시된 항목은 필수사항 입니다.");
     userid.focus();
     return false;
   } else if (userid.value.length < 8) {
@@ -79,7 +77,7 @@ registerBtn.addEventListener("click", (e) => {
   let nameTest = /^[가-힣]{2,10}$/;
 
   if (userid.value == "") {
-    alert("아이디를 입력해주세요.");
+    alert("아이디를 입력해주세요.\n\n* 로 표시된 항목은 필수사항 입니다.");
     userid.focus();
     return false;
   } else if (userid.value.length < 8) {
@@ -90,7 +88,7 @@ registerBtn.addEventListener("click", (e) => {
   }
 
   if (userpw.value == "") {
-    alert("비밀번호를 입력해주세요.");
+    alert("비밀번호를 입력해주세요.\n\n* 로 표시된 항목은 필수사항 입니다.");
     userpw.focus();
     return false;
   } else if (userpw.value.length < 8) {
@@ -108,7 +106,7 @@ registerBtn.addEventListener("click", (e) => {
   }
 
   if (name.value == "") {
-    alert("이름을 입력해주세요.");
+    alert("이름을 입력해주세요.\n\n* 로 표시된 항목은 필수사항 입니다.");
     name.focus();
     return false;
   } else if (name.value.length < 2) {
@@ -122,7 +120,7 @@ registerBtn.addEventListener("click", (e) => {
   }
 
   if (phone.value == "") {
-    alert("전화번호를 입력해주세요.");
+    alert("전화번호를 입력해주세요.\n\n* 로 표시된 항목은 필수사항 입니다.");
     phone.focus();
     return false;
   } else if (phoneTest.test(phone.value) == false) {
@@ -133,7 +131,7 @@ registerBtn.addEventListener("click", (e) => {
   }
 
   if (email.value == "") {
-    alert("이메일을 입력해주세요.");
+    alert("이메일을 입력해주세요.\n\n* 로 표시된 항목은 필수사항 입니다.");
     email.focus();
     return false;
   } else if (expText.test(email.value) == false) {

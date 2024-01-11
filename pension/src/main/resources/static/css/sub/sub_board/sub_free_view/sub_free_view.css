@@ -16,7 +16,8 @@ body {
     color: #555;
 }
 
-ul, li {
+ul,
+li {
     list-style: none;
 }
 
@@ -174,13 +175,14 @@ nav {
 }
 
 /* ----------------------------------------------- */
-.wrapAll{
-display:flex;
-margin: 0 auto;
-justify-content:space-between;
-width: 1200px;
-padding: 150px 0;
+.wrapAll {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    width: 1200px;
+    padding: 150px 0;
 }
+
 .sub-navigate-nav {
     width: 15%;
 }
@@ -206,128 +208,71 @@ padding: 150px 0;
 
 
 .flex {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .box {
-  padding: 0.5rem 0.75rem;
-  font-size: 14px;
-  color: #212529;
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  display: block;
-  border-radius: 3px;
-  outline: 0;
+    padding: 0.5rem 0.75rem;
+    font-size: 14px;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    display: block;
+    border-radius: 3px;
+    outline: 0;
 }
 
 .width-100 {
-  width: 100%;
+    width: 100%;
 }
 
 .width-15 {
-  width: 15%;
+    width: 15%;
 }
 
 .width-50 {
-  width: 50%;
+    width: 50%;
 }
 
 .height-400 {
-  min-height: 400px;
+    min-height: 400px;
 }
 
 .wrap ul li {
-  margin-top: 20px;
-  margin-bottom: 5px;
-}
-
-.input:focus {
-  border: 2px solid #86b7fe;
-}
-
-.btn2 {
-  padding: 8px 12px;
-  color: #fff;
-  border-radius: 3px;
-  font-size: 14px;
-  cursor: pointer;
-  border: 0;
-}
-
-.blue {
-  background-color: #2185d0;
-}
-
-.red {
-  background-color: #db2828;
-}
-
-.noto {
-  font-family: "Noto Sans KR", sans-serif;
-}
-
-.hide {
-  display: none;
-}
-
-.show {
-  display: block;
-}
-
-
-/* footer 시작 */
-
-footer {
-    padding: 20px 0;
-    width: 100%;
-    background-color: #9EA2A9;
-    font-size: 12px;
-}
-
-.footer-wrap {
-    max-width: 1200px;
-    height: 120px;
-    margin: 0 auto;
-}
-
-.footer-wrap ul {
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #555;
-}
-
-.footer-logo {
-    padding-top: 0;
-}
-
-.copyright p {
-    font-size: 12px;
+    margin-top: 20px;
     margin-bottom: 5px;
 }
 
-.tell p:first-child {
-    margin-bottom: 10px;
+.input:focus {
+    border: 2px solid #86b7fe;
 }
 
-.footer-sns {
-    width: 65px;
-    display: flex;
-    justify-content: space-between;
+.btn2 {
+    padding: 8px 12px;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 0;
 }
 
-.footer-sns a {
-    font-size: 25px;
-    color: #555;
+.blue {
+    background-color: #2185d0;
 }
 
-.footer-sns a:hover {
-    color: tomato;
+.red {
+    background-color: #db2828;
 }
 
-/* footer 끝 */
+.noto {
+    font-family: "Noto Sans KR", sans-serif;
+}
 
+.hide {
+    display: none;
+}
 
-
+.show {
+    display: block;
+}

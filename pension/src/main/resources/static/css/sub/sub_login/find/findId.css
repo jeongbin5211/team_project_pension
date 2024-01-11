@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(137, 199, 215,0.3);
+    background-color: rgba(137, 199, 215, 0.3);
 }
 
 .wrap {
@@ -45,7 +45,7 @@ input {
 }
 
 .tab_box {
-    position:relative;
+    position: relative;
     border-bottom: 2px solid rgba(137, 199, 215);
 }
 
@@ -77,11 +77,11 @@ input {
 
 .remove_line {
     position: absolute;
-    bottom:-4px;
+    bottom: -4px;
     width: 100%;
     height: 2px;
     background-color: #fff;
-    z-index:9999;
+    z-index: 9999;
 }
 
 table {
@@ -159,7 +159,5 @@ td {
 }
 
 .font-green {
-    color: #00af00 ;
+    color: #00af00;
 }
-
-

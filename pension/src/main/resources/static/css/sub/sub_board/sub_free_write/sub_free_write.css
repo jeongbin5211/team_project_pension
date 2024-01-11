@@ -16,7 +16,8 @@ body {
     color: #555;
 }
 
-ul, li {
+ul,
+li {
     list-style: none;
 }
 
@@ -174,17 +175,17 @@ nav {
 }
 
 /* ----------------------------------------------- */
-.wrapAll{
-display:flex;
-margin: 0 auto;
-justify-content:space-between;
-width: 1200px;
-padding: 150px 0;
+.wrapAll {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    width: 1200px;
+    padding: 150px 0;
 }
 
 .wrap {
- width: 80%;
-     border-radius: 3px;
+    width: 80%;
+    border-radius: 3px;
 }
 
 .sub-navigate-nav {
@@ -257,59 +258,3 @@ padding: 150px 0;
 .noto {
     font-family: 'Noto Sans KR', sans-serif;
 }
-
-/* footer 시작 */
-
-footer {
-    padding: 20px 0;
-    width: 100%;
-    background-color: #9EA2A9;
-    font-size: 12px;
-}
-
-.footer-wrap {
-    max-width: 1200px;
-    height: 120px;
-    margin: 0 auto;
-}
-
-.footer-wrap ul {
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #555;
-}
-
-.footer-logo {
-    padding-top: 0;
-}
-
-.copyright p {
-    font-size: 12px;
-    margin-bottom: 5px;
-}
-
-.tell p:first-child {
-    margin-bottom: 10px;
-}
-
-.footer-sns {
-    width: 65px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.footer-sns a {
-    font-size: 25px;
-    color: #555;
-}
-
-.footer-sns a:hover {
-    color: tomato;
-}
-
-/* footer 끝 */
-
-
-
