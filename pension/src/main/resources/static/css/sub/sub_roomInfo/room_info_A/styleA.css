@@ -230,7 +230,7 @@ nav {
 }
 
 #slideShow img {
-    width: 100%;
+  width: 100%;
 }
 
 .slides {
@@ -311,77 +311,4 @@ nav {
 
 .reserve a {
   color: #fff;
-}
-
-/* footer 시작 */
-
-footer {
-  padding: 20px 0;
-  width: 100%;
-  background-color: #9ea2a9;
-  font-size: 12px;
-}
-
-.footer-wrap {
-  max-width: 1200px;
-  height: 120px;
-  margin: 0 auto;
-}
-
-.footer-wrap ul {
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #555;
-}
-
-.footer-logo {
-  padding-top: 0;
-}
-
-.copyright p {
-  font-size: 12px;
-  margin-bottom: 5px;
-}
-
-.tell p:first-child {
-  margin-bottom: 10px;
-}
-
-.footer-sns {
-  width: 65px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.footer-sns a {
-  font-size: 25px;
-  color: #555;
-}
-
-.footer-sns a:hover {
-  color: tomato;
-}
-
-/* footer 끝 */
-
-/* Anchor 시작 */
-
-.anchor {
-  position: fixed;
-  right: 5%;
-  bottom: 5%;
-  width: 35px;
-  height: 35px;
-  background-color: rgb(139, 131, 131);
-  border-radius: 5px;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: 0.3s;
-  visibility: hidden;
 }

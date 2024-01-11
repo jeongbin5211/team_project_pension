@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(137, 199, 215,0.3);
+    background-color: rgba(137, 199, 215, 0.3);
 }
 
 .logo_box {
@@ -63,7 +63,6 @@ button:hover {
     background-color: rgba(137, 199, 215, 0.5);
     color: #666;
 }
-
 
 li {
     width: 100%;
